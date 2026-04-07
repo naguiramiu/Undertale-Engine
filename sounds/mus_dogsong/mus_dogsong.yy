@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mus_dogsong",
+  "audioGroupId":{
+    "name":"audiogroup_music",
+    "path":"audiogroups/audiogroup_music",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":2,
+  "conversionMode":0,
+  "duration":28.049728,
+  "exportDir":"",
+  "name":"mus_dogsong",
+  "parent":{
+    "name":"mus",
+    "path":"folders/sounds/mus.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_dogsong.ogg",
+  "volume":1.0,
+}

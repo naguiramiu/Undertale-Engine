@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_save",
+  "audioGroupId":{
+    "name":"audiogroup_sound",
+    "path":"audiogroups/audiogroup_sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":2,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.56600904,
+  "exportDir":"",
+  "name":"snd_save",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_save.ogg",
+  "volume":1.0,
+}

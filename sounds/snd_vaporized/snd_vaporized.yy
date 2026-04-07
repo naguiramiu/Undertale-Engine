@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_vaporized",
+  "audioGroupId":{
+    "name":"audiogroup_sound",
+    "path":"audiogroups/audiogroup_sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":2,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.1910204,
+  "exportDir":"",
+  "name":"snd_vaporized",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_vaporized.ogg",
+  "volume":1.0,
+}

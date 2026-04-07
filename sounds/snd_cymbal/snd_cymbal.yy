@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_cymbal",
+  "audioGroupId":{
+    "name":"audiogroup_sound",
+    "path":"audiogroups/audiogroup_sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":5.18966,
+  "exportDir":"",
+  "name":"snd_cymbal",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_cymbal.ogg",
+  "volume":1.0,
+}

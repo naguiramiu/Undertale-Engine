@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_heal",
+  "audioGroupId":{
+    "name":"audiogroup_sound",
+    "path":"audiogroups/audiogroup_sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.43392292,
+  "exportDir":"",
+  "name":"snd_heal",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_heal.ogg",
+  "volume":1.0,
+}

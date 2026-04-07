@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_escaped",
+  "audioGroupId":{
+    "name":"audiogroup_sound",
+    "path":"audiogroups/audiogroup_sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.2565533,
+  "exportDir":"",
+  "name":"snd_escaped",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_escaped.wav",
+  "volume":1.0,
+}

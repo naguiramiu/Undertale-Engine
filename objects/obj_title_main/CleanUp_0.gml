@@ -1,0 +1,1 @@
+globalmusic_stop(true)

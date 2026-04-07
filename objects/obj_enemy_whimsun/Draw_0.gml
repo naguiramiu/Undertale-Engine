@@ -1,0 +1,1 @@
+draw_sprite_ext_optional(,,x + sin(current_time * 0.002) * 2,y + sin(current_time * 0.0025) * 5)

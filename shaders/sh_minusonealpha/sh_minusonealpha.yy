@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_minusonealpha",
+  "name":"sh_minusonealpha",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

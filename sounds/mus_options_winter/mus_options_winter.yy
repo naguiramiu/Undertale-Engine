@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mus_options_winter",
+  "audioGroupId":{
+    "name":"audiogroup_music",
+    "path":"audiogroups/audiogroup_music",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":1,
+  "compressionQuality":5,
+  "conversionMode":0,
+  "duration":13.727347,
+  "exportDir":"",
+  "name":"mus_options_winter",
+  "parent":{
+    "name":"mus",
+    "path":"folders/sounds/mus.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_options_winter.ogg",
+  "volume":1.0,
+}

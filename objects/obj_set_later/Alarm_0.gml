@@ -1,0 +1,5 @@
+if is_struct(instance_or_struct)
+variable_struct_set(instance_or_struct,variable_name,value)
+else
+variable_instance_set(instance_or_struct,variable_name,value)
+instance_destroy()

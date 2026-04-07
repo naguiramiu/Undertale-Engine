@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_clipalpha",
+  "name":"sh_clipalpha",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -1,0 +1,3 @@
+hurttimer = 0
+
+

@@ -1,0 +1,1 @@
+if follow_char event_user(1)

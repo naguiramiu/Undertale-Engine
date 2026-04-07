@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_fullcolor",
+  "name":"sh_fullcolor",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

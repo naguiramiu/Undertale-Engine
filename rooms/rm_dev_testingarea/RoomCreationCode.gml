@@ -1,0 +1,1 @@
+obj_col_parent.visible = true
