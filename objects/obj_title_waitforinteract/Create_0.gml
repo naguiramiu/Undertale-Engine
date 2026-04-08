@@ -1,7 +1,8 @@
 instance_to_create = obj_title_namescreen
 
 // it assumes you have no file so it send you to the name screen
-// it loops through the files to see if any of them are loaded, if so, if you have 1 file it takes you to title main else fileselect
+// it loops through the files to see if any of them are loaded,
+// so, if you have 1 file it takes you to title main else fileselect
 
 if array_any(scr_array_fill_savefiledata(),function(val){ return val.loaded; })
 instance_to_create = NUMBER_OF_SAVEFILES > 1 ? obj_fileselect : obj_title_main

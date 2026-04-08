@@ -43,36 +43,40 @@ function get_nex_lvl(lv)
     return _vals[clamp(lv, 0, 19)];
 }
 
-function create_speechbubble(_dialogue,bubble_x = 0,bubble_y = 0,_point_x = x,_point_y = y,max_width = 170,_var_struct = {})
+function create_speechbubble(_dialogue,bubble_x = 0,bubble_y = 0,_point_x = x,_point_y = y,max_text_width = 80,_var_struct = {},_get_size_auto = true,width = 0,height = 0)
 {
 	var var_struct = 
 	{
+		get_size_auto: _get_size_auto,
+		max_width: width,
+		max_height: height,
+		can_skip_while_writting: true,
+		letter_spacing: 0,
+		monospaced: false,
 		x:  bubble_x,
 		y:  bubble_y,
 		point_x: _point_x,
-		point_y: _point_y,
+		point_y: _point_y, 
 		creator_instance: id,
-		max_sentence_width: max_width,
+		max_sentence_width: max_text_width,
 		dialogue: _dialogue,
 		color: c_black, 
 		textbox_position: DOWN,
 		draw_bg: false,
 		font_current: font_dotumche_10,
-		write_speed: 0.5, 
+		write_speed: 1, 
 		talker: global.talker.battle,
 		letter_width: 0.5, 
 		letter_height: 0.5,
-		max_sentence_width: 100,
 		do_get_details: true,
-		line_separation: 18,
+		line_separation: 20,
 		is_speechbubble: true,
 		do_extend_box: false,
 		event_battle: battle_turn_start,
 		can_advance: false,
 	}
-	var vars = variable_struct_get_names(_var_struct)
-	for (var i = 0; i < array_length(vars); i++)
-	var_struct[$vars[i]] = _var_struct[$vars[i]]
+	
+	struct_replace_unique(var_struct,_var_struct)
 	
 	var speechbubble = instance_create_depth(0,0,depth - 1,obj_textbox,var_struct)
 	
@@ -315,5 +319,140 @@ function check_perfom_event(event_name)
 	if var_id_exists(event_name)
 	{
 		method_call(var_id_get(event_name),customevent_get_params(event_name))
+	}
+}
+
+function battle_draw_bottom_ui()
+{
+	#region battle buttons 
+	
+	var cur = current_character_selections[selected_char_number]
+	var disabled_menus = get_unavailable_battle_menus()
+
+	for (var p = 0; p < array_length(global.stats.party); p++)
+	for (var i = 0; i < 4; i++)
+	{ 
+		var current_x = cam_x + 17.5 + (77.5 * i) + (-button_xoffset * 320) + (p * 320) + (i == 0 ? -1.5 : (i == 1 ? -2.5 : 0))
+		var current_y = cam_y + 216
+	
+		var sprite = spr_battlebuttons_icon
+		var col = #FF7F27
+		var selected = (i == cur.main_menu_selection)
+		if array_contains(disabled_menus,i)
+		col = #707070
+	 
+		if selected && controler_can_move
+		{
+			sprite = spr_battlebuttons_noicon
+			col = #FFFF40
+		}
+		draw_sprite_ext(sprite, i, current_x , current_y,0.5,0.5,0,col,1)
+	
+		if selected && !cur.in_submenu && controler_can_move
+		draw_sprite_ext(spr_soul,0,8 + current_x, 10.5 + current_y + 0.5,0.5,0.5,1,c_white,1)
+	}
+	
+	#endregion
+	
+	#region hp and stats thingy
+	var in_a_party = (array_length(global.stats.party) > 1)
+	
+	if in_a_party 
+		scr_battle_draw_party_healthbars()
+	else
+		scr_battle_draw_player_healthbar()
+
+	draw_reset_color()
+	#endregion
+}
+
+function scr_battle_draw_player_healthbar()
+{
+	#region ui bottom
+	var char = get_char_by_party_position(0)
+		draw_set_font(font_mars_18)
+		draw_set_colour(c_white)
+		draw_text_transformed(cam_x + 15,cam_y + 200,char.name + "   LV " + string(global.stats.lv),0.5,0.5,0)
+		var hp = max(0,char.hp)
+		var hp_barwdith_filled = ((char.max_hp * 1.3) / 2) - 1
+		var hp_barwdith = clamp((hp >= 0 ? (hp_barwdith_filled * (hp / char.max_hp)) : 0), 0,hp_barwdith_filled)
+		draw_text_transformed(cam_x + 147.5 + hp_barwdith_filled - 3, cam_y + 200,string(hp) + " / " + string(char.max_hp),0.5,0.5,0);
+		draw_set_color(c_red)
+		draw_rectangle_wh(cam_x + 137.5, cam_y + 200,hp_barwdith_filled, 10, false)
+		draw_set_color(c_yellow)
+		draw_rectangle_wh(cam_x + 137.5, cam_y + 200,hp_barwdith, 10, false)
+		draw_set_color(c_white)
+		draw_set_font(font_8bit_9)
+		draw_text_transformed(cam_x + 128.5,cam_y + 201.5, "P",0.5,0.5,0)
+		draw_text_transformed(cam_x + 122, cam_y + 201.5, "H",0.5,0.5,0)
+	#endregion
+	exit;	
+}
+
+function scr_battle_draw_party_healthbars()
+{
+	static ui_anim = array_create_ext(array_length(global.stats.party),function(i){return!i})
+
+	var ary = array_length(global.stats.party)
+	var w = 82 + 10;
+	var h = 16; 
+	var x_spacing = 20;
+	if ary = 3 x_spacing = 5
+	var screen_bottom_y = 240;
+	var margin = 10; 
+	var screen_mid_x = 160
+	var total_block_width = (ary * w) + ((ary - 1) * x_spacing);
+	var start_x = screen_mid_x - (total_block_width / 2);
+	for (var i = 0; i < ary; i++)
+	{
+		var char = get_char_by_party_position(i)
+		var draw_y = cam_y + 3 + -20 + screen_bottom_y - h - margin;
+		var draw_x = cam_x + start_x + (i * (w + x_spacing));
+		var char_color_start = char.ui_color
+		var white = c_white
+		var red = c_red
+		var s = 0.25
+		if i == selected_char_number || battle_started
+		{
+			if ui_anim[i] < 1  ui_anim[i] += s
+			if !battle_started
+			draw_sprite(spr_arrow_1,0,draw_x - 16, draw_y + 1)
+		}
+		else 
+		{
+			if ui_anim[i] > 0 
+				ui_anim[i] -= s
+		}
+		if char.hp <= 0 
+		{
+			ui_anim[i] = 0
+			var am = 0.5
+			char_color_start = merge_colour(c_black,char_color_start,am)	
+			white = merge_colour(c_black,c_white,am)
+			red = merge_colour(c_black,c_red,am)	
+		}
+		draw_y += ease_out(ui_anim[i],1,0) * -10
+	
+		draw_set_colour(merge_colour(merge_colour(c_black,red,0.5),red,ui_anim[i]))
+		draw_rectangle_wh(draw_x + 30,draw_y + 8 + 1,18,5,0)
+		var char_color = merge_colour(merge_colour(c_black,char_color_start,0.5),char_color_start,ui_anim[i])
+		draw_set_colour(char_color)
+		draw_rectangle_wh(draw_x,draw_y,w,h,1)
+		if char.hp >= 0
+		draw_rectangle_wh(draw_x + 30,draw_y + 8 + 1,(char.hp / char.max_hp) * 18,5,0)
+		draw_set_color(merge_colour(merge_colour(white,c_black,0.5),white,ui_anim[i]))
+		draw_set_font(font_crypt_4)
+		draw_text(draw_x + 19,draw_y + 3 + 1,char.name)
+		draw_text(draw_x + 19,draw_y + 3 + 6 + 1,"HP")
+		draw_set_halign(fa_right)
+		draw_text(draw_x + w + -1,draw_y + 10,char.max_hp)
+		draw_sprite_ext(spr_ui_bar,0,draw_x + w + -3 - string_width(char.max_hp), draw_y + 9,1,1,0,draw_get_colour(),1)
+		draw_text(draw_x + w + -9 - string_width(char.max_hp),draw_y + 10,char.hp)
+		draw_set_halign(fa_left)
+		var _sprite = spr_battle_face_default
+		var spr = asset_get_index("spr_" + global.stats.party[i] + "_battle_face")
+		if sprite_exists(spr)
+		_sprite = spr 
+		draw_sprite_ext(_sprite,0,draw_x + 9, draw_y + 8,1,1,0,char_color,1)
 	}
 }

@@ -41,7 +41,7 @@ if !getting_details
 		}
 	}
 
-	if (((text_written || (is_speechbubble)) 
+	if (((text_written || (can_skip_while_writting)) 
 	&& (interact_key_press || open_menu_key_press))) && can_advance
 	{
 		if current_page < array_length(dialogue) - 1
@@ -49,18 +49,24 @@ if !getting_details
 			current_page ++ 
 			event_user(0) // get info about the new page
 		} 
-		else if can_destroy
+		else
 		{
-			is_destroyed = true
-			instance_destroy()
-			if stop_drawing_after_destroy 
-			exit;
+			if variable_instance_exists(id,"event_lastpage")
+			event_lastpage()
+			
+			 if can_destroy
+			 {
+				is_destroyed = true
+				instance_destroy()
+				if stop_drawing_after_destroy 
+				exit;
+			 }
 		}
 	}
-
-	var drawn_x = x + cam_x 
-	var drawn_y = y + cam_y  
 	
+	var drawn_x = x + cam_x
+	var drawn_y = y + cam_y 
+
 	if is_option // center align
 	{
 		drawn_x -= max_width / 2
@@ -76,8 +82,16 @@ if !getting_details
 		drawn_y += 155
 		drawn_y -= sentence_y_offset
 	}
-	
+	else 
+		current_y ++ // in undertale when the textbox is up theres an offset of 1 with the y, dont know y.
+		
 	draw_set_alpha(image_alpha)
+	
+	if is_speechbubble
+	{
+		drawn_x = x + -43
+		drawn_y = y + -13
+	}
 	
 	if draw_bg
 	{
@@ -90,13 +104,23 @@ if !getting_details
 	if is_speechbubble
 		scr_textbox_draw_speechbubble(drawn_x,drawn_y)
 		
-	if talker_has("sprite_name") // dialogue sprites
+	if talker_has("sprite_name") && !is_speechbubble // dialogue sprites
 	{
+		if !talker_has("sprite_frame") talker.sprite_frame = 0	
+
 		var sprite_name = talker.sprite_name
 		if talker_has("sprite_emotion") sprite_name += talker.sprite_emotion
 		var sprite = asset_get_index(sprite_name) ?? spr_textbox_error
-		draw_sprite_ext(sprite,0,drawn_x + 69,drawn_y + 40,2,2,0,c_white,draw_get_alpha())
-		start_x += 116
+		
+		if talker_has("sprite_animate_talking") && talker.sprite_animate_talking
+		{
+			if audio_is_playing(sound_playing)
+			talker.sprite_frame += sprite_get_speed_ammount(sprite)
+			else talker.sprite_frame = 0
+		}
+		
+		draw_sprite_ext(sprite,talker.sprite_frame,drawn_x + 29,drawn_y + 18,1,1,0,c_white,draw_get_alpha())
+		start_x += 58
 	}
 }
 draw_set_font(font_current)
@@ -123,7 +147,7 @@ for (var i = 1; i <= string_length(current_dialogue); i++)
 	
 	for (var m = 0; m < array_length(markups); m++)
 	{
-		if markups[m].pos > i break; // if markups pos hasnt been reached dont bother 
+		if markups[m].pos > i || stop_drawing break; // if markups pos hasnt been reached dont bother 
 		if (markups[m].pos == i) // else if we are in the correct pos 
 		{
 			markup_perform(markups[m]) // dew it 
@@ -151,22 +175,30 @@ for (var i = 1; i <= string_length(current_dialogue); i++)
 
 	if (char == " ") 
 	{
-	    var next_word_idx = current_word + 1
+	    var next_word_idx = current_word + 1;
 	    if (next_word_idx < array_length(words)) 
-		{
-			var next_w_width = monospaced ? (string_length(words[next_word_idx]) * 9) : string_width(words[next_word_idx])
-
-	        var next_word_w = (next_w_width * letter_width) + (string_length(words[next_word_idx]) * letter_spacing)
-
-	        if (current_x + next_word_w > max_sentence_width) 
+	    {
+	        var next_word_string = words[next_word_idx]
+	        var total_next_w = 0
+	        for (var n = 1; n <= string_length(next_word_string); n++)
+	            total_next_w += ((monospaced ? 9 : string_width(string_char_at(next_word_string, n))) * letter_width) + letter_spacing
+			draw_set_colour(c_blue)
+			if !getting_details
+				scr_draw_text_with_texteffects(drawn_x + max_sentence_width,drawn_y + current_y,"E",letter_width,letter_height,0,i)
+				
+	        if (current_x + lwidth + total_next_w > max_sentence_width + 0.1) 
 	        {
-				if getting_details page_sentence_ammount ++
-	            current_x = start_x
-	            current_y += line_separation * letter_height
+				if !getting_details
+					scr_draw_text_with_texteffects(drawn_x + current_x + total_next_w,drawn_y + current_y,"T",letter_width,letter_height,0,i)
+	            if getting_details
+					page_sentence_ammount++;
+	            current_x = start_x;
+	            current_y += line_separation * letter_height;
 	            lwidth = 0
 	        }
+			draw_set_colour(c_black)
 	    }
-	    current_word++
+	    current_word++;
 	}
 	current_x += lwidth;
 }

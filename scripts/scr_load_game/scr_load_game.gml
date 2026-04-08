@@ -53,19 +53,13 @@ function load_player()
 		var saved_coords = global.information
 		var _x = saved_coords.x 
 		var _y = saved_coords.y
-		
-		var _char_name = ""
-		var vars = variable_struct_get_names(global.stats.char)
-		for (var c = 0; c < array_length(vars); c ++)
-		if global.stats.char[$vars[c]].id == my_char.id  
-		_char_name = vars[c]		
+		var _char_name = global.stats.party[i]		
 		
 		global.party_instances[i] = instance_create_depth(_x,_y,-_y,(is_player_character ? player : obj_char_follower), 
 		{
 			char_name: _char_name,
 			array_size: ((array_length(global.stats.party) - 1) * global.party_distance),
 			number_in_party: i,
-			my_id: my_char.id,
 			depth: -_y,
 			front_vector: saved_coords.front_vector,
 		})

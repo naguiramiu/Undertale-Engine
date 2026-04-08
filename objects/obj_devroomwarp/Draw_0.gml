@@ -65,7 +65,7 @@ for (var i = 0; i < array_length(room_info); i++)
 			instance_activate_object(parent_char)
 			if !instance_exists(player) load_player()
 			global.can_move = true 
-			scr_teleport_player(room_info[i].x,room_info[i].y)
+			scr_teleport_player(room_info[i].x,room_info[i].y,true)
 			room_goto(room_info[i].room_id)
 			globalmusic_stop(true)
 			audio_stop_all()

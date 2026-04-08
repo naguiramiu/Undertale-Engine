@@ -17,7 +17,7 @@ function currentday(date = date_current_datetime())
 function crashfile_write(error_message)
 {
 	var crash_log = ""
-	var file_name = "crash_log.txt"
+	var file_name = file_dir() + "crash_log.txt"
 	if file_exists(file_name) 
 		crash_log = file_read_all_text(file_name)  
 	var bigline = string_repeat(chr(95),43)

@@ -79,8 +79,28 @@ if array_length(temp_markups)
 
 page_sentence_ammount = 1
 
+var prev_width = max_width 
+var prev_height = max_height 
+
 if do_get_details || do_extend_box
 scr_txtbox_getnumberofsentences()
+
+if is_speechbubble
+{
+	if get_size_auto 
+	{
+		if prev_height > max_height 
+			max_height = prev_height 
+		if prev_width > max_width 
+			max_width = prev_width
+	}
+	else 
+	{
+		max_height = prev_height 
+		max_width = prev_width
+	}
+}
+
 
 if insta_write 
 letter_drawn_current = string_length(dialogue[current_page]) 

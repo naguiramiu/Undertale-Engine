@@ -68,70 +68,15 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 	if create_textboxes
 	{
 		if battle 
-			create_battle_textbox(dialogue,var_struct,true)
+			return create_battle_textbox(dialogue,var_struct,true)
 		else
-			create_textbox(dialogue,var_struct)
+			return create_textbox(dialogue,var_struct)
 	}
 }
 
 
 
 
-
-function use_item(used_on,selected_item,battle = false,selection,var_struct = {},create_textboxes = true, spend_item = true,used_by = undefined)
-{
-	if selected_item.custom_event != -1 
-	{
-		var new_item = 	selected_item.custom_event(used_on,battle,used_by)
-		if is_struct(new_item)
-		selected_item = new_item
-	}
-	var dialogue = selected_item.dialogue_struct.use_description
-	
-	if variable_struct_exists(selected_item.dialogue_struct,"use_description_by_" + string_lower(used_on.name))
-	dialogue = variable_struct_get(selected_item.dialogue_struct,"use_description_by_" + string_lower(used_on.name))
-
-	dialogue = string_replace_all(dialogue,"{char_name}",used_on.name)
-	
-	switch selected_item.type_of
-	{
-		case e_item_type.cant_use:
-		if !string_pos("{event:heal}",dialogue)
-		dialogue = "{event:heal}" + dialogue
-		// play cant select noise instead of healing
-		dialogue = string_replace(dialogue,"{event:heal}","{sound:snd_cantselect}")
-		break;
-		case e_item_type.consumable:
-		if !string_pos("{event:heal}",dialogue)
-		dialogue = "{event:heal}" + dialogue
-			with var_struct  
-			{
-				event_heal_parameters = [selected_item.type_result,used_on]
-				event_heal = function(heal_amount,char)
-				{
-					play_sound(snd_heal,0.5)	
-					if char.hp < char.max_hp
-					char.hp = min(char.max_hp,char.hp + heal_amount)
-				}
-			}
-			if selected_item.type_of == e_item_type.consumable && spend_item
-			{
-				array_delete(global.stats.inventory,selection,1)
-				global.stats.inventory[array_length(global.stats.inventory)] = -1
-			}
-		break;
-	}
-	// if is armor or knife put it in stuff 
-	// if is food heal
-
-	if create_textboxes
-	{
-		if battle
-		create_battle_textbox(dialogue,var_struct,true)
-		else
-		create_textbox(dialogue,var_struct)
-	}
-}
 
 function custom_item(_var_struct = -1,_item_type = e_itemtype.consumable, _sell_price = 10,_can_drop = true,_remove_after_use = true) constructor
 {
@@ -222,7 +167,7 @@ function drop_item(selected_item,selection,var_struct = {})
 			dialogue = lan.cant_drop_item_dialogue
 	}
 	
-	create_textbox(string_replace_all(dialogue,"{item}",selected_item.name),var_struct)
+	return create_textbox(string_replace_all(dialogue,"{item}",selected_item.name),var_struct)
 }
 
 function get_number_of_items(inventory = global.stats.inventory)

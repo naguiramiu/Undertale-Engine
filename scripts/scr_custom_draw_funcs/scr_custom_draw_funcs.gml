@@ -391,15 +391,14 @@ function scr_textbox_draw_speechbubble(drawn_x,drawn_y)
 	var bubble_y = current_y + drawn_y - spacing
 	var mid_x = bubble_x + max_width / 2
 	var mid_y = bubble_y + max_height / 2
-	var len = min( point_distance(mid_x,mid_y,point_x,point_y) / 2, min(max_width, max_height) * 1.67)
+	var len = min( point_distance(mid_x,mid_y,point_x,point_y) / 1.75, min(max_width, max_height) * 1.67)
 	var dir = point_direction(mid_x, mid_y, point_x, point_y);
 	var _point_x = mid_x + lengthdir_x(len, dir);
 	var _point_y = mid_y + lengthdir_y(len, dir);
 	mid_x = mid_x + lengthdir_x(10, dir);
 	mid_y = mid_y + lengthdir_y(10, dir);
 	draw_triangle_with_custom_width(_point_x, _point_y ,mid_x , mid_y, len / 2);
-	
-	draw_roundrect_ext(bubble_x,bubble_y,bubble_x + ((spacing * 2) + max_width),bubble_y + ((spacing * 2) + max_height - 8),20,15,0)
+	draw_roundrect_ext(bubble_x - 1,bubble_y + 0.5,bubble_x + max_width + 4,bubble_y + ((spacing * 2) + max_height - 8) - 0.5,20,15,0)
 	draw_set_colour(prev_color)	
 }
 

@@ -15,6 +15,7 @@
 #endregion
 
 #macro UI_DEPTH -10000
+#macro BATTLE_DEPTH (UI_DEPTH + 3000)
 #macro ENCRYPT_SAVEDATA true
 #macro ENABLE_RUNNING true
 #macro NUMBER_OF_SAVEFILES 1
@@ -27,3 +28,4 @@
 #macro AREA_DEV  "area_dev"
 
 #macro SPARE_ALL_MONSTERS false
+

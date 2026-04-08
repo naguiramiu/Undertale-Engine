@@ -180,7 +180,8 @@ if round_coordinates
 }
 
 player_animate()
-
+prev_xspd = xspd  
+prev_yspd = yspd
 
 
 if (array_length(global.party_instances) != 1 && ((x != xprevious || y != yprevious))) // update followers

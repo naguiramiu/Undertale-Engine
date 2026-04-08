@@ -6,8 +6,8 @@
   "name":"obj_dev_area",
   "overriddenProperties":[],
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"area_blocks",
+    "path":"folders/objects/area_blocks.yy",
   },
   "parentObjectId":{
     "name":"obj_parent_area",

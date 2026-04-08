@@ -1,0 +1,1 @@
+screen_cover(c_black)

@@ -35,7 +35,7 @@ event_speechbubble_destroy = function(monster)
 
 event_battlebox_appear = function()
 {
-	if !monster_is_alive(obj_enemy_froggit)
+	if true
 	{
 		do_later(5,function()
 		{

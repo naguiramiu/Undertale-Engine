@@ -56,44 +56,21 @@ if controler_can_move
 if prev != cur.main_menu_selection
 play_sound(snd_menu_move)
 
+
+battle_draw_bottom_ui() // draw bottom ui
+
+with obj_battlebox
+	event_perform(ev_draw,ev_draw_normal) // draw battle box 
+
 if !cur.in_submenu && instance_exists(flavor_text)
 {
 	with flavor_text 
-		event_user(1) // draw self	
+		event_user(1) // draw flavor text 	
 }
 
 if cur.in_submenu && controler_can_move
-event_user(cur.main_menu_selection)
+event_user(cur.main_menu_selection) // draw menys««us
 
-cur = current_character_selections[selected_char_number]
-
-
-var disabled_menus = get_unavailable_battle_menus()
-
-for (var p = 0; p < array_length(global.stats.party); p++)
-for (var i = 0; i < 4; i++)
-{ 
-	 var current_x = cam_x + 17.5 + (77.5 * i) + (-button_xoffset * 320) + (p * 320)
-	 var current_y = cam_y + 216
-	 if i == 0 current_x -= 1.5
-	 if i == 1 current_x -= 2.5
-	
-	 var sprite = spr_battlebuttons_icon
-	 var col = #FF7F27
-	 var selected = (i == cur.main_menu_selection)
-	 if array_contains(disabled_menus,i)
-	 col = #707070
-	 
-	 if selected && controler_can_move
-	 {
-		 sprite = spr_battlebuttons_noicon
-		 col = #FFFF40
-	 }
-	draw_sprite_ext(sprite, i, current_x , current_y,0.5,0.5,0,col,1)
-	
-	if selected && !cur.in_submenu && controler_can_move
-	draw_sprite_ext(spr_soul,0,8 + current_x, 10.5 + current_y + 0.5,0.5,0.5,1,c_white,1)
- }
 
 if turn_timer != -1 
 {
@@ -107,3 +84,4 @@ if turn_timer != -1
 		}
 	}
 }
+

@@ -107,13 +107,15 @@ if (can_move && can_hitbox)
 			
 		if invframes_timer == 0 && instance_exists(inst)
 		{
-			if !instance_exists(inst) return false
 			invframes_timer = inst.myinvframes
 			image_index = 1
 			var damage = damage_calculation(inst.damage,chosen)
 			
 			if is_method(inst.event_hit)
-			inst.event_hit();
+			inst.event_hit(); 
+			
+			if !instance_exists(inst) return false
+
 			
 			if inst.damage > 0 
 			{

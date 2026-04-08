@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mus_fallendown2",
+  "audioGroupId":{
+    "name":"audiogroup_music",
+    "path":"audiogroups/audiogroup_music",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":150.55093,
+  "exportDir":"",
+  "name":"mus_fallendown2",
+  "parent":{
+    "name":"first flowey room",
+    "path":"folders/objects/ruins/first flowey room.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_fallendown2.ogg",
+  "volume":1.0,
+}

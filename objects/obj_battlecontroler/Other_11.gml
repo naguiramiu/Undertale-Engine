@@ -83,7 +83,6 @@ if cur.in_submenu2
 	#endregion
 	if cur.act_selection != prev play_sound(snd_menu_move)
 	
-	draw_set_font(font_deter_mono_12)
 	var starty = cam_y 
 	var current_x = 0
 	var current_y = 0

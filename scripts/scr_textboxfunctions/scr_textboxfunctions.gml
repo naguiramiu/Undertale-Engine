@@ -55,7 +55,7 @@
 		break;
 		
 		case "col": case "color":
-		
+		case "c":
 			if reset color_current = color
 				else if string_starts_with(value[0],"#") 
 					color_current = hex_to_color(value[0])
@@ -267,10 +267,11 @@ function scr_draw_text_with_texteffects(_x,_y,_char,_xscale,_yscale,_angle,i)
 	}
 	if texteffect_shake
 	{
-		var ran = !irandom(100) 
-		if _char == "*" ran = false
-		_x += ran ? random_range(-1,1) : 0
-		_y += ran ? random_range(-1,1) : 0
+		if _char != "*" 
+		{ 
+			_x += random_range(-0.5,0.5)
+			_y += random_range(-0.5,0.5) 
+		}
 	}
 	if texteffect_nervous
 	{

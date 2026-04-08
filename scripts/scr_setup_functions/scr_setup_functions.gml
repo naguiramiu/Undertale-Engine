@@ -1,18 +1,5 @@
 
-function game_character(_name,_id,_ui_color,_max_hp = 20,_weapon_slot = e_weaponid.empty, _armor_slot = e_armorid.empty) constructor
-{
-	name = _name
-	id = _id
-	ui_color = _ui_color
-	max_hp = _max_hp
-	hp = max_hp
-	attack = 0
-	defense = 0
-	attack = 0
-	defense = 0
-	weapon = _weapon_slot
-	armor = _armor_slot
-}
+
 
 function scr_initiate_information()
 {

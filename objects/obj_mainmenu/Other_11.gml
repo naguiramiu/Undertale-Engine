@@ -1,13 +1,24 @@
 /// @description STAT
 var lan = get_lan(lan_main_menu)
-var char = selected_char
-if !is_defined(stats_screen)
+
+if (array_length(global.stats.party) > 1)
+{
+	selected_char = scr_leftright_modwrap(selected_char,array_length(global.stats.party),function()
+	{
+		stats_screen = undefined
+		play_sound(snd_menu_move)
+	})
+}
+
+var char = get_char_by_party_position(selected_char)
+
+if is_undefined(stats_screen)
 {
 	var empty = lan.empty_slot
 	var char_weapon = global.items[$char.weapon]
 	var char_armor = global.items[$char.armor]
 	stats_screen = variable_clone(lan.stats)
-
+	
 	var markup_replace =
 	{
 		name: char.name, 
@@ -15,8 +26,8 @@ if !is_defined(stats_screen)
 		lv: global.stats.lv,
 		hp: char.hp, max_hp: char.max_hp,
 	
-		item_attack: char_weapon.attack + char_armor.attack,
-		item_defense: char_weapon.defense + char_armor.defense,
+		item_attack: scr_get_char_item_attack(char),
+		item_defense: scr_get_char_item_defense(char),
 		weapon: is_defined(char_weapon) ? char_weapon.name : empty,
 		armor: is_defined(char_armor) ? char_armor.name : empty,
 	
@@ -54,6 +65,7 @@ if (string_length(char.name) > 6 || !scr_namecheck(char.name).allow)
 
 if (back_key || interact_key)
 {
+	selected_char = 0
 	stats_screen = undefined
 	back_key = false 
 	interact_key = false

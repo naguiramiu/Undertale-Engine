@@ -55,8 +55,6 @@ player_animate = function()
 	}
 	
 	was_moving = is_moving
-	prev_xspd = xspd  
-	prev_yspd = yspd
 	
 	if frames_to_stop > 0 frames_to_stop --
 	if frames_to_stop == 0

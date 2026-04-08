@@ -35,7 +35,7 @@ function cutscene_start_self(cutscene_array,var_struct = {},_persistent = false)
 }
 
 
-function cut_interpolate_var(_object_or_instance,_var_name,_progress_speed,_start,_end, _time_till_next,_ease_type = ease_square,_start_timer_imediately = false,_ease_params = [])
+function cut_interpolate_var(_object_or_instance,_var_name,_progress_speed,_start,_end, _time_till_next = 0,_ease_type = ease_square,_start_timer_imediately = false,_ease_params = [])
 {  
 	cutscene_hold_arguments
 	
@@ -119,20 +119,23 @@ function cut_playsound(_sound,_gain = 1,_time_till_next = 0, _pitch = 1, _loops 
 function cut_textbox(text,_time_till_next = 0, _start_timer_imediately = false, var_struct = {}, _creator_instance = noone,_do_cutscene_event_at_destroy = true)
 {
 	cutscene_hold_arguments
-	
 	struct_add_unique(var_struct,
 	{
+		creator: id,
 		do_cutscene_event_at_destroy: _do_cutscene_event_at_destroy,
 		stop_drawing_after_destroy: false,
 		let_player_move_end: false,
 		time_till_next: _time_till_next,
 		event_cutscene: function()
 		{
-			with obj_cutsceneplayer	
+			with creator	
 				alarm_set_instant(0,time_till_next)
 		}
 	})
-
+	
+	if variable_self_exists("textbox_talker") && !variable_struct_exists(var_struct,"talker")
+	var_struct.talker = textbox_talker
+	
 	create_textbox(text,var_struct)
 		
 	time_till_next = (_start_timer_imediately ? _time_till_next : -1);
@@ -151,4 +154,11 @@ function cutscene_next_event(_cutscene_id = undefined)
 		play_cutscene_event()
 	else with _cutscene_id 
 		play_cutscene_event()
+}
+
+function cut_textbox_talker(talker)
+{
+	cutscene_hold_arguments
+	
+	self.textbox_talker = talker
 }

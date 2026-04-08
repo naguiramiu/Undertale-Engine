@@ -21,6 +21,7 @@ var cutscene = cutscene_create
 (
 	cut_wait(30),
 	cut_set_var(id,"darken",true),
+	cut_perform_function(0,set_border,spr_border_simple),
 	cut_playsound(snd_noise,,4),
 	cut_playsound(snd_noise,,4),
 	cut_playsound(snd_noise,,4),

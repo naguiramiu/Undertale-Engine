@@ -8,9 +8,7 @@ function battle_next_action()
 		exit;
 	}
 	if array_length(obj_battlecontroler.actions) == 0
-	{
-		battle_battlebox_appear()
-	}
+		battle_end_actions()
 	else
 	with array_pop(obj_battlecontroler.actions)
 	{

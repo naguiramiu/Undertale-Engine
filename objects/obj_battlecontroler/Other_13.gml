@@ -91,7 +91,7 @@ if interact_key
 				fleetext = extra[irandom(5)]
 				create_battle_textbox(fleetext,{can_skip: false,can_advance: false},false)
 				lerp_var_ext(obj_camera,"screen_darken",0.025,0,1)
-				do_later(100,battle_end,,obj_battlecontroler)
+				do_later(80,battle_end,,obj_battlecontroler)
 				//audio_sound_gain(music,0,2000)
 				play_sound(snd_escaped)
 				with instance_create_depth(cam_x + 36, cam_y + 161 - 5, depth - 10,obj_empty)

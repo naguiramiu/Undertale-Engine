@@ -1,6 +1,5 @@
 image_xscale = 0.5
 image_yscale = 0.5
-depth = obj_battlebox.depth - 10
 main_speed = 2
 xspd = 0
 yspd = 0

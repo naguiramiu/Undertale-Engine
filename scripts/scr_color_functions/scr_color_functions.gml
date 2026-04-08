@@ -34,25 +34,25 @@ function hex_to_dec(hex)
 function string_to_color(color_name)
 {
 	
-	if !string_starts_with(color_name,"c_") color_name = "c_" + color_name
-    switch (color_name) {
-        case "c_white": return c_white;
-        case "c_black": return c_black;
-        case "c_gray": return c_gray;
-        case "c_silver": return c_silver;
-        case "c_red": return c_red;
-        case "c_maroon": return c_maroon;
-        case "c_yellow": return c_yellow;
-        case "c_olive": return c_olive;
-        case "c_lime": return c_lime;
-        case "c_green": return c_green;
-        case "c_aqua": return c_aqua;
-        case "c_teal": return c_teal;
-        case "c_blue": return c_blue;
-        case "c_navy": return c_navy;
-        case "c_fuchsia": return c_fuchsia;
-        case "c_purple": return c_purple;
-        case "c_orange": return c_orange;
+	if string_starts_with(color_name,"c_") color_name = string_copy(color_name,3,string_length(color_name))
+    switch string_lower((color_name)) {
+        case "white": case "w": return c_white;
+        case "black": case "k": return c_black;
+        case "gray": case "gr": return c_gray;
+        case "silver": return c_silver;
+        case "red": case "r": return c_red;
+        case "maroon": return c_maroon;
+        case "yellow": case "y": return c_yellow;
+        case "olive": return c_olive;
+        case "lime": case "l": return c_lime;
+        case "green": case "g": return c_green;
+        case "aqua": case "a": return c_aqua;
+        case "teal": case "t": return c_teal;
+        case "blue": case "b": return c_blue;
+        case "navy": return c_navy;
+        case "fuchsia": case "p": return c_fuchsia;
+        case "purple": return c_purple;
+        case "orange": case "o": return c_orange;
         default: return c_white;
     }
 }

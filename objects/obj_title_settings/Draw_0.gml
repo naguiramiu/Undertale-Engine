@@ -22,10 +22,12 @@ for (var i = 0; i < array_length(settings); i++)
 			if this_interact
 			{
 				global.settings[$option.var_name] = !global.settings[$option.var_name]
+				lerp_var_ext(option,"lerp_amount",0.1,1,0)
+				
 				window_custom_reset()
 				play_sound(snd_menu_move)
 			}
-			draw_text_color_ext(val_x,41 + current_y,(global.settings[$option.var_name] ? lan.settings_true : lan.settings_false),c_gray)
+			draw_text_color_ext(val_x,41 + current_y,(global.settings[$option.var_name] ? lan.settings_true : lan.settings_false),merge_colour(c_gray,c_white,option.lerp_amount))
 		break;
 		case e_settingstype.array:
 			if this_interact
@@ -44,11 +46,7 @@ for (var i = 0; i < array_length(settings); i++)
 					window_custom_reset()
 					goto_main_settings()
 					
-					if (global.settings.border_type == e_bordertype.not_enabled)
-					array_remove_value_ext(settings,function(i)
-					{
-						return (settings[i].var_name == "show_border_windowed")
-					})
+					
 					
 					main_selection = prev 
 				}
@@ -150,7 +148,7 @@ if back_key_press
 			play_sound(snd_menu_move)
 		}
 	else
-		with settings[0]
+		with settings[0] // settings 0 is back
 		function_call(event,customevent_get_params())
 }
 

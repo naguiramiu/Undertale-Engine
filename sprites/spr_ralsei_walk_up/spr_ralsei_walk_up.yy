@@ -26,7 +26,7 @@
   ],
   "name":"spr_ralsei_walk_up",
   "nineSlice":null,
-  "origin":9,
+  "origin":7,
   "parent":{
     "name":"ralsei",
     "path":"folders/sprites/characters/ralsei.yy",
@@ -88,7 +88,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":10,
-    "yorigin":14,
+    "yorigin":41,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

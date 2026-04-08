@@ -16,7 +16,6 @@ if keyboard_lastchar != ""
 	keyboard_lastchar = ""	
 	
 	var to_check = ["BALL","wwssadadbas"] // here you can easily add custom behaviours to play in the title if you type something
-	if mouse_check_button_released(mb_left) clipboard_set_text(keyboard_lastchars)
 	for (var i = 0; i < array_length(to_check); i++)
 	if string_pos(string_upper(to_check[i]),string_upper(keyboard_lastchars))
 	{

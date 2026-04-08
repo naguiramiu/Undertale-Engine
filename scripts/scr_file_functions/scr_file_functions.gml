@@ -183,10 +183,9 @@ function savefile_basic_information(num)
 			{
 				var main_struct = load_savefile(data)
 				var stats = main_struct.stats
-					
 				file_data = new file
 				(
-					get_char_by_id(stats.party[0],stats).name,
+					get_char_by_party_position(0,stats).name,
 					stats.lv,
 					format_time(main_struct.information.play_time),
 					room_get_custom_info(asset_get_index(main_struct.information.room_name)),

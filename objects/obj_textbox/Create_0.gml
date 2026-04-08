@@ -11,9 +11,8 @@ if is_option || array_length(options)
 
 sound_delay_current = 0
 getting_details = false
-max_height = 0
 is_destroyed = false
-
+sound_playing = noone
 talker_has = function(name) {return variable_struct_exists(talker,name)}
 
 event_user(0)

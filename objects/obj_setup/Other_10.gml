@@ -2,18 +2,16 @@
 // this code runs after both audiogroups have been loaded and it loads everything else that is needed
 scr_language_main() // -- > Creates the default local language text In english and saves it to a file
 
-
 initialize() /* -- > This function initializes all of the 
 	games global structs and mechanics just as the characters,
 	your stats, settings, flags, items
 */
 
 scr_settings_load() // loads settings
-
 window_set_fullscreen(global.settings.fullscreen)
-
 window_custom_reset();
 
+#region load language 
 ini_open(file_dir() + "settings.ini")
 	var read_language = ini_read_string("settings","language",-1)
 ini_close()
@@ -31,7 +29,7 @@ if read_language != -1 // theres a read language
 }
 else 
 	scr_setup_os_language() // --> if theres no saved language, try to set it to your OS language if theres a file
-
+#endregion
 application_surface_draw_enable(false) // obj_camera renders this so we dont need it
 create_instances([obj_maincontroller,obj_camera,obj_debug]) // --> global instances that are allways there
 

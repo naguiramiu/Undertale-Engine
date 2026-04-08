@@ -36,14 +36,17 @@ var next_page = function(time)
 	do_later(time,function()
 		{
 		// set the cutscene to stop
-		lerp_var_event_end(obj_titleboards,"image_alpha",0.075,1,0,function() // fade out
-		{
-			if instance_exists(obj_textbox)
-				instance_destroy(obj_textbox) // destroy the text 
-			obj_titleboards.image_index ++ // go to the next image in the introduction 
-			cutscene_next_event(obj_titleboards.main_cutscene)
+		lerp_var_ext(obj_titleboards,"image_alpha",0.075,1,0,,,
+		{ 
+			event_destroy: function() // fade out
+			{
+				if instance_exists(obj_textbox)
+					instance_destroy(obj_textbox) // destroy the text 
+				obj_titleboards.image_index ++ // go to the next image in the introduction 
+				cutscene_next_event(obj_titleboards.main_cutscene)
 		
-			lerp_var_ext(obj_titleboards,"image_alpha",0.075,0,1) 	// fade back in
+				lerp_var_ext(obj_titleboards,"image_alpha",0.075,0,1) 	// fade back in
+			}
 		})
 	})
 }
@@ -98,8 +101,6 @@ instance_create_depth(0,0,depth - 3,obj_event_performer,
 {
 	event_draw: function()
 	{
-		draw_set_font(font_deter_12)
-		draw_text_transformed(0,0,"(dev: press + to skip)",0.5,0.5,0)
 		if keyboard_check_pressed(vk_add)
 		{
 			load_game(global.settings.selected_file)

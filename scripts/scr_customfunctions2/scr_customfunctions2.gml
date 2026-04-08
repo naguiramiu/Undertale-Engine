@@ -132,3 +132,32 @@ function scr_buildversion()
 	draw_set_font(font_deter_12)
 	#endregion
 }
+
+function scr_get_char_item_attack(char)
+{
+	var _attack = 0
+	if char.weapon != ITEM_EMPTY
+		_attack += global.items[$char.weapon].attack
+	if char.armor != ITEM_EMPTY
+		_attack += global.items[$char.armor].attack
+	return _attack
+}
+
+
+function scr_get_char_item_defense(char)
+{
+	var _defense = 0
+	if char.weapon != ITEM_EMPTY
+		_defense += global.items[$char.weapon].defense
+	if char.armor != ITEM_EMPTY
+		_defense += global.items[$char.armor].defense
+	return _defense
+}
+
+function sprite_get_speed_ammount(sprite)
+{
+	if (sprite_get_speed_type(sprite) == spritespeed_framespersecond) 
+	    return sprite_get_speed(sprite) / game_get_speed(gamespeed_fps);
+	else 
+	    return sprite_get_speed(sprite)
+}

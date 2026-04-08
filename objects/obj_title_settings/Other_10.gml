@@ -14,16 +14,13 @@ goto_main_settings = function()
 		new setting("mus_volume",e_settingstype.slider,"mus_volume"),
 	]
 	
+	// if your border isnt enabled then remove the show border windowed setting from the list
 	if (global.settings.border_type == e_bordertype.not_enabled)
-		array_remove_value_ext(settings,function(i)
-		{
-			return (settings[i].var_name == "show_border_windowed")
-		})
+		array_remove_value_ext(settings,function(i){return (settings[i].var_name == "show_border_windowed")})
 	
 	if ENABLE_RUNNING
 	array_push(settings,new setting("auto_run",e_settingstype.boolean,"auto_run"))
 }
-
 goto_language_settings = function()
 {
 	prev_sel = main_selection
@@ -90,6 +87,7 @@ setting = function(_text,_type,_var_name = undefined,_event = undefined,_event_p
 	draw_set_font(font_deter_12)
 	while (string_width(text) * text_scale) > 123 
 	text_scale -= 0.01
+	lerp_amount = 0
 }
 
 var weather = function(_mus_played,_text, _tobdog_sprite,_fall_obj_var_struct, _event = -1) constructor

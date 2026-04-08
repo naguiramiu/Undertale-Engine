@@ -2,12 +2,19 @@
 function battle_start()
 {
 	// everything here only runs once
-	create_instances([obj_battlebox,obj_battle_hp_ui,obj_battle_background])
+	instance_create(background_instance)
+	
+	with instance_create(obj_battlebox)
+	{
+		lerp_var_ext(id,"width",0.1,0,287.5) //start width 
+		lerp_var_ext(id,"height",0.1,0,70) // start height
+	}
+	
 	instance_deactivate_object(parent_char)
 	globalmusic_stop()
 	globalmusic_play(music_asset,0,200,true,true)
 	spawn_monsters(monster_instances)
-		
+	set_border(spr_border_simple)
 	turn_length = 40
 	turn_timer = -1
 	created = true 

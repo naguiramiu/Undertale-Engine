@@ -38,12 +38,16 @@
     {"$GMObjectProperty":"v2","%Name":"monster_instances","filters":[],"listItems":[],"multiselect":false,"name":"monster_instances","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[obj_enemy_froggit,obj_enemy_whimsun,obj_enemy_moldsmall] ","varType":4,},
     {"$GMObjectProperty":"v2","%Name":"monster_instances_var_structs","filters":[],"listItems":[],"multiselect":false,"name":"monster_instances_var_structs","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[]","varType":4,},
     {"$GMObjectProperty":"v2","%Name":"music_asset","filters":[],"listItems":[],"multiselect":false,"name":"music_asset","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"mus_battle1","path":"sounds/mus_battle1/mus_battle1.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"mus_battle1","varType":5,},
-    {"$GMObjectProperty":"v2","%Name":"depth","filters":[],"listItems":[],"multiselect":false,"name":"depth","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"UI_DEPTH","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"depth","filters":[],"listItems":[],"multiselect":false,"name":"depth","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"BATTLE_DEPTH","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"background_instance","filters":[],"listItems":[],"multiselect":false,"name":"background_instance","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"obj_battle_background_grid","path":"objects/obj_battle_background_grid/obj_battle_background_grid.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"obj_battle_background_grid","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_battlecontroller",
+    "path":"sprites/spr_battlecontroller/spr_battlecontroller.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

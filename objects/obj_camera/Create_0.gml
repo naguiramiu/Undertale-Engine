@@ -38,6 +38,7 @@ set_camera_position = function(can_update = false)
 	}
 	if shake_duration > 0
 	{
+		shake_strenght = max(0,shake_strenght - 0.25)
 		camera_x_offset = choose(-shake_strenght,shake_strenght)
 		camera_y_offset = choose(-shake_strenght,shake_strenght)
 		shake_duration -= 1

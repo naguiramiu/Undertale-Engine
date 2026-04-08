@@ -202,12 +202,7 @@ function lerp_var_ext(_object_or_instance,_var_name,_progress_speed,_start,_end,
 		}
 }
 
-function lerp_var_event_end(_object_or_instance,_var_name,_progress_speed,_start,_end,_event_end,_event_end_params = [],_ease_type = ease_square,_ease_params = [],var_struct = {})
-{
-	var_struct.event_destroy = _event_end
-	var_struct.event_destroy_parameters = _event_end_params
-	lerp_var_ext(_object_or_instance,_var_name,_progress_speed,_start,_end,_ease_type,_ease_params,var_struct)
-}
+
 
 /*
  this function allows you to find variables which are declared at runtime, for example,

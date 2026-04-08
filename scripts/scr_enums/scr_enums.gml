@@ -40,12 +40,6 @@ enum e_bordertype
 	enabled
 }
 
-enum e_character
-{
-	frisk,
-	susie,
-	ralsei
-}
 
 enum e_fileselect_menu 
 {
@@ -65,21 +59,6 @@ enum e_operator
 	modulo,
 	int_div,
 	array
-}
-
-enum e_listdatatype
-{
-	boolean,
-	party,
-	collapseable,
-	item_add
-}
-
-enum e_mainmenu
-{
-	item,	
-	stat, 
-	cell, 
 }
 
 enum e_settingstype 
