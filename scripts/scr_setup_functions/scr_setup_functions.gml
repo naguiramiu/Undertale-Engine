@@ -28,8 +28,7 @@ function scr_initiate_settings()
 {
 	global.settings = 
 	{
-		enable_borders: true,
-		show_border_windowed: true,
+		show_border_windowed: false,
 		border_type: e_bordertype.enabled,
 		selected_file: 0,
 		language: "English",

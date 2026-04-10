@@ -1,4 +1,3 @@
-instance_create_depth(x,y,depth,obj_collision_wall_rectangle).visible = false
 depth = -y - 1
 
 var lan = get_lan(lan_savescreen).room_text

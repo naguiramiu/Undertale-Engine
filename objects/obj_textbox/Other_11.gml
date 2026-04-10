@@ -109,17 +109,17 @@ if !getting_details
 		if !talker_has("sprite_frame") talker.sprite_frame = 0	
 
 		var sprite_name = talker.sprite_name
+ 
 		if talker_has("sprite_emotion") sprite_name += talker.sprite_emotion
 		var sprite = asset_get_index(sprite_name) ?? spr_textbox_error
 		
-		if talker_has("sprite_animate_talking") && talker.sprite_animate_talking
-		{
-			if audio_is_playing(sound_playing)
-			talker.sprite_frame += sprite_get_speed_ammount(sprite)
-			else talker.sprite_frame = 0
-		}
+		scr_textbox_sprite_talker(sprite)
 		
 		draw_sprite_ext(sprite,talker.sprite_frame,drawn_x + 29,drawn_y + 18,1,1,0,c_white,draw_get_alpha())
+		
+		if talker_has("post_sprite")
+			draw_sprite_ext(talker.post_sprite,0,drawn_x + 29,drawn_y + 18,1,1,0,c_white,draw_get_alpha())
+		
 		start_x += 58
 	}
 }
@@ -166,7 +166,6 @@ for (var i = 1; i <= string_length(current_dialogue); i++)
 		var line_end_width = ((current_x + 9) - start_x)
 		max_width = max(max_width, line_end_width)
 	}
-	
 	var char_width = monospaced ? 9 : string_width(char)
 	var lwidth = (char_width * letter_width) + letter_spacing
 	
@@ -183,13 +182,9 @@ for (var i = 1; i <= string_length(current_dialogue); i++)
 	        for (var n = 1; n <= string_length(next_word_string); n++)
 	            total_next_w += ((monospaced ? 9 : string_width(string_char_at(next_word_string, n))) * letter_width) + letter_spacing
 			draw_set_colour(c_blue)
-			if !getting_details
-				scr_draw_text_with_texteffects(drawn_x + max_sentence_width,drawn_y + current_y,"E",letter_width,letter_height,0,i)
 				
 	        if (current_x + lwidth + total_next_w > max_sentence_width + 0.1) 
 	        {
-				if !getting_details
-					scr_draw_text_with_texteffects(drawn_x + current_x + total_next_w,drawn_y + current_y,"T",letter_width,letter_height,0,i)
 	            if getting_details
 					page_sentence_ammount++;
 	            current_x = start_x;

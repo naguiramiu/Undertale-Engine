@@ -1,13 +1,18 @@
 /// @description Hurt
 
 var m = global.monsters[mytarget]
+done_damage = true 
 
-m.hp -= damage
-
+if damage > 0 
+{
+	m.hp -= damage
+	m.hurt = true
+	instance_create_depth(m.x, m.y - 15, m.depth - 50,obj_slice,{stretch: m.sprite_height});
+}
 do_later(20,
 function(m)
 {
-	instance_create_depth(m.x + 15, m.y - 34, m.depth - 2, obj_dmgwriter, {target: m, dmg: damage})
+	instance_create_depth(m.x, m.y - 54, m.depth - 50, obj_dmgwriter, {target: m, dmg: damage})
 	instance_create(obj_enemy_attacked_shake,{enemy: m})
 	
 	do_later(40,function(m)
@@ -24,14 +29,11 @@ function(m)
 			m.can_be_selected = false;
 		}
 		
-		obj_targetbar.fade = true
-		obj_target.fade = true
+		if instance_exists(obj_targetbar)
+			obj_targetbar.fade = true
+			obj_target.fade = true
 		
 		battle_next_action()
 	},m)
 	
 },m)
-
-
-instance_create_depth(m.x, m.y - 5, m.depth - 1,obj_slice,{stretch: m.sprite_height});
- 

@@ -8,8 +8,10 @@ if interact_key
 		
 	add_battle_action(function(cur)
 	{
+		
+		
 		with obj_battlebox
-		instance_create_depth(x,y,depth - 1,obj_target,
+		instance_create_depth(x,y,BATTLE_DEPTH - 20,obj_target_party,
 		{
 			mytarget: cur.fight_selection
 		})	

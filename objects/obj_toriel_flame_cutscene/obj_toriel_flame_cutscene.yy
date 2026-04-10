@@ -10,8 +10,8 @@
   "name":"obj_toriel_flame_cutscene",
   "overriddenProperties":[],
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"first flowey room",
+    "path":"folders/objects/ruins/first flowey room.yy",
   },
   "parentObjectId":null,
   "persistent":false,

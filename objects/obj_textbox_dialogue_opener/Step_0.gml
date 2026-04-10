@@ -1,7 +1,7 @@
 if interact_key_press
 {
 	if instance_exists(player) && 
-	array_contains(allowed_dirs,player.get_current_direction(player.front_vector)) 
+	array_contains(allowed_dirs,get_current_direction(player.front_vector)) 
 	&& global.can_move
 	{
 		if can_open_textbox() && place_meeting(x,y,player)

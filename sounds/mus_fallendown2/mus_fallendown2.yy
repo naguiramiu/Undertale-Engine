@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"mus_fallendown2",
   "parent":{
-    "name":"first flowey room",
-    "path":"folders/objects/ruins/first flowey room.yy",
+    "name":"mus",
+    "path":"folders/sounds/mus.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"first flowey room",
-    "path":"folders/objects/ruins/first flowey room.yy",
+    "name":"toriel",
+    "path":"folders/sprites/characters/toriel.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -4,8 +4,8 @@ function initialize()
 	scr_textbox_talkers()
 	global.stats =
 	{
-		party: [CHARACTER_FRISK],
-		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_ERROR,ITEM_STICK,ITEM_TOY_KNIFE],12,ITEM_EMPTY),
+		party: [CHARACTER_FRISK,CHARACTER_RALSEI],
+		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_STICK,ITEM_TOY_KNIFE],12,ITEM_EMPTY),
 		gold: 12,
 		lv: 1,
 		xp: 0,
@@ -43,7 +43,8 @@ function initialize()
 		ruins: 
 		{
 			flowey_cutscene_0 : false,
-			
+			toriel_walked_0: false, 
+			toriel_puzzle_0: false,
 		}
 	}
 	scr_initiate_information()

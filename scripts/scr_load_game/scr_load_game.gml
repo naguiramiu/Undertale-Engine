@@ -1,5 +1,3 @@
-
-
 function load_game(savefile_num = 0, load_from_file = true)
 {
 	var file_name = savefile_name(savefile_num)
@@ -7,13 +5,16 @@ function load_game(savefile_num = 0, load_from_file = true)
 	var checked_string = ""
 	if file_exists(file_name) && load_from_file
 	{
-		try {
+		try 
+		{
 			var data = file_read_all_text(file_name)
 
 			if data != ""
 			{
 				var main_struct = load_savefile(data)
 				global.information = struct_merge(global.information, main_struct.information)
+				//global.stats = struct_merge(global.stats,main_struct.stats)
+				global.flags = struct_merge(global.flags,main_struct.flags)
 				delete main_struct
 			}
 			else checked = true
@@ -23,20 +24,26 @@ function load_game(savefile_num = 0, load_from_file = true)
 			window_custom_reset(window_get_fullscreen())
 			crashfile_write(get_error_message(ex))
 			room_goto(rm_dogcheck)
+			exit;
 		}
 	}
 				
 	load_player()
 	
+	var room_to_go = undefined 
 	if variable_struct_exists(global.information,"room_name") && room_exists(asset_get_index(global.information.room_name))
-	room_goto(asset_get_index(global.information.room_name))
-	else 
+	room_to_go = asset_get_index(global.information.room_name)
+	
+	if is_undefined(room_to_go)
 	{ 
-		room_goto(global.information.starting_room)
-		var info = room_get_custom_info(global.information.starting_room)
-		player.x = info.x player.y = info.y 
+		room_to_go = global.information.starting_room
+		with room_get_custom_info(global.information.starting_room)
+			scr_teleport_player(x,y,true)
 	}
-				
+	
+	room_goto(room_to_go)
+	
+	with obj_camera set_camera_position(true,room_to_go)
 	//lerp_var_ext(obj_camera,"darken_screen",0.1,1,0)
 	global.information.savefile_num = savefile_num
 }
@@ -100,5 +107,4 @@ function load_savefile(data,encrypt = ENCRYPT_SAVEDATA)
 	}
 	else
 		return json_parse(data)
-	
 }

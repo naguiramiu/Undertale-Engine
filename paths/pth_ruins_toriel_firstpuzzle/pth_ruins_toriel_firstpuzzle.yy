@@ -1,0 +1,22 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_ruins_toriel_firstpuzzle",
+  "closed":false,
+  "kind":0,
+  "name":"pth_ruins_toriel_firstpuzzle",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":156.45145,"y":152.0,},
+    {"speed":100.0,"x":230.20758,"y":152.0,},
+    {"speed":100.0,"x":229.71783,"y":108.93483,},
+    {"speed":100.0,"x":189.094,"y":109.18994,},
+    {"speed":100.0,"x":188.49435,"y":87.78771,},
+    {"speed":100.0,"x":208.11633,"y":88.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

@@ -1,7 +1,6 @@
 depth = -y - sprite_height
-
 if (open) 
-	instance_create_depth(x + 2, y + 48, depth, obj_empty,{sprite_index: spr_doorflame})
+	flame = instance_create_depth(x + 2, y + 48, depth, obj_empty,{sprite_index: spr_doorflame})
 collision = create_collision(x,y + 29,1.8,1)
 
 places = scr_warpdoor_get(warp_id)

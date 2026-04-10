@@ -76,7 +76,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_menu_nineslice",
+    "path":"sprites/spr_menu_nineslice/spr_menu_nineslice.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

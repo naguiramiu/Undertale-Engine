@@ -1,0 +1,2 @@
+instance_destroy(flame)
+instance_destroy(collision)

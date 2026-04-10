@@ -26,14 +26,14 @@ function room_get_custom_info(rm_id)
 	var instances = room_info.instances
 	for (var i = 0; i < array_length(instances); i++)
 	{
-		var obj = asset_get_index(instances[i].object_index)
-		
-		if (obj == obj_room_spawn)
+		var _obj = asset_get_index(instances[i].object_index)
+		 
+		if (_obj == obj_room_spawn)
 		{
 			var_struct.x = instances[i].x 
 			var_struct.y = instances[i].y 
 		}
-		else if (object_get_parent(obj) == obj_parent_area) || (obj == obj_parent_area)
+		else if (object_get_parent(_obj) == obj_parent_area) || (_obj == obj_parent_area)
 		{
 			var check = 
 			{
@@ -43,7 +43,7 @@ function room_get_custom_info(rm_id)
 					with check method_call(instances[i].pre_creation_code)
 			if check.set_area
 			{
-				switch obj
+				switch _obj
 				{
 					case obj_ruins_area: 
 					var_struct.area_id = AREA_RUINS

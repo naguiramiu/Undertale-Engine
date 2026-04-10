@@ -1,1 +1,0 @@
-depth = (-y - base_y_off)

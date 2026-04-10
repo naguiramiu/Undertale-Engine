@@ -18,8 +18,17 @@ function scr_textbox_talkers(){
 			sound_to_play: snd_floweytalk2,
 			sprite_animate_talking : true
 		},
+		toriel_blink:
+		{
+			post_sprite: spr_toriel_neck,
+			sprite_name: "spr_face_toriel_blink",
+			sound_to_play: snd_texttor,
+			sprite_animate_blinking: true 
+		},
 		toriel:
 		{
+			post_sprite: spr_toriel_neck,
+			sprite_name: "spr_face_toriel_talk",
 			sound_to_play: snd_texttor,
 			sprite_animate_talking : true
 		}

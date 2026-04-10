@@ -40,6 +40,6 @@ if global.settings.dev.insta_load
 	exit;
 }
 
-room_goto(rm_titlescreen)
+room_goto(rm_title_story)
 
 instance_destroy()

@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":2,
+  "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.56600904,
+  "duration":0.0,
   "exportDir":"",
   "name":"snd_save",
   "parent":{

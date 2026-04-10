@@ -10,7 +10,8 @@ function scr_language_main()
 		rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
 		rm_ruins_startingroom: "Ruins - Flower bed",
 		rm_ruins_staircase: "Ruins - Entrance",
-		rm_ruins_puzzle_0: "Ruins - Puzzle 0"
+		rm_ruins_puzzle_0: "Ruins - Puzzle 0",
+		rm_ruins_firstencounter: "Ruins - First encounter"
 	}
 	
 	#macro lan_battle "battle"

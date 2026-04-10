@@ -26,8 +26,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"first flowey room",
-    "path":"folders/objects/ruins/first flowey room.yy",
+    "name":"flowey",
+    "path":"folders/sprites/characters/flowey.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

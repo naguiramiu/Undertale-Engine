@@ -1,6 +1,6 @@
 is_destroyed = true
 
-if variable_instance_exists(id,"event_destroy")
+if variable_instance_exists(id,"event_destroy") && event_destroy != -1
 	script_execute_ext(event_destroy,customevent_get_params("destroy"))
 
 if variable_instance_exists(id,"event_battle")

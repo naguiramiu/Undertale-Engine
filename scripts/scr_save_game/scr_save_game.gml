@@ -6,6 +6,7 @@ function save_game(savefile_num = global.information.savefile_num)
 	
 	main_struct.stats = global.stats 
 	main_struct.information = {}
+	main_struct.flags = global.flags
 	
 	with main_struct.information
 	{
@@ -13,7 +14,7 @@ function save_game(savefile_num = global.information.savefile_num)
 		{
 			x = player.x
 			y = player.y
-			front_vector= player.front_vector
+			front_vector = player.front_vector
 		}
 		else 
 		{

@@ -9,7 +9,7 @@ force_can_update_camera = false;
 prev_shakeduration = shake_duration;
 if !instance_exists(obj_border_controller) instance_create(obj_border_controller)
 
-set_camera_position = function(can_update = false)
+set_camera_position = function(can_update = false,rm = room)
 {
 	if follow_char 
 	{
@@ -21,8 +21,17 @@ set_camera_position = function(can_update = false)
 			var player_y = ((player.y + -20) - camheight / 2)
 			if camera_locked_to_room_dimensions
 			{
-				player_x = clamp(player_x,0,room_width - camwidth)
-				player_y = clamp(player_y,0,room_height - camheight)
+				var rw = room_width
+				var rh = room_height
+				if rm != room 
+					with room_get_info(rm,false,false,false,false,false,false)
+					{
+						rw = width 
+						rh = height
+					}
+					
+				player_x = clamp(player_x,0,rw - camwidth)
+				player_y = clamp(player_y,0,rh - camheight)
 			}
 			x = player_x
 			y = player_y
@@ -55,7 +64,6 @@ set_camera_position = function(can_update = false)
 	
 	if (xprevious != x || yprevious != y) can_update = true 
 	if force_can_update_camera can_update = true
-
 	if can_update
 	camera_set_view_pos(view_camera[0],x + camera_x_offset,y + camera_y_offset)
 	prev_shakeduration = shake_duration

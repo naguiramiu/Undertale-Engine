@@ -81,10 +81,10 @@ function scr_teleport_player(to_x,to_y,insta_tp_party = false)
 
 function player_below_half_y()
 {
-	return (instance_exists(player) ? ((player.y - camera_get_view_y(view_camera[0]) - 20) > camera_get_view_height(view_camera[0]) * 0.5) : false)
+	return (instance_exists(player) ? ((player.y - cam_y - 20) > cam_y * 0.5) : false)
 }
 
-/// @desc rturns true if the target is within a certain distance and angle cone
+/// @desc Returns true if the target is within a certain distance of an angle cone
 /// @param target_x The x of the npc/object
 /// @param target_y The y of the npc/object
 /// @param max_dist Hhow close the player needs to be (eg 30)

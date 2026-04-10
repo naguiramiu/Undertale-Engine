@@ -2,11 +2,7 @@ sprite_name = "spr_{char_name}_{move_state}_{dir}"
 was_moving = false
 frames_to_stop = -1
 prev_changed = ""
-get_current_direction = function(vec)
-{
-	var dir = round(vec / 90) * 90;
-	return (dir + 360) % 360;
-}
+
 
 compensate_for_diagonal_speed = function(spd,run_key)
 {

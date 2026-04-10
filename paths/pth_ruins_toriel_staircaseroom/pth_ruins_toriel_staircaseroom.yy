@@ -1,0 +1,25 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_ruins_toriel_staircaseroom",
+  "closed":false,
+  "kind":0,
+  "name":"pth_ruins_toriel_staircaseroom",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":157.0,"y":384.0,},
+    {"speed":100.0,"x":157.0,"y":248.0,},
+    {"speed":100.0,"x":174.0,"y":242.0,},
+    {"speed":100.0,"x":211.0,"y":210.0,},
+    {"speed":100.0,"x":252.0,"y":172.0,},
+    {"speed":100.0,"x":252.0,"y":135.0,},
+    {"speed":100.0,"x":230.0,"y":127.0,},
+    {"speed":100.0,"x":159.0,"y":127.0,},
+    {"speed":100.0,"x":159.0,"y":94.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

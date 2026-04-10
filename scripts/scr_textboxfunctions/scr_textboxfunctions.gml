@@ -295,3 +295,52 @@ function scr_textbox_stop(time)
 	letter_drawn_current --
 	play_sound_this_frame = false
 }
+
+function string_remove_markups(_str) 
+{
+    var _out = _str
+    while (string_pos("{", _out) > 0) 
+	{
+        var _start = string_pos("{", _out)
+        var _end = string_pos("}", _out)
+        
+        if (_end > 0)
+            _out = string_delete(_out, _start, (_end - _start) + 1);
+         else 
+            break; 
+    }
+    return _out;
+}
+
+function scr_textbox_sprite_talker(sprite)
+{
+	if talker_has("sprite_animate_talking") && talker.sprite_animate_talking
+	{
+		if audio_is_playing(sound_playing)
+		talker.sprite_frame += sprite_get_speed_ammount(sprite)
+		else talker.sprite_frame = 0
+	}
+		
+	if talker_has("sprite_animate_blinking") && talker.sprite_animate_blinking
+	{
+		if !talker_has("blink_timer") talker.blink_timer = 60
+			
+		with talker
+		{
+			if (blink_timer > 0) 
+			{
+			    sprite_frame = 0
+			    blink_timer--
+			}
+			else 
+			{
+			    sprite_frame += sprite_get_speed_ammount(sprite)
+			    if (sprite_frame >= sprite_get_number(sprite)) 
+				{
+			        sprite_frame = 0;   
+			        blink_timer = irandom_range(60, 120)
+			    }
+			}
+		}
+	}
+}

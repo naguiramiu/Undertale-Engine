@@ -3,7 +3,6 @@ if interact && global.can_move && can_open_textbox()
 {
 	if player_is_facing_point(x + sprite_width / 2,y + sprite_height / 2)
 	{
-
 		if restore_hp
 		{
 			play_sound(snd_heal)

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"toriel",
+    "path":"folders/sprites/characters/toriel.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

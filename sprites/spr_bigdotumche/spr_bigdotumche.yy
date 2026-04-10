@@ -81,8 +81,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"misc",
+    "path":"folders/sprites/misc.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

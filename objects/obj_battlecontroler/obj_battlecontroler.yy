@@ -15,8 +15,8 @@
   "name":"obj_battlecontroler",
   "overriddenProperties":[],
   "parent":{
-    "name":"menus",
-    "path":"folders/objects/battle/menus.yy",
+    "name":"battle",
+    "path":"folders/objects/battle.yy",
   },
   "parentObjectId":null,
   "persistent":false,

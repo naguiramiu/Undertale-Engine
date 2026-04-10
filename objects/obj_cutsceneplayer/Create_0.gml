@@ -7,6 +7,8 @@ depth = -1000;
 /// @description Play cutscene
 play_cutscene_event = function()
 {
+	if !instance_exists(id) exit;
+	
 	if (event >= array_length(cutscene))
 	{
 		instance_destroy();

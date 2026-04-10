@@ -43,7 +43,7 @@ function get_nex_lvl(lv)
     return _vals[clamp(lv, 0, 19)];
 }
 
-function create_speechbubble(_dialogue,bubble_x = 0,bubble_y = 0,_point_x = x,_point_y = y,max_text_width = 80,_var_struct = {},_get_size_auto = true,width = 0,height = 0)
+function create_speechbubble(_dialogue,bubble_x = 0,bubble_y = 0,_point_x = x,_point_y = y,max_text_width = 80,_var_struct = {},_get_size_auto = true,width = 0,height = 0, _depth = depth - 10)
 {
 	var var_struct = 
 	{
@@ -74,6 +74,7 @@ function create_speechbubble(_dialogue,bubble_x = 0,bubble_y = 0,_point_x = x,_p
 		do_extend_box: false,
 		event_battle: battle_turn_start,
 		can_advance: false,
+		depth: _depth,
 	}
 	
 	struct_replace_unique(var_struct,_var_struct)
@@ -239,6 +240,7 @@ function spawn_monsters(monster_array)
 				spared: false,
 				my_speechbubble: noone, 
 				can_be_spared: false,
+				hurt: false,
 			}) 
 		}
 }

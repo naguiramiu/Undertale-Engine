@@ -97,8 +97,16 @@ function get_party_array_by_depth()
 
 function get_player_direction()
 {
-	return (instance_exists(player) ? player.get_current_direction(player.front_vector) : -1)	
+	return (instance_exists(player) ? get_current_direction(player.front_vector) : -1)	
 }
+
+function get_current_direction(vec)
+{
+	var dir = round(vec / 90) * 90;
+	return (dir + 360) % 360;
+}
+	
+	
 
 function scr_warpdoor_get(warpdoor_id = 0)
 {

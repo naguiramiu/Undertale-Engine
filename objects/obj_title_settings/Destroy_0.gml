@@ -12,3 +12,4 @@ do_later(1,function()
 		event_user(0)
 	}
 })
+scr_settings_save()

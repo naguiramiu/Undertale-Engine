@@ -10,8 +10,6 @@
   "name":"obj_enemy_moldsmall",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"parent_monster_enemy","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"propertyId":{"name":"name","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Moldsmall",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"parent_monster_enemy","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"propertyId":{"name":"speechbubble_point_x","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"parent_monster_enemy","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"propertyId":{"name":"speechbubble_point_y","path":"objects/parent_monster_enemy/parent_monster_enemy.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
   ],
   "parent":{
     "name":"enemies",

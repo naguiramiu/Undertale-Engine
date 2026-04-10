@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"snd_floweylaugh",
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"sounds",
+    "path":"folders/sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

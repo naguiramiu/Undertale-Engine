@@ -1,3 +1,5 @@
+scr_textbox_talkers()
+
 global.can_move = let_player_move_start 
 if !is_array(dialogue) dialogue = [dialogue]
 

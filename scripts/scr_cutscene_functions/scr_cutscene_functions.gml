@@ -60,6 +60,13 @@ function cut_interpolate_var(_object_or_instance,_var_name,_progress_speed,_star
 		time_till_next = (_start_timer_imediately ? _time_till_next : -1);
 }
 
+function cut_can_move(flag)
+{
+	cutscene_hold_arguments	
+	
+	global.can_move = flag 
+}
+
 function cut_perform_function(_time_till_next,_func,_array_args = [])
 {
 	cutscene_hold_arguments
@@ -119,13 +126,25 @@ function cut_playsound(_sound,_gain = 1,_time_till_next = 0, _pitch = 1, _loops 
 function cut_textbox(text,_time_till_next = 0, _start_timer_imediately = false, var_struct = {}, _creator_instance = noone,_do_cutscene_event_at_destroy = true)
 {
 	cutscene_hold_arguments
+	
 	struct_add_unique(var_struct,
 	{
-		creator: id,
 		do_cutscene_event_at_destroy: _do_cutscene_event_at_destroy,
+		time_till_next: _time_till_next,
+	})
+	time_till_next = (_start_timer_imediately ? _time_till_next : -1);
+	return 	scr_create_cutscene_textbox(text,var_struct)
+}
+
+function scr_create_cutscene_textbox(text,var_struct)
+{
+	struct_add_unique(var_struct,
+	{
+		do_cutscene_event_at_destroy: true,
+		time_till_next: 0,
+		creator: id,
 		stop_drawing_after_destroy: false,
 		let_player_move_end: false,
-		time_till_next: _time_till_next,
 		event_cutscene: function()
 		{
 			with creator	
@@ -136,9 +155,7 @@ function cut_textbox(text,_time_till_next = 0, _start_timer_imediately = false, 
 	if variable_self_exists("textbox_talker") && !variable_struct_exists(var_struct,"talker")
 	var_struct.talker = textbox_talker
 	
-	create_textbox(text,var_struct)
-		
-	time_till_next = (_start_timer_imediately ? _time_till_next : -1);
+	return create_textbox(text,var_struct)
 }
 
 function cutscene_pause(_cutscene_id = undefined)
@@ -161,4 +178,14 @@ function cut_textbox_talker(talker)
 	cutscene_hold_arguments
 	
 	self.textbox_talker = talker
+}
+
+function cutscene_force_end(_cutscene_id = undefined)
+{
+	if is_undefined(_cutscene_id)
+		{
+			if object_index == obj_cutsceneplayer instance_destroy()
+			else if other.object_index == obj_cutsceneplayer instance_destroy(other)
+		}
+	else instance_destroy(_cutscene_id)
 }
