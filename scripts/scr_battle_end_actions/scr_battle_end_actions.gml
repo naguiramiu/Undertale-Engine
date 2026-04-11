@@ -4,7 +4,7 @@ function battle_end_actions()
 {
 	with obj_battlecontroler
 	{
-		instance_destroy(flavor_text)
+		instance_destroy(flavor_text_instance)
 		battle_started = true
 		var won = true  
 		with parent_monster_enemy

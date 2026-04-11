@@ -19,10 +19,16 @@ function battle_end()
 	global.can_move = true 
 	instance_activate_object(parent_char)
 	globalmusic_stop()
-	
-	var restart_instances = [obj_parent_area,obj_play_music,obj_set_border,obj_remove_border]
+	var restart_instances = 
+	[
+		obj_parent_area,
+		obj_play_music,
+		obj_set_border,
+		obj_remove_border
+	]
 	for (var i = 0; i < array_length(restart_instances); i++)
 	if instance_exists(restart_instances[i])
 	with restart_instances[i] event_perform(ev_create,0)
 	
+	array_foreach(["monsters","battlebox_height","battlebox_width","flavor_text"],function(val){variable_struct_remove(global,val)})
 }

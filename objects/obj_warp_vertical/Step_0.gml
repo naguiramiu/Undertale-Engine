@@ -1,4 +1,4 @@
-if instance_exists(player) && (global.can_move && warp_id != noone && target_room != undefined)
+if instance_exists(player) && (global.can_move && target_room != undefined)
 {
 	if place_meeting(x,y,player)
 	{

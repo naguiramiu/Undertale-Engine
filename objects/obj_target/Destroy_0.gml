@@ -1,1 +1,2 @@
 instance_destroy(obj_targetbar)
+battle_next_action()

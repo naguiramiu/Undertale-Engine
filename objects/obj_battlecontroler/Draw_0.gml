@@ -28,7 +28,7 @@ if controler_can_move
 		if right_key_press cur.main_menu_selection = modwrap(cur.main_menu_selection,1,4,disabled_menus)
 		if left_key_press cur.main_menu_selection = modwrap(cur.main_menu_selection,-1,4,disabled_menus)
 
-		if interact_key && instance_exists(flavor_text)
+		if interact_key && instance_exists(flavor_text_instance)
 		{
 			cur.in_submenu = true 
 			interact_key = false
@@ -62,9 +62,9 @@ battle_draw_bottom_ui() // draw bottom ui
 with obj_battlebox
 	event_perform(ev_draw,ev_draw_normal) // draw battle box 
 
-if !cur.in_submenu && instance_exists(flavor_text)
+if !cur.in_submenu && instance_exists(flavor_text_instance)
 {
-	with flavor_text 
+	with flavor_text_instance 
 		event_user(1) // draw flavor text 	
 }
 

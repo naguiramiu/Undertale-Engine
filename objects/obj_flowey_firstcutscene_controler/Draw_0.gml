@@ -4,7 +4,7 @@ if instance_exists(obj_battlebox)
 	var char = get_char_by_party_position(0)
 	draw_set_font(font_mars_18)
 	draw_set_colour(c_white)
-	draw_text_transformed(cam_x + 15 + 85,cam_y + 200,"LV " + string(global.stats.lv),0.5,0.5,0)
+	draw_text_transformed(cam_x + 15 + 85,cam_y + 200,"LV " + string(char.lv),0.5,0.5,0)
 	var hp = max(0,char.hp)
 	var hp_barwdith_filled = ((char.max_hp * 1.3) / 2) - 1
 	var hp_barwdith = clamp((hp >= 0 ? (hp_barwdith_filled * (hp / char.max_hp)) : 0), 0,hp_barwdith_filled)

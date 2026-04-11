@@ -1,1 +1,1 @@
-global.can_move = true
+global.can_move = let_player_move

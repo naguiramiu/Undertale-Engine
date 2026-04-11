@@ -36,6 +36,7 @@
     {"name":"warp_ruins_staircase_top","path":"rooms/rm_ruins_staircase/rm_ruins_staircase.yy",},
     {"name":"inst_4F7DB38B","path":"rooms/rm_ruins_staircase/rm_ruins_staircase.yy",},
     {"name":"inst_9BCED84","path":"rooms/rm_ruins_staircase/rm_ruins_staircase.yy",},
+    {"name":"inst_4040AC6","path":"rooms/rm_ruins_staircase/rm_ruins_staircase.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -78,6 +79,9 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_warp_vertical","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"propertyId":{"name":"target_room","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"resource":{"name":"rm_ruins_puzzle_0","path":"rooms/rm_ruins_puzzle_0/rm_ruins_puzzle_0.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"rm_ruins_puzzle_0",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":140.0,"y":102.0,},
         {"$GMRInstance":"v4","%Name":"inst_4F7DB38B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4F7DB38B","objectId":{"name":"obj_ruins_area","path":"objects/obj_ruins_area/obj_ruins_area.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+        {"$GMRInstance":"v4","%Name":"inst_4040AC6","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4040AC6","objectId":{"name":"obj_random_encounters","path":"objects/obj_random_encounters/obj_random_encounters.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_random_encounters","path":"objects/obj_random_encounters/obj_random_encounters.yy",},"propertyId":{"name":"encounters","path":"objects/obj_random_encounters/obj_random_encounters.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"global.encounters.ruins.test_battle",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":20.0,"y":0.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"toriel_cutscene","depth":300,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":20,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_9BCED84","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_9BCED84","objectId":{"name":"obj_npc_base","path":"objects/obj_npc_base/obj_npc_base.yy",},"properties":[

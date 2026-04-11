@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_frisk_walk_down",
+    "path":"sprites/spr_frisk_walk_down/spr_frisk_walk_down.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

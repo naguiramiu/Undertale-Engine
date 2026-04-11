@@ -7,6 +7,7 @@ function scr_language_main()
 	global.language_text[$lan_room_name] = 
 	{
 		rm_dev_testingarea: "Testing Area",
+		rm_default_shop: "Default Shop",
 		rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
 		rm_ruins_startingroom: "Ruins - Flower bed",
 		rm_ruins_staircase: "Ruins - Entrance",

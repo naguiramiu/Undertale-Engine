@@ -1,14 +1,10 @@
 function initialize()
 {
-	declare_items()
-	scr_textbox_talkers()
 	global.stats =
 	{
-		party: [CHARACTER_FRISK,CHARACTER_RALSEI],
-		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_STICK,ITEM_TOY_KNIFE],12,ITEM_EMPTY),
+		party: [CHARACTER_FRISK],
+		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_STICK,ITEM_TOY_KNIFE],8,ITEM_EMPTY),
 		gold: 12,
-		lv: 1,
-		xp: 0,
 		char:
 		{
 			CHARACTER_FRISK: new game_character(
@@ -18,25 +14,19 @@ function initialize()
 				ITEM_STICK,
 				ITEM_BANDAGE,
 			),
-			CHARACTER_SUSIE: new game_character(
-				"Susie",
-				#ff00ff,
-				20,
+			CHARACTER_TORIEL: new game_character(
+				"Toriel",
+				#A864A9,
+				120,
 				ITEM_EMPTY,
 				ITEM_EMPTY,
+				10,
+				0,
+				12
 			),
-			CHARACTER_RALSEI: new game_character(
-				"Ralsei",
-				#01ff00,
-				20,
-				ITEM_EMPTY,
-				ITEM_EMPTY,
-			)
 		}
 	}
 	
-	// temporary
-
 	global.flags = 
 	{
 		has_cell: false,
@@ -47,6 +37,10 @@ function initialize()
 			toriel_puzzle_0: false,
 		}
 	}
+	
+	declare_items()
+	scr_textbox_talkers()
 	scr_initiate_information()
 	scr_initiate_settings()
+	scr_setup_encounters()
 }

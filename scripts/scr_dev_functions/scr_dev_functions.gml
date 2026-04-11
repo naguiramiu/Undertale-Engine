@@ -42,5 +42,6 @@ function scr_devfunctions()
 		scr_settings_save()
 	}
 	
-	if instance_exists(player) && space_key_press && global.can_move && !instance_exists(obj_battlecontroler) instance_create(obj_gotobattle)
+	if instance_exists(player) && space_key_press && global.can_move && !instance_exists(obj_battlecontroler) 
+		start_encounter(global.encounters.ruins.test_battle)
 }

@@ -9,17 +9,18 @@ function get_char_by_id(character_id,stats)
 }
 
 #macro CHARACTER_FRISK "frisk"
-#macro CHARACTER_SUSIE "susie"
-#macro CHARACTER_RALSEI "ralsei"
+#macro CHARACTER_TORIEL "toriel"
 
-function game_character(_name,_ui_color,_max_hp = 20,_weapon_slot = ITEM_EMPTY, _armor_slot = ITEM_EMPTY) constructor
+function game_character(_name,_ui_color,_max_hp = 20,_weapon_slot = ITEM_EMPTY, _armor_slot = ITEM_EMPTY,_base_defense = 0, _base_attack = 0,_starting_lv = 1) constructor
 {
 	name = _name
 	ui_color = _ui_color
 	max_hp = _max_hp
 	weapon = _weapon_slot
 	armor = _armor_slot
-	hp = max_hp
-	attack = 0
-	defense = 0
+	hp = _max_hp
+	attack = _base_defense
+	defense = _base_attack
+	lv = _starting_lv
+	xp = 0
 }

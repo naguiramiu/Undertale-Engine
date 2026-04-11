@@ -6,7 +6,7 @@ function battle_create_speechubbles()
 		if can_be_selected
 		{
 			var xof = x + speechbubble_x
-			var yof = y + speechbubble_y - 50
+			var yof = y + speechbubble_y - 60
 			var p_x = x + speechbubble_point_x
 			var p_y = y + speechbubble_point_y
 				

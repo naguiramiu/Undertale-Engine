@@ -303,7 +303,12 @@ function draw_reset_alpha()
 {
 	draw_set_alpha(1)
 }
-
+function draw_reset_all()
+{
+	draw_reset_align()
+	draw_reset_alpha()
+	draw_reset_color()
+}
 function draw_reset_halign()
 {
 	draw_set_halign(fa_left)	

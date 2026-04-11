@@ -169,6 +169,7 @@ function battle_draw_menu_with_monster_names(cur,selection_name,show_hp = false)
 		cur[$selection_name] = prev
 		play_sound(snd_menu_move)
 	}
+	
 	for (var i = 0; i < ary; i++)
 	with global.monsters[i]
 	{
@@ -189,6 +190,14 @@ function battle_draw_menu_with_monster_names(cur,selection_name,show_hp = false)
 			draw_rectangle_wh(cam_x + 143,cam_y + 140 + 16 * i,(hp / max_hp) * 49.5,7.5)
 		}
 	}
+}
+
+function draw_text_mono(x,y,text,spacing = undefined)
+{
+	if is_undefined(spacing) spacing = string_width("A")		
+	
+	for (var i = 1; i <= string_length(text); i++)
+	draw_text(x + spacing * i,y, string_char_at(text,i))
 }
 
 function battle_draw_menu_with_party_names(cur,selection_name = "item_char_selection")
@@ -216,6 +225,7 @@ function add_battle_action (_func,_priority = e_battle_priority.regular)
 	cur.prev_inventory = array_copy_simple(global.stats.inventory)
 	cur.done_by = selected_char_number
 	actions[selected_char_number] = {}
+	
 	with actions[selected_char_number]
 	{
 		func = _func 
@@ -232,8 +242,8 @@ function spawn_monsters(monster_array)
 		for (var i = 0; i < ary; i++)
 		{
 			var xoff = -pad + ((w + pad*2) / (ary + 1)) * (i + 1);
-
-			global.monsters[i] = instance_create_depth(cam_x + xoff,cam_y + 80,UI_DEPTH + 50,monster_array[i],
+			
+			var _var_struct = 
 			{
 				pos: i,
 				can_be_selected: true,
@@ -241,7 +251,17 @@ function spawn_monsters(monster_array)
 				my_speechbubble: noone, 
 				can_be_spared: false,
 				hurt: false,
-			}) 
+			}	
+			
+			var monster_obj = monster_array[i]
+			
+			if is_struct(monster_obj)
+			{
+				struct_replace_unique(_var_struct,monster_obj.var_struct)
+				monster_obj = monster_obj.monster_object
+			}
+			global.monsters[i] = instance_create_depth(cam_x + xoff,cam_y + 80,UI_DEPTH + 50,monster_obj,_var_struct)
+			
 		}
 }
 
@@ -374,7 +394,7 @@ function scr_battle_draw_player_healthbar()
 	var char = get_char_by_party_position(0)
 		draw_set_font(font_mars_18)
 		draw_set_colour(c_white)
-		draw_text_transformed(cam_x + 15,cam_y + 200,char.name + "   LV " + string(global.stats.lv),0.5,0.5,0)
+		draw_text_transformed(cam_x + 15,cam_y + 200,char.name + "   LV " + string(char.lv),0.5,0.5,0)
 		var hp = max(0,char.hp)
 		var hp_barwdith_filled = ((char.max_hp * 1.3) / 2) - 1
 		var hp_barwdith = clamp((hp >= 0 ? (hp_barwdith_filled * (hp / char.max_hp)) : 0), 0,hp_barwdith_filled)
@@ -447,6 +467,7 @@ function scr_battle_draw_party_healthbars()
 		draw_text(draw_x + 19,draw_y + 3 + 1,char.name)
 		draw_text(draw_x + 19,draw_y + 3 + 6 + 1,"HP")
 		draw_set_halign(fa_right)
+		draw_text(draw_x + w + -1,draw_y + 4 + -0.5, "LV " + string(char.lv))
 		draw_text(draw_x + w + -1,draw_y + 10,char.max_hp)
 		draw_sprite_ext(spr_ui_bar,0,draw_x + w + -3 - string_width(char.max_hp), draw_y + 9,1,1,0,draw_get_colour(),1)
 		draw_text(draw_x + w + -9 - string_width(char.max_hp),draw_y + 10,char.hp)
@@ -457,4 +478,87 @@ function scr_battle_draw_party_healthbars()
 		_sprite = spr 
 		draw_sprite_ext(_sprite,0,draw_x + 9, draw_y + 8,1,1,0,char_color,1)
 	}
+}
+
+function targetbar_do_damage(character_done_by_pos,monster_attacked_pos,target_x)
+{
+	var m =  global.monsters[monster_attacked_pos]
+	var char = get_char_by_party_position(character_done_by_pos)
+		
+	var weapon_attack = 0
+	if char.weapon != ITEM_EMPTY
+	weapon_attack = global.items[$char.weapon].attack
+	var armor_attack = 0
+	if char.armor != ITEM_EMPTY
+	armor_attack += global.items[$char.armor].attack
+		
+	damage = ((char.attack + weapon_attack + 10) - m.defense) + random(2);
+
+	var bonusfactor = abs(x - target_x);
+	
+	if instance_exists(obj_targetbarparty)
+	{
+		if x < target_x - 4
+			bonusfactor = -bonusfactor
+	}
+		
+	if (bonusfactor == 0)
+	bonusfactor = 1;
+        
+	var _stretch = (sprite_get_width(spr_target) - bonusfactor) / sprite_get_width(spr_target) 
+        
+	if instance_number(obj_targetbar) > 1
+	{
+		var perfect = (bonusfactor <= 4)
+		play_sound(perfect ? snd_multibar_notperfect : snd_multibar_notperfcet) 
+		if perfect 
+		{
+			image_blend = c_yellow
+			damage *= 2	
+		}
+	}
+	if (bonusfactor <= 12)
+	damage = round(damage * 2.2);
+        
+	if (bonusfactor > 12)
+	damage = round(damage * _stretch * 2);
+		  
+	attacked = true  
+	return damage
+}
+
+function do_damage_to_monster(monster_target_num,damage)
+{
+	var m = global.monsters[monster_target_num]
+
+	if damage > 0 
+	{
+		m.hp -= damage
+		m.hurt = true
+		instance_create_depth(m.x, m.y - 15, m.depth - 50,obj_slice,{stretch: m.sprite_height});
+	}
+	
+	do_later(20,
+	function(m,damage)
+	{
+		instance_create_depth(m.x, m.y - 54, m.depth - 50, obj_dmgwriter, {target: m, dmg: damage})
+		if damage > 0
+		instance_create(obj_enemy_attacked_shake,{enemy: m})
+	
+		do_later(40,function(m)
+		{
+			if (m.hp <= 0) // enemy died 
+			{
+				if variable_instance_exists(m,"event_defeated")
+					with m event_defeated()
+			
+				obj_battlecontroler.added_gold += m.added_gold_defeated
+				obj_battlecontroler.added_xp += m.added_xp_defeated 
+			
+				instance_create(obj_vaporized,{target: m})
+				m.can_be_selected = false;
+			}
+		},m)
+	
+	},[m,damage])
 }

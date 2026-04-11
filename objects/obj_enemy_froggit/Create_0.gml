@@ -17,6 +17,12 @@ event_turn_start = function()
 	turn_set_length(240)	
 } 
 
+event_turn_end = function()
+{
+	if monster_sum() == 1 // is alone 
+	global.flavor_text = "* Froggit is alone and depressed."
+} 
+
 spared = function(monster)
 {
 	if !monster.can_be_spared

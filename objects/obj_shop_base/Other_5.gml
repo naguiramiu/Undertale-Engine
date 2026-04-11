@@ -1,0 +1,1 @@
+parent_char.visible = true

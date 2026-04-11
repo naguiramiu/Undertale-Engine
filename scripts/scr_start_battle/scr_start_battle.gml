@@ -2,30 +2,33 @@
 function battle_start()
 {
 	// everything here only runs once
-	instance_create(background_instance)
+	instance_create(background_object)
 	
 	with instance_create(obj_battlebox)
 	{
 		lerp_var_ext(id,"width",0.1,0,287.5) //start width 
 		lerp_var_ext(id,"height",0.1,0,70) // start height
 	}
+	
+	spawn_monsters(monster_array)
+
 	instance_deactivate_object(parent_char)
+	
 	globalmusic_stop(true)
 	globalmusic_play(music_asset,0,200,true,true)
-	spawn_monsters(monster_instances)
-	set_border(spr_border_simple)
+	do_later(5,set_border,spr_border_simple)
+	
 	turn_length = 40
 	turn_timer = -1
 	created = true 
 	added_gold = 0
 	added_xp = 0
 	button_xoffset = 0
-	flavor_text = noone
-	#region functions 
-		
+	flavor_text_instance = noone
+	
 	flavor_text_reset = function()
 	{
-		with obj_battlecontroler.flavor_text
+		with obj_battlecontroler.flavor_text_instance
 		{
 			can_skip = false
 			alarm[2] = 1
@@ -34,12 +37,14 @@ function battle_start()
 		}
 	}
 	
-	if array_length(global.stats.party) > 1
-		menu_buttons_lerp = function(_end){lerp_var_ext(id,"button_xoffset",0.04,button_xoffset,_end,ease_out)}
-		
-	#endregion
+	menu_buttons_lerp = function(_end)
+	{	lerp_var_ext(id,"button_xoffset",0.04,button_xoffset,_end,ease_out)	}
 		
 	global.can_move = false
+	global.flavor_text = flavor_text
+	
+	if object_exists(controller_object) 
+		instance_create(controller_object)
 }
 
 

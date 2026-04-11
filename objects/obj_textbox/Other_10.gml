@@ -1,6 +1,9 @@
 //// @desc New page
 
-letter_drawn_current = 0
+letter_drawn_current = 1
+if is_option
+	letter_drawn_current = 0
+
 write = true 
 prev_written = false
 page_skipped = false

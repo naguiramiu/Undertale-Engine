@@ -1,5 +1,3 @@
-
-
 if self_enemy_can_attack()
 {
 	if bullet > 0 bullet --

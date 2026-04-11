@@ -129,7 +129,7 @@ if (can_move && can_hitbox)
 					var defeated = 0
 					var ary = array_length(global.stats.party)
 					for (var i = 0; i < ary; i++)
-					if get_char_by_party_position(global.stats.party[i]).hp <= 0 defeated ++
+					if get_char_by_party_position(i).hp <= 0 defeated ++
 				
 					if defeated == array_length(global.stats.party)
 						battle_lose()

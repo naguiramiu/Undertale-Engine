@@ -1,4 +1,3 @@
-if !instance_exists(player) exit
 depth = UI_DEPTH - 200
 alpha = 0
 

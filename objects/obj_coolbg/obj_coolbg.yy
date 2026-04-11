@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_checkerboard_nineslice",
-    "path":"sprites/spr_checkerboard_nineslice/spr_checkerboard_nineslice.yy",
+    "name":"spr_checkerboard",
+    "path":"sprites/spr_checkerboard/spr_checkerboard.yy",
   },
   "spriteMaskId":null,
   "visible":true,

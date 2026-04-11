@@ -36,6 +36,7 @@
     {"$GMObjectProperty":"v2","%Name":"in_item_selection_vertical","filters":[],"listItems":[],"multiselect":false,"name":"in_item_selection_vertical","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"selecting_characters","filters":[],"listItems":[],"multiselect":false,"name":"selecting_characters","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"main_menu_selection","filters":[],"listItems":[],"multiselect":false,"name":"main_menu_selection","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"cell_selection","filters":[],"listItems":[],"multiselect":false,"name":"cell_selection","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

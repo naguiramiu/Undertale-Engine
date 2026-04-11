@@ -1,19 +1,45 @@
-/// @description Cell
+/// @description CELL
 
-var _x = 45 + x
-var _y = -7 + y
+if instance_exists(item_textbox)
+{
+	with item_textbox
+		event_user(1)
+	
+	if instance_exists(item_textbox) // it may be destroyed in event user 1 so check again
+	exit;
+}
 
-draw_menu(_x + 188,_y + 52,345,377,6) // bg menu
+var _x = x + 94
+var _y = y + 26
 
-gpu_set_tex_filter(true)
-draw_sprite_stretched(spr_sprite133,0,_x + 194,_y + 58,200 + 134,100 + 133 * 2)
-gpu_set_tex_filter(false)
+draw_menu(_x ,_y ,172,134,3) // bg menu
 
-if (back_key || interact_key)
+var cell = ["Call no one"]
+
+for (var i = 0; i < array_length(cell); i++)
+	draw_text(116,41 + 16 * i,cell[i])
+	
+draw_sprite(spr_soul_text,0,103,43 + 16 * cell_selection)
+
+if interact_key 
+{
+	var var_struct = 
+		{	
+			let_player_move_end: false,
+			visible: false
+		}
+	
+	switch cell_selection
+	{
+		case 0: 
+		item_textbox = create_textbox(["* You dialed no one...","* No one picked up."],var_struct)
+		break;
+	}
+}
+
+if (back_key)
 {
 	back_key = false 
-	interact_key = false
-	menu_open = false 
-	if !back_key_press
+	in_submenu = false 
 	play_sound(snd_menu_move)	
 }

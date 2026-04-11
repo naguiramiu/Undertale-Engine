@@ -4,7 +4,7 @@ if !created // this create event runs every turn end, except for this
 selected_char_number = 0
 
 while (get_char_by_party_position(selected_char_number).hp <= 0) && selected_char_number != array_length(global.stats.party)
-			selected_char_number ++ 
+	selected_char_number ++ 
 
 if (array_length(global.stats.party) > 1)
 	menu_buttons_lerp(selected_char_number)

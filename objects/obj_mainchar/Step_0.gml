@@ -65,7 +65,9 @@ if global.can_move
 #region ROTATION AND WALL COLLISIOM - COMPLEX CODE
 if (abs(xspd) > 0 || abs(yspd) > 0)
 {
-	var dist = prev_meetingwall ? 1 : 0.25 // if you are touching a wall let you move around faster to
+	var dist = prev_meetingwall ? 1 : 0.35 // if you are touching a wall let you move around faster to
+	// if you dont like the player rotating when turning change the dist to always 1
+	
 	var target_dir = point_direction(0, 0, xspd, yspd);
 
 	// prev walking into walls

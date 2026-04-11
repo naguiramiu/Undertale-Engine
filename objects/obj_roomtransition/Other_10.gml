@@ -29,18 +29,12 @@ if mywarp != noone
 		tp_y = round(mywarp.y + yoff)
 	}
 }
-else	
+else 
 {
-				
-	//player.x = target_x
-	//player.y = target_y
-	//if target_dir != -1
-	//player.dir = target_dir
-				
-	//if array_length(global.char_instances) > 1
-	//with player_follower
-	//for(var i = 0; i < array_size; i++)
-	//	record_dir[i] = player.dir
+	with room_get_custom_info(target_room)
+	{
+		tp_x = x 
+		tp_y = y
+	}
 }
-
 scr_teleport_player(tp_x,tp_y,insta_tp_party)

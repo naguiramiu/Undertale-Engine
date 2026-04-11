@@ -19,7 +19,7 @@ draw_set_font(font_deter_12)
 draw_text(top_x + 39, top_y + 57,char.name)
 draw_set_font(font_crypt_4)
 draw_text_linesep(top_x + 46 + -7,top_y +102 + -25,[lan.lv_lan,lan.hp_lan,lan.gold_lan],9,1)
-draw_text_linesep(top_x + 46 + 18 + -7,top_y +102 + -25,[string(global.stats.lv),string(char.hp) + "/" + string(char.max_hp),global.stats.gold],9,1)
+draw_text_linesep(top_x + 46 + 18 + -7,top_y +102 + -25,[string(char.lv),string(char.hp) + "/" + string(char.max_hp),global.stats.gold],9,1)
 
 // main center menu
 draw_menu(x + 16,y + 84,70,73,3) // main menu center body
@@ -54,6 +54,7 @@ if !textbox_open && !in_submenu
 			play_sound(snd_cantselect)
 		else
 		{
+			selected_char = 0
 			in_submenu = true
 			play_sound(snd_select)
 		} 

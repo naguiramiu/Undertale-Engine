@@ -109,13 +109,14 @@ function consumable_item(healing_amount,_sell_price = 0, _can_drop = true,_turn_
 	struct_set_all_self(_var_struct)
 }
 
-function weapon_item(_attack = 0,_sell_price = 0, _defense = 0, _can_drop = true) constructor
+function weapon_item(_attack = 0,_sell_price = 0, _defense = 0, _can_drop = true, _number_of_attack_bars = 1) constructor
 {
 	item_type = e_itemtype.weapon
 	attack = _attack
 	sell_price = _sell_price
 	defense = _defense
 	can_drop = _can_drop
+	number_of_attack_bars = _number_of_attack_bars
 }
 
 
@@ -193,9 +194,28 @@ function get_item_id(item_struct)
 	return ITEM_ERROR	
 }
 
+function get_item_by_id(_id)
+{
+	return global.items[$_id] ?? get_item_by_id(ITEM_ERROR)
+	
+}
+
 function string_pos_in_array(array,str)
 {
 	for (var i = 0; i < array_length(array); i++)
 	if string_pos(str,array[i]) return true 
 	return false 
+}
+
+function add_item_to_inventory(item)
+{
+	for (var i = 0; i < array_length(global.stats.inventory); i++)	
+	{
+		if global.stats.inventory[i] == ITEM_EMPTY
+		{
+			global.stats.inventory[i] = item 
+			return true;
+		}
+	}
+	return false // no space, if !add_item() etc
 }

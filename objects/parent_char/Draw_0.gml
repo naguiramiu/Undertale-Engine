@@ -8,6 +8,5 @@ if prev_changed != changed
 	prev_changed = changed 
 }
 
-
 if sprite_exists(sprite)
 	draw_sprite(sprite,current_frame,x,y)

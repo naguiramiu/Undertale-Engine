@@ -23,7 +23,7 @@ if is_undefined(stats_screen)
 	{
 		name: char.name, 
 
-		lv: global.stats.lv,
+		lv: char.lv,
 		hp: char.hp, max_hp: char.max_hp,
 	
 		item_attack: scr_get_char_item_attack(char),
@@ -31,8 +31,8 @@ if is_undefined(stats_screen)
 		weapon: is_defined(char_weapon) ? char_weapon.name : empty,
 		armor: is_defined(char_armor) ? char_armor.name : empty,
 	
-		xp: global.stats.xp,
-		next: get_nex_lvl(global.stats.lv), 
+		xp: char.xp,
+		next: get_nex_lvl(char.lv), 
 	
 		attack: char.attack,
 		defense: char.defense,
@@ -60,9 +60,11 @@ with stats_screen
 	draw_text(_x,_y + 203,gold)
 }
 
-if (string_length(char.name) > 6 || !scr_namecheck(char.name).allow)
-	draw_text_ext(_x + 84,_y + 43,lan.name_was_edited_response,16,56)
-
+if selected_char == 0
+{
+	if (string_length(char.name) > 6 || !scr_namecheck(char.name).allow)
+		draw_text_ext(_x + 84,_y + 43,lan.name_was_edited_response,16,56)
+}
 if (back_key || interact_key)
 {
 	selected_char = 0

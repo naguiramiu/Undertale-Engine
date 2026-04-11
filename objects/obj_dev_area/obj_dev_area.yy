@@ -35,5 +35,5 @@
     "path":"sprites/spr_dev_area/spr_dev_area.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

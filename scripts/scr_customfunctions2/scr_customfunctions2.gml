@@ -169,3 +169,12 @@ function sprite_get_speed_ammount(sprite)
 	else 
 	    return sprite_get_speed(sprite)
 }
+
+function array_from_struct_value(array, value_name)
+{
+    var len = array_length(array);
+    var result = array_create(len);
+    for (var i = 0; i < len; i++)
+        result[i] = array[i][$value_name];
+    return result;
+}

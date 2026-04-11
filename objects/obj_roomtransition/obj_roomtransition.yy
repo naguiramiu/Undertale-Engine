@@ -30,6 +30,10 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"horizontal_dir","filters":[],"listItems":[],"multiselect":false,"name":"horizontal_dir","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"-1","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"vertical_dir","filters":[],"listItems":[],"multiselect":false,"name":"vertical_dir","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"-1","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"let_player_move","filters":[],"listItems":[],"multiselect":false,"name":"let_player_move","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"mywarp","filters":[],"listItems":[],"multiselect":false,"name":"mywarp","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"percentage","filters":[],"listItems":[],"multiselect":false,"name":"percentage","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.5","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"insta_tp_party","filters":[],"listItems":[],"multiselect":false,"name":"insta_tp_party","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
