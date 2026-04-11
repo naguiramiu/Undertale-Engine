@@ -5,6 +5,7 @@ function initialize()
 	{
 		party: [CHARACTER_FRISK],
 		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_STICK,ITEM_TOY_KNIFE],8,ITEM_EMPTY),
+		storage_box: array_create(10,ITEM_EMPTY),
 		gold: 12,
 		char:
 		{

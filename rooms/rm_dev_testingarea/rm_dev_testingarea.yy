@@ -16,6 +16,7 @@
     {"name":"inst_509376C9","path":"rooms/rm_dev_testingarea/rm_dev_testingarea.yy",},
     {"name":"inst_43BDFB9B","path":"rooms/rm_dev_testingarea/rm_dev_testingarea.yy",},
     {"name":"inst_5DAD1E90","path":"rooms/rm_dev_testingarea/rm_dev_testingarea.yy",},
+    {"name":"inst_5009FDB","path":"rooms/rm_dev_testingarea/rm_dev_testingarea.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -36,6 +37,7 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_warp_vertical","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"propertyId":{"name":"warp_id","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_warp_vertical","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"propertyId":{"name":"target_room","path":"objects/obj_warp_vertical/obj_warp_vertical.yy",},"resource":{"name":"rm_default_shop","path":"rooms/rm_default_shop/rm_default_shop.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"rm_default_shop",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":4.0,"scaleY":1.0,"x":260.0,"y":60.0,},
+        {"$GMRInstance":"v4","%Name":"inst_5009FDB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5009FDB","objectId":{"name":"obj_storage_box","path":"objects/obj_storage_box/obj_storage_box.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":60.0,"y":100.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Instances_1","depth":300,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":20,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_5DAD1E90","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5DAD1E90","objectId":{"name":"obj_coolbg","path":"objects/obj_coolbg/obj_coolbg.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},

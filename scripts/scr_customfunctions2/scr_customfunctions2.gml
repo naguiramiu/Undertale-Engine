@@ -13,6 +13,7 @@ function destroy_instances(instances_array)
 function can_open_textbox()
 {
 	if !instance_exists(player) return false 
+	if !global.can_move return false
 	if instance_exists(obj_textbox) return false 
 	if instance_exists(obj_mainmenu) return false 
 	return true

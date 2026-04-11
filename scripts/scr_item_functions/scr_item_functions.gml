@@ -42,6 +42,15 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 		
 			if !string_pos_in_array("{event:heal}",dialogue) 
 				do_later(11,var_struct.event_heal,var_struct.event_heal_parameters)
+			
+			var heal = selected_item.heal_amount 
+			if (heal != 0)
+			{
+				if character_used_on.hp + heal >= character_used_on.max_hp
+				dialogue += "{.&}* Your HP was maxed out."
+				else
+				dialogue += "{.&}* You recovered " + string(heal) + " HP!"
+			}
 		}
 		play_sound(snd_swallow,1)
 	}

@@ -1,4 +1,4 @@
-
+draw_reset_all()
 if mouse_check_button(mb_left)
 {
     mx = mouse_x - camera_get_view_x(view_camera[0])

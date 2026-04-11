@@ -26,6 +26,6 @@
 #macro AREA_RUINS "area_ruins"
 #macro AREA_NONE "area_none"
 #macro AREA_DEV  "area_dev"
-
+#macro ENABLE_FRISKDANCE false
 #macro SPARE_ALL_MONSTERS false
 

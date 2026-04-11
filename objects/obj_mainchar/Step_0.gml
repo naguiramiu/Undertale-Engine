@@ -61,6 +61,17 @@ if global.can_move
 }
 #endregion	
 
+if (ENABLE_FRISKDANCE) && (up_key && down_key)
+{	
+	if place_meeting(x,y - main_speed, obj_col_parent)	
+	{
+        front_vector = (front_vector == UP) ? DOWN : UP
+		yspd = 0
+		current_frame += frame_animation_speed
+	}
+}
+
+
 #region ROTATION AND WALL COLLISIOM - COMPLEX CODE
 if (abs(xspd) > 0 || abs(yspd) > 0)
 {
