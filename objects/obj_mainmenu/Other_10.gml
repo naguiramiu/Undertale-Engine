@@ -5,8 +5,13 @@ if instance_exists(item_textbox)
 	with item_textbox
 		event_user(1)
 	
-	if instance_exists(item_textbox) // it may be destroyed in event user 1 so check again
-	exit;
+	if instance_exists(item_textbox)
+	exit; // it may be destroyed in event user 1 so check again
+	else if get_number_of_items() == 0 
+	{
+		in_submenu = false
+		exit;
+	}
 }
 
 
@@ -78,8 +83,6 @@ else
 				selecting_characters = false
 				item_selecting_bottom = false 
 				in_item_selection_vertical = min(item_ary - 1,in_item_selection_vertical)
-				if !item_ary
-					in_submenu = false
 		},,id)
 		}
 	}

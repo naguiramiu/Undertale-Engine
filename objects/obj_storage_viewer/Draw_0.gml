@@ -3,7 +3,6 @@ y = cam_y
 
 draw_menu(x + 8,y + 8,304,224,3)
 draw_set_font(font_deter_12)
-
 draw_set_halign_center()
 draw_text(x + 83, y + 16, "INVENTORY")
 draw_text(x + 234, y + 16, "BOX")
@@ -57,8 +56,6 @@ for (var column = 0; column < 2; column ++)
 
 	for (var i = 0, num_of_items = get_number_of_items(inv); i < ary; i++)
 	{
-		
-		
 		if i >= num_of_items 
 		{
 			draw_set_colour(c_red)

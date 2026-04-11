@@ -42,10 +42,10 @@ var grayed_menu = []
 if (global.stats.inventory[0] == ITEM_EMPTY) // no items 
 array_push(grayed_menu,0) // 0 is item
 
-main_menu_selection = modwrap(main_menu_selection,0,ary,grayed_menu)
 		
 if !textbox_open && !in_submenu
 {
+	main_menu_selection = modwrap(main_menu_selection,0,ary,grayed_menu)
 	main_menu_selection = scr_updown_modwrap(main_menu_selection,ary,,grayed_menu)
 	/// MAIN MENU OPEN SELECTED MENU
 	if interact_key 

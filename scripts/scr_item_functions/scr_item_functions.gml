@@ -47,9 +47,9 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 			if (heal != 0)
 			{
 				if character_used_on.hp + heal >= character_used_on.max_hp
-				dialogue += "{.&}* Your HP was maxed out."
+				dialogue[array_length(dialogue) - 1] += "{.&}* Your HP was maxed out."
 				else
-				dialogue += "{.&}* You recovered " + string(heal) + " HP!"
+				dialogue[array_length(dialogue) - 1] += "{.&}* You recovered " + string(heal) + " HP!"
 			}
 		}
 		play_sound(snd_swallow,1)
