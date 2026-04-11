@@ -94,13 +94,16 @@ if interact_key
 				do_later(80,battle_end,,obj_battlecontroler)
 				//audio_sound_gain(music,0,2000)
 				play_sound(snd_escaped)
-				with instance_create_depth(cam_x + 36, cam_y + 161 - 5, depth - 10,obj_empty)
+				
+				var flee = instance_create_depth(cam_x + 36, cam_y + 161 - 5, depth - 10,obj_empty)
+				with flee
 				{
 					sprite_index = spr_soul_flee
 					hspeed = -1.5
 					image_speed = 0.2
 					image_xscale = 0.5
 					image_yscale = 0.5
+					event_battle_end = instance_destroy
 				}
 			} 
 			else 
@@ -123,16 +126,11 @@ if can_flee
 }
 
 var mercyoptions =  ["Spare","Flee"]
-for (var i = 0; i < 1 + can_flee; i++)
-	{
-		if i == cur.mercy_selection
-		draw_sprite_ext(spr_soul,0,cam_x + 36,(cam_y) + 143 + (16 * i),0.5,0.5,0,c_white,1)
-			
-		var col = c_white
-		
-		if i == 0 col = has_spared ? c_yellow : c_white
-	
-		draw_set_color(col)
-		draw_set_font(font_deter_12)
-		draw_text_jitter(cam_x + 50,(cam_y) +  136 + (16 * i), "* " + mercyoptions[i])
-	}
+
+draw_set_font(font_deter_12)
+draw_set_colour(has_spared ? c_yellow : c_white)
+draw_text_jitter(cam_x + 50,cam_y + 136 , "* Spare")
+draw_reset_color()
+if can_flee
+draw_text_jitter(cam_x + 50,cam_y +  136 + 16 , "* Flee")
+draw_sprite_ext(spr_soul,soul_frame,cam_x + 36,cam_y + 143 + (16 * cur.mercy_selection),0.5,0.5,0,c_white,1)

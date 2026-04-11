@@ -6,15 +6,15 @@ screen_cover(,0.6)
 var prev = selection
 if !saved && !overwritting
 selection = scr_updown_modwrap(selection,NUMBER_OF_SAVEFILES + 1)
-
+var char = get_char_by_party_position(0)
 var information = 
 [
 	{
 		play_time: format_time(global.information.play_time),
 		room_name: get_lan(lan_room_name,room_get_name(room)) ?? room_get_name(room),
-		lv: global.stats.lv,
+		lv: char.lv,
 		loaded: true,
-		name: get_char_by_party_position(0).name
+		name: char.name
 	},
 ]
 

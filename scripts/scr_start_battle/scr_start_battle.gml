@@ -18,6 +18,7 @@ function battle_start()
 	globalmusic_play(music_asset,0,200,true,true)
 	do_later(5,set_border,spr_border_simple)
 	
+	soul_frame = 0
 	turn_length = 40
 	turn_timer = -1
 	created = true 
@@ -42,6 +43,7 @@ function battle_start()
 		
 	global.can_move = false
 	global.flavor_text = flavor_text
+	global.invframes_timer = 0
 	
 	if object_exists(controller_object) 
 		instance_create(controller_object)

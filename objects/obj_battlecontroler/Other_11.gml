@@ -89,11 +89,11 @@ if cur.in_submenu2
 	for (var i = 0; i < ary; i++)
 	{
 		draw_text(cam_x + current_x + 50,135 + starty+ current_y + 1, "*")
-		draw_text_jitter(cam_x + current_x + 65,135 + starty+ current_y + 1, act[i].name)
+		draw_text_jitter(cam_x + current_x + 65 + 1,135 + starty+ current_y + 1, act[i].name)
 
 			if i == cur.act_selection
-		draw_sprite_ext(spr_soul,0,cam_x + current_x + 36,starty + current_y + 143,0.5,0.5,0,c_white,1)
-		current_x += 120
+		draw_sprite_ext(spr_soul,soul_frame,cam_x + current_x + 36,starty + current_y + 143,0.5,0.5,0,c_white,1)
+		current_x += 120 + 8
 		if (i % 2)
 		{
 			current_x = 0

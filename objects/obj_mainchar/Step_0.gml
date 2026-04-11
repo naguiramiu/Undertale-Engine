@@ -3,14 +3,14 @@ var down_key = down_key_hold
 var up_key = up_key_hold
 var left_key = left_key_hold
 var right_key = right_key_hold
-var run_key = ENABLE_RUNNING && (global.settings.auto_run ? -back_key_hold : back_key_hold)
+var run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold)
 
 if run_key
 	current_run_speed = lerp(current_run_speed,max_run_speed,0.2)	
 else current_run_speed = lerp(current_run_speed,0,0.8)	
 
 #region X and Y movement
-
+if keyboard_check_pressed(vk_up) with obj_empty show_message(self)
 xspd = 0;
 yspd = 0;
 

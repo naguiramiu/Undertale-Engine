@@ -53,7 +53,7 @@ for (var i = 0; i < num; i++)
 				var myid = id
 				if instance_exists(obj_targetbarfader)
 					with obj_targetbarfader if creator == myid
-						draw_sprite_stretched_ext(sprite_index,0,x,draw_y - 1 + myy,6,member_h + 2.5,c_white,draw_get_alpha() * image_alpha)
+						draw_sprite_stretched_ext(sprite_index,0,x,draw_y - 1,6,member_h + 2.5,merge_colour(draw_get_colour(),c_white,0.5), (draw_get_alpha() * image_alpha))
 			}
 	}
 }
@@ -88,7 +88,7 @@ if interact_key_press
 			with obj_targetbarparty
 				{
 					if found.character_done_by == character_done_by && !attacked 
-					all_attacked = false
+					all_attacked_row = false
 				}
 					
 			if all_attacked_row && !this.done_damage
@@ -119,8 +119,17 @@ if (ended)
 	for (var i = 0; i < array_length(attacking); i++)	
 	if !attacking[i].done_damage 
 	{
-		do_damage_to_monster(attacking[i].target_monster,attacking[i].damage)
-		attacking[i].done_damage = true
+		var this = attacking[i]
+		var last_attacker = -1 
+		for (var a = 0; a < array_length(attacking); a++)
+		if (attacking[a] != this) && !attacking[a].done_damage && attacking[a].target_monster == this.target_monster
+		last_attacker = a
+					
+		if last_attacker != -1 
+			attacking[last_attacker].damage += this.damage
+		else
+		do_damage_to_monster(this.target_monster, this.damage)
+		this.done_damage = true
 	}
 }
 

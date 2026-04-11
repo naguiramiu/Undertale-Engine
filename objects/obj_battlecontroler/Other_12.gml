@@ -68,15 +68,15 @@ with cur
 	for (var i = (item_page * 4); i < 4 + (item_page * 4); i++)
 	{
 		if global.stats.inventory[i] == ITEM_EMPTY continue;
-		var item = global.items[$global.stats.inventory[i]].name
+		var name = global.items[$global.stats.inventory[i]].short_name
 		var curi =  i - (item_page * 4)
 		var text_x = cam_x + 50 + ((i % 2 == 0) ? 0 : 120)
 		var y_offset =  cam_y + (8 * curi) -  ((curi % 2 == 0) ? 0 : 8 )
 		draw_text(text_x,136 + y_offset, "*")
-		draw_text_jitter(text_x + 16,136 + y_offset, item)
+		draw_text_jitter(text_x + 16,136 + y_offset, name)
 
 		if curi == item_selection 
-			draw_sprite_ext(spr_soul,0, text_x - 14,143 + y_offset,0.5,0.5,0,c_white,1)
+			draw_sprite_ext(spr_soul,obj_battlecontroler.soul_frame, text_x - 14,143 + y_offset,0.5,0.5,0,c_white,1)
 	}
 	
 	draw_set_font(font_deter_12)

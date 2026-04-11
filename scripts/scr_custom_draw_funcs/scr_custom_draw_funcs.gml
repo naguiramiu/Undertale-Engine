@@ -110,7 +110,7 @@ function draw_text_jitter(_x,_y,text,jitter = 0.5)
 		var xoffset = ran ? random_range(-jitter,jitter) : 0
 		var yoffset = ran ? random_range(-jitter,jitter) : 0
 		draw_text(text_x + xoffset,_y + yoffset,char)
-		text_x += string_width(char) 
+		text_x += string_width(char) + 1 + (char == " ") * 4
 	}
 }
 

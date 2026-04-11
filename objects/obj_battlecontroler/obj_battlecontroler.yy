@@ -41,6 +41,7 @@
     {"$GMObjectProperty":"v2","%Name":"controller_object","filters":[],"listItems":[],"multiselect":false,"name":"controller_object","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
     {"$GMObjectProperty":"v2","%Name":"created","filters":[],"listItems":[],"multiselect":false,"name":"created","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"depth","filters":[],"listItems":[],"multiselect":false,"name":"depth","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"BATTLE_DEPTH","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"reset_flavor_w_round_ends","filters":[],"listItems":[],"multiselect":false,"name":"reset_flavor_w_round_ends","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

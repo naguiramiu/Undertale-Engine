@@ -3,7 +3,15 @@ mytarget = modwrap(mytarget,1,array_length(global.monsters))
 
 do_later(6,function()
 {
-	var number_of_bars = 4
+	var number_of_bars = 1
+	var char = get_char_by_party_position(0)
+	if char.weapon != ITEM_EMPTY
+	{
+		var weapon = global.items[$char.weapon]
+		if variable_struct_exists(weapon,"number_of_attack_bars")	
+		number_of_bars = weapon.number_of_attack_bars
+	}
+	
 	for (var i = 0; i < number_of_bars; i++)
 	{
 		var dir = choose(-1,1)

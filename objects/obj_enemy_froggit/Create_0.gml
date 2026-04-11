@@ -19,7 +19,8 @@ event_turn_start = function()
 
 event_turn_end = function()
 {
-	if monster_sum() == 1 // is alone 
+	if (can_be_selected && monster_sum() == 1)
+	// is alone 
 	global.flavor_text = "* Froggit is alone and depressed."
 } 
 

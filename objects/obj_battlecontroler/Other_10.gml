@@ -10,7 +10,7 @@ if interact_key
 		if (array_length(global.stats.party) == 1)
 		{
 			with obj_battlebox
-			instance_create_depth(x,y,BATTLE_DEPTH - 20,obj_target_party,
+			instance_create_depth(x,y,BATTLE_DEPTH - 20,obj_target,
 			{
 				mytarget: cur.fight_selection
 			})	

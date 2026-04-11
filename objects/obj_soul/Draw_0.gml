@@ -27,6 +27,7 @@ if can_move
 		var dist = 1
 	    var target_dir = point_direction(0, 0, xspd, yspd);
 		var walking_speed = main_speed
+		if run_key walking_speed /= 2
 		var lenx = lengthdir_x(walking_speed, target_dir); 
 		var leny = lengthdir_y(walking_speed, target_dir);
 	
@@ -86,11 +87,8 @@ if (can_move && can_hitbox)
 	mask_index = spr_graze
 	//Graze
 	
-	if invframes_timer > 0 
-	{
-		invframes_timer --
+	if global.invframes_timer > 0 
 		image_speed = 1
-	}
 	else 
 	{
 		image_speed = 0
@@ -105,9 +103,9 @@ if (can_move && can_hitbox)
 		var chosen = scr_battle_gettargetnum()
 		var char = get_char_by_party_position(chosen)	
 			
-		if invframes_timer == 0 && instance_exists(inst)
+		if global.invframes_timer == 0 && instance_exists(inst)
 		{
-			invframes_timer = inst.myinvframes
+			global.invframes_timer = inst.myinvframes
 			image_index = 1
 			var damage = damage_calculation(inst.damage,chosen)
 			

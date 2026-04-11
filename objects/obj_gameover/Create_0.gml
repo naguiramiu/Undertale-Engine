@@ -2,7 +2,6 @@ depth = UI_DEPTH + 20
 sprite = spr_soul
 darken = false
 image_alpha = 0
-
 created = false
 cutscene_perform_event = false 
 
@@ -47,6 +46,6 @@ var death_custscene = cutscene_create(
 )
 
 
-cutscene_start(death_custscene)
+cutscene_start(death_custscene,,true)
 obj_camera.shake_strenght = 0
 obj_camera.shake_duration = 0

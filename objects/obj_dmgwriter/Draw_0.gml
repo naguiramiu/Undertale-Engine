@@ -18,7 +18,7 @@ if image_alpha < 0 instance_destroy()
 if (dmg > 0)
 {
 	var str = string(dmg)
-	var char_w = 26 * 0.5
+	var char_w = -2 + sprite_get_width(spr_dmgnum_o) / 2
 	var total_w = string_length(str) * char_w
 	var xl = x - (total_w / 2) + (char_w / 2);
 	for (var i = 1; i <= string_length(str); i++)

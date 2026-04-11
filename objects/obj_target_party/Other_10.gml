@@ -1,10 +1,11 @@
+///@desc create bars
 attacking = array_shuffle(attacking)
 
 var cx = 0
 for (var i = 0; i < array_length(attacking); i++)
 {
 	var dist = 10 + irandom(10)
-	var spd = 3 + random(2)
+	var spd = 2 + random(2)
 	var ammount = 1 + irandom(2)
 	var char = get_char_by_party_position(i)
 	if char.weapon != ITEM_EMPTY
@@ -18,7 +19,7 @@ for (var i = 0; i < array_length(attacking); i++)
 	
 	for( var a = 0; a < ammount; a ++)
 	{
-		with instance_create_depth((x + obj_battlebox.width * 0.75) + cx, y + 30 * i, depth - 10, obj_targetbarparty,
+		with instance_create_depth((cam_x + x + obj_battlebox.width * 0.75) + cx, y + 30 * i, depth - 10, obj_targetbarparty,
 		{
 			hspeed: -spd,
 			target: attacking[i].target_monster,

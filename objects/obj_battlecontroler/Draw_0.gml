@@ -85,3 +85,10 @@ if turn_timer != -1
 	}
 }
 
+if global.invframes_timer > 0 
+{
+	global.invframes_timer --
+	soul_frame += sprite_get_speed_ammount(spr_soul)
+}
+else 
+	soul_frame = 0

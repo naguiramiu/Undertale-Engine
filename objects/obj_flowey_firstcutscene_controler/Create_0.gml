@@ -25,7 +25,6 @@ var cutscene = cutscene_create
 		}
 			
 		destroy_instances(obj_flowey_firstcutscene_controler.to_destroy)	
-			
 		with instance_create_depth(cam_x + 158,cam_y + 160,BATTLE_DEPTH,obj_soul)
 		instance_create_depth(x,y,depth + 1,obj_guidearrows)
 		

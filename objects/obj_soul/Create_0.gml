@@ -5,7 +5,7 @@ xspd = 0
 yspd = 0
 can_move = false
 can_hitbox = true
-invframes_timer = 0
+global.invframes_timer = 0
 image_speed = 0
 
 scr_party_hpaverage = function()

@@ -3,8 +3,10 @@
 var back_key = back_key_press
 
 if open_menu
+{
 	create_tiny_dialogue(tiny_dialogue_text.default_talk_dialogue)
-
+	item_in_choicer = false
+}
 var backout = false
 var boxtext = ""
 

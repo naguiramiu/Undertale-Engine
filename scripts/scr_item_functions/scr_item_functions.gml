@@ -155,6 +155,7 @@ function drop_item(selected_item,selection,var_struct = {})
 {
 	if selected_item.can_drop 
 		array_delete(global.stats.inventory,in_item_selection_vertical,1)
+	global.stats.inventory[array_length(global.stats.inventory)] = ITEM_EMPTY
 	
 	var dialogue = (variable_struct_exists(selected_item,"drop_description") ? selected_item.drop_description : "")
 	

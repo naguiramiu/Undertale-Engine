@@ -44,7 +44,7 @@ function load_game(savefile_num = 0, load_from_file = true)
 	room_goto(room_to_go)
 	
 	with obj_camera set_camera_position(true,room_to_go)
-	//lerp_var_ext(obj_camera,"darken_screen",0.1,1,0)
+	lerp_var_ext(obj_camera,"darken_screen",0.1,1,0)
 	global.information.savefile_num = savefile_num
 }
 

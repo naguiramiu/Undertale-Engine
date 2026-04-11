@@ -156,10 +156,16 @@ function get_unavailable_battle_menus()
 
 function battle_draw_menu_with_monster_names(cur,selection_name,show_hp = false)
 {
+	draw_set_font(font_deter_12)
+
 	var ary = array_length(global.monsters)
 	var cant = []
+	var max_name_width = 0
 	for (var i = 0; i < array_length(global.monsters); i++)
-	if !global.monsters[i].can_be_selected array_push(cant,i)
+	{
+		max_name_width = max(max_name_width,string_width(global.monsters[i].name))
+		if !global.monsters[i].can_be_selected array_push(cant,i)
+	}
 	var prev = cur[$selection_name]
 	prev = modwrap(prev,0,ary,cant)
 	if down_key_press prev = modwrap(prev,1,ary,cant)
@@ -174,7 +180,7 @@ function battle_draw_menu_with_monster_names(cur,selection_name,show_hp = false)
 	with global.monsters[i]
 	{
 		if i == cur[$selection_name]
-		draw_sprite_ext(spr_soul,0,cam_x + 36,(cam_y) + 143 + (16 * i),0.5,0.5,0,c_white,1)
+		draw_sprite_ext(spr_soul,other.soul_frame,cam_x + 36,(cam_y) + 143 + (16 * i),0.5,0.5,0,c_white,1)
 		var col = can_be_spared ? c_yellow : c_white
 		if !can_be_selected col = c_gray;
 		draw_set_color(col)
@@ -184,10 +190,11 @@ function battle_draw_menu_with_monster_names(cur,selection_name,show_hp = false)
 		
 		if show_hp && can_be_selected
 		{
+			var bar_x = 112 + max_name_width
 			draw_set_colour(c_red)
-			draw_rectangle_wh(cam_x + 143,cam_y + 140 + 16 * i,49.5,7.5)
+			draw_rectangle_wh(cam_x + bar_x,cam_y + 140 + 16 * i,49.5,7.5)
 			draw_set_colour(c_lime)
-			draw_rectangle_wh(cam_x + 143,cam_y + 140 + 16 * i,(hp / max_hp) * 49.5,7.5)
+			draw_rectangle_wh(cam_x + bar_x,cam_y + 140 + 16 * i,(hp / max_hp) * 49.5,7.5)
 		}
 	}
 }
@@ -209,7 +216,7 @@ function battle_draw_menu_with_party_names(cur,selection_name = "item_char_selec
 	{
 		var char = get_char_by_party_position(i)
 		if i == cur[$selection_name]
-		draw_sprite_ext(spr_soul,0,cam_x + 36,cam_y + 143 + (16 * i),0.5,0.5,0,c_white,1)
+		draw_sprite_ext(spr_soul,soul_frame,cam_x + 36,cam_y + 143 + (16 * i),0.5,0.5,0,c_white,1)
 		draw_set_color(c_white)
 		draw_set_font(font_deter_12)
 		var text_x = cam_x + 50
@@ -371,7 +378,7 @@ function battle_draw_bottom_ui()
 		draw_sprite_ext(sprite, i, current_x , current_y,0.5,0.5,0,col,1)
 	
 		if selected && !cur.in_submenu && controler_can_move
-		draw_sprite_ext(spr_soul,0,8 + current_x, 10.5 + current_y + 0.5,0.5,0.5,1,c_white,1)
+		draw_sprite_ext(spr_soul,soul_frame,8 + current_x, 10.5 + current_y + 0.5,0.5,0.5,1,c_white,1)
 	}
 	
 	#endregion
@@ -518,13 +525,16 @@ function targetbar_do_damage(character_done_by_pos,monster_attacked_pos,target_x
 		}
 	}
 	if (bonusfactor <= 12)
-	damage = round(damage * 2.2);
+	damage = damage * 2.2;
         
 	if (bonusfactor > 12)
-	damage = round(damage * _stretch * 2);
-		  
+	damage = (damage * _stretch * 2);
+	
+	if bonusfactor > 100
+	damage *= 0.25
+	
 	attacked = true  
-	return damage
+	return round(damage)
 }
 
 function do_damage_to_monster(monster_target_num,damage)
@@ -549,6 +559,7 @@ function do_damage_to_monster(monster_target_num,damage)
 		{
 			if (m.hp <= 0) // enemy died 
 			{
+				m.hp = 0
 				if variable_instance_exists(m,"event_defeated")
 					with m event_defeated()
 			

@@ -25,8 +25,8 @@ function battle_end_actions()
 
 		with obj_battlebox
 		{
-			lerp_var_ext(id,"width" ,0.1,[id,"width" ],global.battlebox_width )
-			lerp_var_ext(id,"height",0.1,[id,"height"],global.battlebox_height)
+			lerp_var_ext(id,"width" ,0.075,[id,"width" ],global.battlebox_width )
+			lerp_var_ext(id,"height",0.075,[id,"height"],global.battlebox_height)
 		}
 
 		var speechbubble_exits = false 
