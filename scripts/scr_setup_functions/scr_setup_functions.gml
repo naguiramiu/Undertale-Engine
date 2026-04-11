@@ -1,6 +1,3 @@
-
-
-
 function scr_initiate_information()
 {
 	global.information =

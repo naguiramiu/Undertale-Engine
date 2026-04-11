@@ -28,7 +28,7 @@ if (dmg > 0)
 	    xl += char_w
 	}
 }
-else draw_sprite_ext(spr_dmgmiss_o,0,x,y,0.5,0.5,0,c_white,image_alpha)
+else draw_sprite_ext(spr_dmgmiss_o,0,x,y,0.5,0.5,0,c_ltgray,image_alpha)
 
 draw_set_alpha(image_alpha)
 var xx = xstart 

@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"battle",
+    "path":"folders/sprites/battle.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
