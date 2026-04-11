@@ -21,7 +21,8 @@ function declare_items()
 		ITEM_UNISICLE: new consumable_item(11,2),
 		ITEM_TOY_KNIFE: new weapon_item(3,100)
 	}
-	var names = variable_struct_get_names(global.items)
-	for (var i = 0; i < array_length(names); i++)
-		struct_add_unique(global.items[$names[i]],item_get_dialogue_struct(names[i]))
+	
+	struct_foreach(global.items,function(key,val){
+		struct_add_unique(val,item_get_dialogue_struct(key))
+	})
 }

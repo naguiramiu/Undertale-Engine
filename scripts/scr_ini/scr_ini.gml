@@ -1,5 +1,6 @@
 function initialize()
 {
+	
 	global.stats =
 	{
 		party: [CHARACTER_FRISK],
@@ -39,6 +40,8 @@ function initialize()
 	}
 	
 	declare_items()
+	
+	
 	scr_textbox_talkers()
 	scr_initiate_information()
 	scr_initiate_settings()

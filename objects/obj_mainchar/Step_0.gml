@@ -10,7 +10,6 @@ if run_key
 else current_run_speed = lerp(current_run_speed,0,0.8)	
 
 #region X and Y movement
-if keyboard_check_pressed(vk_up) with obj_empty show_message(self)
 xspd = 0;
 yspd = 0;
 
