@@ -5,10 +5,10 @@ function save_game(savefile_num = global.information.savefile_num)
 	var main_struct = {}
 	
 	main_struct.stats = global.stats 
-	main_struct.information = {}
+	main_struct.saved_information = {}
 	main_struct.flags = global.flags
 	
-	with main_struct.information
+	with main_struct.saved_information
 	{
 		if instance_exists(player)
 		{

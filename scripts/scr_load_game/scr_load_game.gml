@@ -12,9 +12,9 @@ function load_game(savefile_num = 0, load_from_file = true)
 			if data != ""
 			{
 				var main_struct = load_savefile(data)
-				global.information = struct_merge(global.information, main_struct.information)
+				global.information = struct_merge(global.information, main_struct.saved_information)
 				global.stats = struct_merge(global.stats,main_struct.stats)
-				global.flags = struct_merge(global.flags,main_struct.flags)
+				global.flags = struct_merge(global.flags,main_struct.flags) 
 				delete main_struct
 			}
 			else checked = true
