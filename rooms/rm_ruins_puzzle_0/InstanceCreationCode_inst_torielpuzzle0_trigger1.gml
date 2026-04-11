@@ -25,6 +25,8 @@ cutscene =
 	add_text("* Allow me to educate you in the operation of the RUINS."),
 	cut_perform_function(-1,function()
 	{
+		inst_torielpuzzle0_trigger2.can_start = true
+		
 		with inst_ruinspuzzle0_toriel
 		{
 			path_start(pth_ruins_toriel_firstpuzzle,2,path_action_stop,true)

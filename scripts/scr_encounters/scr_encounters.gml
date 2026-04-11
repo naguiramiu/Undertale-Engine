@@ -13,8 +13,8 @@ function scr_setup_encounters()
 		{
 			test_battle: new setup_encounter( 
 				[
-					new monster(obj_enemy_whimsun),
 					new monster(obj_enemy_froggit),
+					new monster(obj_enemy_whimsun),
 					new monster(obj_enemy_moldsmall)
 				],
 				"* Froggit, Whimsun and Moldsmall drew near!",

@@ -42,7 +42,7 @@ function scr_initiate_settings()
 		keys: scr_default_keys()
 	}
 		
-	global.screen_darken = 0;
 	global.can_move = true;
 	global.party_distance = 12;
 }
+

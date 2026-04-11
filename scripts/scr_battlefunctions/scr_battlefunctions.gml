@@ -243,6 +243,7 @@ function add_battle_action (_func,_priority = e_battle_priority.regular)
 
 function spawn_monsters(monster_array)
 {
+		global.monsters = []
 		var ary = array_length(monster_array)
 		var w = 320
 		var pad = 20

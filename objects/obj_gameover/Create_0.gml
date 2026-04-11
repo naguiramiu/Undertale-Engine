@@ -42,7 +42,11 @@ var death_custscene = cutscene_create(
 	}),
 	cut_interpolate_var(id,"image_alpha",0.1,1,0,0),
 	cut_perform_function(0,instance_destroy,id),
-	cut_perform_function(0,room_goto,rm_setup)
+	cut_perform_function(0,function()
+	{
+		clean_battle()
+		load_game(global.settings.selected_file)	
+	})
 )
 
 

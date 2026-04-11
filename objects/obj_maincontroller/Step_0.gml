@@ -1,6 +1,6 @@
 // acurate time passing
 
-if !array_contains([rm_titlescreen,rm_title_story,rm_deathscreen],room)
+if !array_contains([rm_titlescreen,rm_title_story,rm_gameover],room)
 global.information.play_time += delta_time / 1000000
 
 if open_menu_key_press

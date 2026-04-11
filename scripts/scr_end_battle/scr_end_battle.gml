@@ -30,7 +30,7 @@ function battle_end()
 	if instance_exists(restart_instances[i])
 	with restart_instances[i] event_perform(ev_create,0)
 	
-	array_foreach(["monsters","battlebox_height","battlebox_width","flavor_text","invframes_timer"],function(val){variable_struct_remove(global,val)})
+	clean_battle()
 	
 	with all
 	{
@@ -40,4 +40,14 @@ function battle_end()
 		if variable_instance_exists(id,"destroy_at_battle_end")
 		if destroy_at_battle_end instance_destroy()
 	}
+}
+
+function clean_battle()
+{ 
+	array_foreach(["monsters","battlebox_height","battlebox_width","flavor_text","invframes_timer"],
+	function(val)
+	{
+		if variable_global_exists(val)
+		variable_struct_remove(global,val)
+	})
 }

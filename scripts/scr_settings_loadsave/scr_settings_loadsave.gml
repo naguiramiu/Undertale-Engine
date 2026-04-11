@@ -29,27 +29,18 @@ function scr_settings_save()
 
 function scr_settings_load(set_language = false)
 {
-	
 	ini_open(file_dir() + "settings.ini")
 	var keys = struct_get_names(global.settings)
 	
-	var real_keys = []
 	for (var i = 0; i < array_length(keys); i++)
-	if is_real(global.settings[$keys[i]]) || is_int64(global.settings[$keys[i]]) array_push(real_keys,keys[i])
-
-	var bool_keys = []
-	for (var i = 0; i < array_length(keys); i++)
-	if is_bool(global.settings[$keys[i]]) array_push(bool_keys,keys[i])
-	
-	for (var i = 0; i < array_length(real_keys); i++)
-	global.settings[$real_keys[i]] = ini_read_real("settings",real_keys[i],global.settings[$real_keys[i]])
-	
-	for (var i = 0; i < array_length(bool_keys); i++)
-	global.settings[$bool_keys[i]] = bool(ini_read_real("settings",bool_keys[i],global.settings[$bool_keys[i]]))
+	if (is_real(global.settings[$keys[i]]) || is_int64(global.settings[$keys[i]]))
+	global.settings[$keys[i]] = ini_read_real("settings",keys[i],global.settings[$keys[i]])
+	else 
+	if is_bool(global.settings[$keys[i]]) 
+	bool(ini_read_real("settings",keys[i],global.settings[$keys[i]]))
 	
 	#region keys 
 	var keystrings = struct_get_names(global.settings.keys)
-	
 	for (var i = 0; i < array_length(keystrings); i++)
 	{
 		var key = ini_read_string("keys",keystrings[i],global.settings.keys[$keystrings[i]])
@@ -58,7 +49,6 @@ function scr_settings_load(set_language = false)
 	
 		global.settings.keys[$keystrings[i]] = key
 	}
-	#endregion
 
 	if ini_read_real("dev","on",false)
 		global.settings.dev.insta_load = ini_read_string("dev","insta_load",false)	

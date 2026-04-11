@@ -1,6 +1,6 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rm_deathscreen",
+  "%Name":"rm_gameover",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
@@ -8,7 +8,7 @@
   "instanceCreationOrder":[],
   "isDnd":false,
   "layers":[],
-  "name":"rm_deathscreen",
+  "name":"rm_gameover",
   "parent":{
     "name":"dev",
     "path":"folders/rooms/dev.yy",
