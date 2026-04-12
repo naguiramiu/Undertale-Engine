@@ -23,13 +23,13 @@ for (var i = 0; i < num; i++)
     draw_set_colour(available ? get_char_by_party_position(i).ui_color : c_dkgray)
 	draw_line_colour(total_x + start_x_off + sel_bar_w + 3,draw_y + -1.1,total_x + total_w + -24,draw_y + -1.1,draw_get_colour(),c_black)
 	draw_line_colour(total_x + start_x_off + sel_bar_w + 3,round(draw_y + member_h ) + 0.2,total_x + total_w,round(draw_y + member_h) + 0.2,draw_get_colour(),c_black)
-
+	draw_rectangle_wh(total_x + start_x_off + 3, draw_y,sel_bar_w, member_h, true)
 	if !available continue;
 	
 	for (var a = 0; a < 3; a ++)
 	draw_sprite_stretched_ext(spr_target_arrow,0, round(max(sin((current_time * 0.0075) + a * 208),0)) + total_x + start_x_off + 14 + 26 * a,draw_y + spacing - 0.5,26,member_h - spacing,merge_colour(draw_get_colour(),c_black,(a / 3) * 0.8),(1 + -(abs(sin((current_time * 0.0025) + a * 40) + 0.5) * 0.2)) * draw_get_alpha())
 	
-    draw_rectangle_wh(total_x + start_x_off + 3, draw_y,sel_bar_w, member_h, true)
+    
 	draw_set_halign_center()
 	draw_text(total_x + start_x_off / 2,draw_y + member_h / 2,"PRESS")
 	draw_reset_align()
