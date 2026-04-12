@@ -99,7 +99,7 @@ var cutscene = cutscene_create
 	add_text("Move around!{.&}Get as many as you can!",true,false),
 	cut_wait(80), 
 	destroy_dialogue(),
-	cut_wait(30),
+	cut_wait(50),
 	cut_perform_function(1,function()
 	{
 	  with get_char_by_party_position(0)
@@ -137,7 +137,7 @@ var cutscene = cutscene_create
 			}
 		}
 	}),
-	cut_wait(80),
+	cut_wait(100),
 	cut_perform_function(30,function()
 	{
 		with get_char_by_party_position(0)
@@ -203,7 +203,7 @@ var cutscene = cutscene_create
 	}),
 	cut_wait(60),
 	destroy_dialogue(),
-	cut_wait(50),
+	cut_wait(60),
 	cut_perform_function(0,function()
 	{
 		with get_char_by_party_position(0)
