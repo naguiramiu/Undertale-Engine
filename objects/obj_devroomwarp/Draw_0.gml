@@ -7,8 +7,6 @@ with get_mouse_pos()
 	var mouse_yy = y	
 }
 
-draw_set_colour(c_black)
-draw_circle(mouse_xx,mouse_yy,2,0)
 draw_reset_color()
 
 x = 0 

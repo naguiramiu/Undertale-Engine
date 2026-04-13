@@ -76,8 +76,6 @@
     {"name":"obj_darken","order":11,"path":"objects/obj_darken/obj_darken.yy",},
     {"name":"obj_debug","order":2,"path":"objects/obj_debug/obj_debug.yy",},
     {"name":"obj_dev_area","order":2,"path":"objects/obj_dev_area/obj_dev_area.yy",},
-    {"name":"obj_devmenu_debug","order":4,"path":"objects/obj_devmenu_debug/obj_devmenu_debug.yy",},
-    {"name":"obj_devmenu","order":3,"path":"objects/obj_devmenu/obj_devmenu.yy",},
     {"name":"obj_devroomwarp","order":2,"path":"objects/obj_devroomwarp/obj_devroomwarp.yy",},
     {"name":"obj_dmgwriter","order":3,"path":"objects/obj_dmgwriter/obj_dmgwriter.yy",},
     {"name":"obj_empty","order":3,"path":"objects/obj_empty/obj_empty.yy",},

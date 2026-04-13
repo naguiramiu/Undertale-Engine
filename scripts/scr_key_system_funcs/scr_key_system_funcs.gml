@@ -160,6 +160,7 @@ function gamepad_get_axis_value_fixed(axis = "haxis")
 	}
 }
 
+
 function scr_get_controller_axis(_haxis,_vaxis,_get = true)
 {	
 	prev_haxis1 = (_get ? prev_haxis : 0)

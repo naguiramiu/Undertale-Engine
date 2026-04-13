@@ -1,3 +1,5 @@
+
+
 function load_game(savefile_num = 0, load_from_file = true)
 {
 	var file_name = savefile_name(savefile_num)

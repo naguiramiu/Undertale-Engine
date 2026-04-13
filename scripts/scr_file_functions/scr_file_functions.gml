@@ -188,8 +188,8 @@ function savefile_basic_information(num)
 				(
 					char.name,
 					char.lv,
-					format_time(main_struct.information.play_time),
-					room_get_custom_info(asset_get_index(main_struct.information.room_name)),
+					format_time(main_struct.saved_information.play_time),
+					room_get_custom_info(asset_get_index(main_struct.saved_information.room_name)),
 					true
 				)
 				delete main_struct

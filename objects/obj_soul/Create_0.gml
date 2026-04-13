@@ -89,3 +89,42 @@ damage_calculation = function(base_damage,char_num)
     return max(base_damage, 1)
 
 }
+
+
+get_hit = function(inst)
+{
+	var chosen = scr_battle_gettargetnum()
+	var char = get_char_by_party_position(chosen)	
+			
+	if global.invframes_timer == 0 && instance_exists(inst)
+	{
+		global.invframes_timer = inst.myinvframes
+		image_index = 1
+		var damage = damage_calculation(inst.damage,chosen)
+			
+		if is_method(inst.event_hit)
+		inst.event_hit(); 
+			
+		if !instance_exists(inst) return false
+		if inst.damage > 0 
+		{
+			shake_camera(3,1.5)	
+			char.hp -= damage
+			var col = c_white
+			if char.hp <= 0 
+			{
+				char.hp = 0 //round(-char.max_hp / 2)
+				col = c_red
+				var defeated = 0
+				var ary = array_length(global.stats.party)
+				for (var i = 0; i < ary; i++)
+				if get_char_by_party_position(i).hp <= 0 defeated ++
+				
+				if defeated == array_length(global.stats.party)
+					battle_lose()
+			}
+			play_sound(snd_hurt,2,,20)
+		}
+		if inst.destroy_on_impact instance_destroy(inst)
+	}
+}
