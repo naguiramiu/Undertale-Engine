@@ -38,6 +38,8 @@ var ww = 50
 draw_set_colour(c_dkgray)
 var left_edge = xx - (ww / 2) 
 draw_rectangle_wh(left_edge, yy, ww, hh, false)
+if shown_hp > target.hp shown_hp -= 1
+
 var w = (shown_hp / target.max_hp) * ww
 draw_set_colour(c_lime)
 if shown_hp > 0

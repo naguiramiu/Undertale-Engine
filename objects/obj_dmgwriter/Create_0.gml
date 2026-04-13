@@ -1,4 +1,4 @@
-lerp_var_ext(id,"shown_hp",0.01,target.hp + dmg,target.hp,ease_out)
+shown_hp = target.hp + dmg
 fade = 0
 alarm[1] = 35
 
