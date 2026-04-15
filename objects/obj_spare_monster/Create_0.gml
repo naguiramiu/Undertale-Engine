@@ -41,4 +41,4 @@ my_sprite = sprite_create_from_surface(spare_surf,0,0,320,240,0,0,0,0)
 
 surface_free(spare_surf)
 
-lerp_var_ext(id,"image_alpha",0.1,[id,"image_alpha"],0.5)
+lerp_var_ext(id,"image_alpha",0.1,image_alpha,0.5)

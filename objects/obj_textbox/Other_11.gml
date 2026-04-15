@@ -37,7 +37,8 @@ if !getting_details
 		if can_skip
 		{
 			letter_drawn_current = string_length(current_dialogue)  // set the writing progress to the last character
-			page_skipped = true
+			page_skipped = true 
+			if talker_has("sprite_frame") talker.sprite_frame ++
 		}
 	}
 
@@ -110,13 +111,18 @@ if !getting_details
 
 		var sprite_name = talker.sprite_name
  
-		if talker_has("sprite_emotion") sprite_name += talker.sprite_emotion
+		if (talker_has("sprite_emotion") && is_string(talker.sprite_emotion) && talker.sprite_emotion != "")
+			sprite_name += "_" + talker.sprite_emotion
+			
 		var sprite = asset_get_index(sprite_name) ?? spr_textbox_error
 		
-		scr_textbox_sprite_talker(sprite)
+		scr_textbox_sprite_talker(sprite,drawn_x,drawn_y)
 		
 		draw_sprite_ext(sprite,talker.sprite_frame,drawn_x + 29,drawn_y + 18,1,1,0,c_white,draw_get_alpha())
 		
+		if talker_has("blink_sprite")
+			scr_textbox_char_blink(drawn_x,drawn_y)
+			
 		if talker_has("post_sprite")
 			draw_sprite_ext(talker.post_sprite,0,drawn_x + 29,drawn_y + 18,1,1,0,c_white,draw_get_alpha())
 		
@@ -183,7 +189,7 @@ for (var i = 1; i <= string_length(current_dialogue); i++)
 	            total_next_w += ((monospaced ? 9 : string_width(string_char_at(next_word_string, n))) * letter_width) + letter_spacing
 			draw_set_colour(c_blue)
 				
-	        if (current_x + lwidth + total_next_w > max_sentence_width + 0.1) 
+	        if (current_x + lwidth + total_next_w > max_sentence_width + 0.1) && do_auto_line_breaks
 	        {
 	            if getting_details
 					page_sentence_ammount++;

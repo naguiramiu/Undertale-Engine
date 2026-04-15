@@ -11,7 +11,7 @@ if (path_index != -1)
 		if sprite_exists(sprite)
 		img = (img + sprite_get_speed_ammount(sprite)) % sprite_get_number(sprite)
 	}
-	else if path_look_down_when_stopped
+	else if look_down_when_stopped
     dir = angle_lerp(dir, DOWN, 0.1)
 	
 	dir = (dir + 360) % 360; // rotation
@@ -42,7 +42,7 @@ if (animate_walking)
 		if sprite_exists(sprite)
 			img = (img + sprite_get_speed_ammount(sprite)) % sprite_get_number(sprite)
 	}
-	else if path_look_down_when_stopped
+	else if look_down_when_stopped
     dir = angle_lerp(dir, DOWN, 0.1)
 	
 			dir = (dir + 360) % 360; // rotation
@@ -58,7 +58,17 @@ if (animate_walking)
 	prev_was_moving = is_moving
 	
 }
-	
+else if dialogue_talk
+{
+	if instance_exists(my_dialogue) && audio_is_playing(my_dialogue.sound_playing)
+	img += sprite_get_speed_ammount(sprite)
+	else 
+	img = 0
+}
+else if image_speed > 0
+img += sprite_get_speed_ammount(sprite) * image_speed
+
+
 var _dir = front_direction_to_string(get_current_direction(dir))
 var sprite_test = sprite_name + _dir 
 
@@ -67,6 +77,7 @@ if prev_sprite_test != sprite_test
 	var try_sprite = asset_get_index(string_replace_markup_ext(sprite_name,
 	{
 		dir: _dir,
+		movement: movement,
 	}))
 	
 	if sprite_exists(try_sprite)
@@ -80,29 +91,41 @@ if prev_sprite_test != sprite_test
 prev_sprite_test = sprite_test
 
 if is_undefined(sprite) exit;
-
 var interact = interact_key_press
 if interact && global.can_move && can_open_textbox()
 {
-	if player_is_facing_point(x,y + sprite_get_height(sprite) - sprite_get_yoffset(sprite),,40)
+	if player_is_facing_point(x,y ,,40)
 	{
+		direction_before_dialogue = dir
 		interact = false
-		if var_id_exists("dialogue")
-			my_dialogue = create_textbox(dialogue,dialogue_var_struct)
+		if var_id_exists("dialogue") && string_length(dialogue)
+		{
+			dir_before_dialogue = dir
+			
+			var _var_struct = variable_clone(dialogue_var_struct)
+			
+			if !variable_struct_exists(_var_struct,"event_destroy")
+			_var_struct.event_destroy = dialogue_event_destroy
+			
+			_var_struct.event_destroy_parameters = id
+
+			my_dialogue = create_textbox(dialogue,_var_struct)
+			dir = point_direction(x,y,player.x,player.y)
+			
+			if is_string(dialogue_next)
+			dialogue = dialogue_next 
+			else if is_array(dialogue_next) && array_length(dialogue_next)
+			{
+				dialogue = dialogue_next[0]
+				array_delete(dialogue_next,0,1)
+			}
+		}
 	}
 }
 
 draw_sprite_ext_optional(sprite,img)
 
-if dialogue_talk
-{
-	if instance_exists(my_dialogue) && audio_is_playing(my_dialogue.sound_playing)
-	img += sprite_get_speed_ammount(sprite)
-	else 
-	img = 0
-}
-else if image_speed > 0
-img += sprite_get_speed_ammount(sprite) * image_speed
+
 
 if variable_self_exists("event_draw") event_draw()
 

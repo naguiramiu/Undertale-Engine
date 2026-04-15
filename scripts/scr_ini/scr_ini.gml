@@ -37,6 +37,8 @@ function initialize()
 			flowey_cutscene_0 : false,
 			toriel_walked_0: false, 
 			toriel_puzzle_0: false,
+			toriel_lever_0: false,
+			toriel_lever_1: false
 		}
 	}
 	

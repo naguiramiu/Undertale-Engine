@@ -11,6 +11,10 @@
 	 
 	 switch (title)
 	{
+		case "linebreak":
+		do_auto_line_breaks = !reset
+		break;
+		
 		case "talker":
 		
 			talker = global.talker[$value[0]]
@@ -22,8 +26,10 @@
 			if array_length(value) > 1 talker.sprite_emotion = value[1]
 			
 		break;
-		case "emotion": case "img": case "talker_img": case "image_index": case "talker_image_index":
-		
+		case "emotion": case "img": case "emo": case "sprite_type":
+			
+			if reset talker.sprite_emotion = "" 
+			else
 			talker.sprite_emotion = value[0]
 			
 		break;
@@ -320,27 +326,32 @@ function scr_textbox_sprite_talker(sprite)
 		talker.sprite_frame += sprite_get_speed_ammount(sprite)
 		else talker.sprite_frame = 0
 	}
-		
-	if talker_has("sprite_animate_blinking") && talker.sprite_animate_blinking
+}
+
+function scr_textbox_char_blink(dx,dy)
+{
+	if !talker_has("blink_timer") 
 	{
-		if !talker_has("blink_timer") talker.blink_timer = 60
-			
-		with talker
+		talker.blink_timer = 60
+		talker.blink_frame = 0
+	}
+	with talker
+	{
+		if (blink_timer > 0) 
 		{
-			if (blink_timer > 0) 
+			blink_frame = 0
+			blink_timer--
+		}
+		else 
+		{
+			blink_frame += sprite_get_speed_ammount(blink_sprite)
+			if (blink_frame >= sprite_get_number(blink_sprite))
 			{
-			    sprite_frame = 0
-			    blink_timer--
-			}
-			else 
-			{
-			    sprite_frame += sprite_get_speed_ammount(sprite)
-			    if (sprite_frame >= sprite_get_number(sprite)) 
-				{
-			        sprite_frame = 0;   
-			        blink_timer = irandom_range(60, 120)
-			    }
+			    blink_frame = 0;   
+			    blink_timer = irandom_range(40, 60)
 			}
 		}
+		if (blink_frame != 0) 
+		draw_sprite(blink_sprite,blink_frame,dx + 29, dy + 18)
 	}
 }

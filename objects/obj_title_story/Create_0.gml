@@ -10,7 +10,7 @@ dialogue_var_struct =
 	event_pagewritten_parameters: main_cutscene,
 	x: 13,
 	y: -10,
-	letter_spacing: 1,
+	letter_spacing: 0,
 	monospaced: true,
 	do_extend_box: false,
 	can_advance: false, 

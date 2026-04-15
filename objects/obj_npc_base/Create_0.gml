@@ -12,8 +12,12 @@ if !can_collide
 	mask_index = spr_no_collision
 else mask_index = -1
 
-path_look_down_when_stopped = true
 prev_was_moving = false
-
 move = -1 
-movespeed = 1
+dir_before_dialogue = -1
+
+if is_undefined(dialogue_event_destroy)
+dialogue_event_destroy = function(inst)
+{
+	inst.dir = inst.dir_before_dialogue
+}

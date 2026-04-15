@@ -33,6 +33,7 @@
     {"name":"inst_torielpuzzle0_trigger1","path":"rooms/rm_ruins_puzzle_0/rm_ruins_puzzle_0.yy",},
     {"name":"inst_torielpuzzle0_trigger2","path":"rooms/rm_ruins_puzzle_0/rm_ruins_puzzle_0.yy",},
     {"name":"inst_ruinspuzzle0_door","path":"rooms/rm_ruins_puzzle_0/rm_ruins_puzzle_0.yy",},
+    {"name":"inst_513CC4A0","path":"rooms/rm_ruins_puzzle_0/rm_ruins_puzzle_0.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -82,10 +83,9 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_textbox_dialogue_opener","path":"objects/obj_textbox_dialogue_opener/obj_textbox_dialogue_opener.yy",},"propertyId":{"name":"dialogue","path":"objects/obj_textbox_dialogue_opener/obj_textbox_dialogue_opener.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"* Only the fearless may proceed.{.&}* Brave ones, foolish ones.{.&}* Both walk not the middle road.\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":72.0,"y":75.0,},
         {"$GMRInstance":"v4","%Name":"inst_BB4DE0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_BB4DE0","objectId":{"name":"obj_ruins_area","path":"objects/obj_ruins_area/obj_ruins_area.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+        {"$GMRInstance":"v4","%Name":"inst_513CC4A0","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_513CC4A0","objectId":{"name":"obj_ruins_lever","path":"objects/obj_ruins_lever/obj_ruins_lever.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":200.0,"y":50.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-    {"$GMRAssetLayer":"","%Name":"assets","assets":[
-        {"$GMRSpriteGraphic":"v1","%Name":"graphic_282CA01D","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_282CA01D","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_lever","path":"sprites/spr_lever/spr_lever.yy",},"x":200.0,"y":50.0,},
-      ],"depth":400,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":20,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"assets","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
+    {"$GMRAssetLayer":"","%Name":"assets","assets":[],"depth":400,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":20,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"assets","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"tileset_aboveground","depth":500,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":20,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"tileset_aboveground","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":12,"SerialiseWidth":16,"TileCompressedData":[
           -2,-2147483648,7,17,10,10,48,-2147483648,-2147483648,47,-3,10,1,18,-4,-2147483648,8,17,46,70,70,71,-2147483648,
           -2147483648,69,-3,70,2,47,18,-3,-2147483648,8,12,71,70,37,71,-2147483648,-2147483648,69,-3,70,13,69,

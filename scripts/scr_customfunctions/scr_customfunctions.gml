@@ -12,15 +12,15 @@ function shake_camera(duration,strength)
 		shake_strenght = strength
 	}
 }
-function create_collision(x,y,image_xscale = 1,image_yscale = 1,object_index = obj_collision_wall_rectangle, image_angle = 0)
+function create_collision(_x,_y,_image_xscale = 1,_image_yscale = 1,_object_index = obj_collision_wall_rectangle, _image_angle = 0)
 {
-	return instance_create(object_index,
+	return instance_create(_object_index,
 	{
-		x: x, 
-		y: y, 
-		image_xscale: image_xscale,
-		image_yscale: image_yscale,
-		image_angle: image_angle
+		x: _x, 
+		y: _y, 
+		image_xscale: _image_xscale,
+		image_yscale: _image_yscale,
+		image_angle: _image_angle
 	})	
 }
 

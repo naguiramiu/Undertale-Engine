@@ -14,7 +14,7 @@ my_dialogue = noone
 
 var_struct = 
 {
-	can_skip: false,
+	can_skip: true,
 	can_skip_while_writting: false,
 	stop_drawing_after_destroy: false,
 	talker: global.talker.flowey_default,

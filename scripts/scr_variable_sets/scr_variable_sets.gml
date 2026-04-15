@@ -217,17 +217,7 @@ function lerp_var_ext(_object_or_instance,_var_name,_progress_speed,_start,_end,
 */
 function var_get(value)
 {
-	if is_array(value)
-	 {
-		if is_struct(value[0])
-		{
-			var inst = var_get(value[0])			
-			return variable_struct_get(inst,value[1])
-		}
-		else 
-			return variable_instance_get(value[0],value[1])
-	 }
-	else if is_struct(value) && variable_struct_exists(value,"is_var_get")
+	if is_struct(value) && variable_struct_exists(value,"is_var_get")
 	{
 		var final_value = variable_struct_get(value.instance_name,value.var_name)
 		
@@ -254,9 +244,11 @@ function var_get(value)
 					return final_value[edit]
 			}
 		}
+		show_message(final_value)
+		return final_value
 	}
-	else return value 
-	return final_value
+	
+	return value 
 }
 
 

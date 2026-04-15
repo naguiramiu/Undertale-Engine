@@ -19,6 +19,7 @@ var cutscene = cutscene_create
 		
 		with instance_create(obj_battlebox)
 		{
+			
 			width = global.battlebox_width 
 			height = global.battlebox_height
 			visible = true
@@ -74,6 +75,7 @@ var cutscene = cutscene_create
 	cut_wait(60),
 	cut_perform_function(1,function()
 	{
+		obj_flowey_firstcutscene_controler.var_struct.can_skip = false
 		instance_destroy(obj_friendlypellet)
 		repeat 5 
 		instance_create_depth(x + 21,y + 23,obj_battlebox.depth - 10, obj_friendlypellet,
@@ -238,13 +240,15 @@ event_bulletcircle = function()
 			{
 				with obj_battlebox
 				{
-					width = 53 
-					height = 47
+					var w = 53 
+					var h = 47
+					lerp_var_ext(id,"width",0.1,width,w)
+					lerp_var_ext(id,"height",0.1,height,h)
 					x = 160 
 					y = 310	
 					var border = 6
-					obj_soul.x = clamp(obj_soul.x,border + x - width / 2, (x + width / 2) - border)
-					obj_soul.y = clamp(obj_soul.y,border + y - height / 2, (y + height / 2) - border)
+					obj_soul.x = clamp(obj_soul.x,border + x - w / 2, (x + w / 2) - border)
+					obj_soul.y = clamp(obj_soul.y,border + y - h / 2, (y + h / 2) - border)
 				}
 				var create_bullet = function()
 				{
@@ -318,7 +322,7 @@ event_hit_bullet = function()
 	instance_destroy(my_dialogue)
 	get_char_by_party_position(0).hp = 1
 	instance_destroy(obj_friendlypellet)
-	shake_camera(10,3)
+	shake_camera(20,5)
 	globalmusic_stop(true)
 	play_sound(snd_hurt,2,,,0.95)
 	event_bulletcircle()
@@ -384,7 +388,7 @@ final_event = function()
 				sprite_talk = true
 				with var_struct
 				{
-					talker = global.talker.toriel_blink
+					talker = global.talker.toriel
 					texteffect_shake = false
 					write_speed = 1
 				}
@@ -425,7 +429,7 @@ final_event = function()
 					sprite_name = "spr_toriel_talk_{dir}"
 					with dialogue_var_struct
 					{
-						talker = global.talker.toriel_blink 
+						talker = global.talker.toriel
 						creator = other.id
 						event_destroy = function()
 						{

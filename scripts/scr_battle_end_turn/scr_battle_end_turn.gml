@@ -10,11 +10,11 @@ function battle_end_turn()
 	
 	with obj_battlebox // reset battlebox
 	{
-		lerp_var_ext(id,"width",0.1,[id,"width"],287.5)
-		lerp_var_ext(id,"height",0.1,[id,"height"],70)
-		lerp_var_ext(id,"x",0.1,[id,"x"],cam_x + global.battlebox_x)
-		lerp_var_ext(id,"y",0.1,[id,"y"],cam_y + global.battlebox_y)
-		lerp_var_ext(id,"image_angle",0.25,[id,"image_angle"],0)
+		lerp_var_ext(id,"width",0.1,width,287.5)
+		lerp_var_ext(id,"height",0.1,height,70)
+		lerp_var_ext(id,"x",0.1,x,cam_x + global.battlebox_x)
+		lerp_var_ext(id,"y",0.1,y,cam_y + global.battlebox_y)
+		lerp_var_ext(id,"image_angle",0.25,image_angle,0)
 	}
 	event_perform(ev_create,0)
 }

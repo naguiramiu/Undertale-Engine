@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"spr_tileset_ruins",
   "bboxMode":0,
-  "bbox_bottom":239,
+  "bbox_bottom":319,
   "bbox_left":0,
   "bbox_right":659,
   "bbox_top":0,

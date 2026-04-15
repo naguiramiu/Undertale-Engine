@@ -34,7 +34,23 @@ function cutscene_start_self(cutscene_array,var_struct = {},_persistent = false)
 	play_cutscene_event()
 }
 
-
+function cut_move_instance(_instance,_var_name,_amount,_target_amount,_time_till_next = 0,_start_timer_imediately = false)
+{
+	cutscene_hold_arguments
+	
+	instance_create(obj_cut_move_instance,
+	{
+		instance: _instance,
+		var_name: _var_name,
+		amount: _amount,
+		target: _target_amount,
+		do_cutscene: !_start_timer_imediately,
+		cutscene_timer: _time_till_next,
+		cutscene_creator: id
+	})
+	
+	time_till_next = (_start_timer_imediately ? _time_till_next : -1);
+}
 function cut_interpolate_var(_object_or_instance,_var_name,_progress_speed,_start,_end, _time_till_next = 0,_ease_type = ease_square,_start_timer_imediately = false,_ease_params = [])
 {  
 	cutscene_hold_arguments
@@ -136,9 +152,10 @@ function cut_textbox(text,_time_till_next = 0, _start_timer_imediately = false, 
 	return 	scr_create_cutscene_textbox(text,var_struct)
 }
 
-function scr_create_cutscene_textbox(text,var_struct)
+function scr_create_cutscene_textbox(text,var_struct = {})
 {
-	struct_add_unique(var_struct,
+	var _var_struct = variable_clone(var_struct)
+	struct_add_unique(_var_struct,
 	{
 		do_cutscene_event_at_destroy: true,
 		time_till_next: 0,
@@ -152,10 +169,10 @@ function scr_create_cutscene_textbox(text,var_struct)
 		}
 	})
 	
-	if variable_self_exists("textbox_talker") && !variable_struct_exists(var_struct,"talker")
-	var_struct.talker = textbox_talker
+	if variable_self_exists("textbox_talker") && !variable_struct_exists(_var_struct,"talker")
+	_var_struct.talker = textbox_talker
 	
-	return create_textbox(text,var_struct)
+	return create_textbox(text,_var_struct)
 }
 
 function cutscene_pause(_cutscene_id = undefined)

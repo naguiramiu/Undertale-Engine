@@ -7,6 +7,8 @@ if global.flags.ruins.toriel_puzzle_0
 		inst_torielpuzzle0_trigger2,
 		inst_ruinspuzzle0_toriel
 	])
+	obj_ruins_lever.image_index = 1
+	
 	exit;
 }
 
@@ -26,14 +28,13 @@ cutscene =
 	cut_perform_function(-1,function()
 	{
 		inst_torielpuzzle0_trigger2.can_start = true
-		
+		inst_torielpuzzle0_trigger2.mask_index = spr_toriel_puzzle_hitbox
 		with inst_ruinspuzzle0_toriel
 		{
-			path_start(pth_ruins_toriel_firstpuzzle,2,path_action_stop,true)
+			path_start(pth_ruins_toriel_firstpuzzle,2.5,path_action_stop,true)
 			sprite_name = "spr_toriel_walk_{dir}"
 			dialogue_talk = false
 			stopped = false
-			path_look_down_when_stopped = false
 			c = 0
 			event_draw = function()
 			{
@@ -41,6 +42,7 @@ cutscene =
 				{
 					global.flags.ruins.toriel_puzzle_0 = true
 					instance_destroy(inst_ruinspuzzle0_door)
+					obj_ruins_lever.image_index = 1
 					movespeed = 2
 					stopped = true 
 					dir = UP

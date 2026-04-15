@@ -25,8 +25,8 @@ function battle_end_actions()
 
 		with obj_battlebox
 		{
-			lerp_var_ext(id,"width" ,0.075,[id,"width" ],global.battlebox_width )
-			lerp_var_ext(id,"height",0.075,[id,"height"],global.battlebox_height)
+			lerp_var_ext(id,"width" ,0.075,width,global.battlebox_width )
+			lerp_var_ext(id,"height",0.075,height,global.battlebox_height)
 		}
 
 		var speechbubble_exits = false 
@@ -37,8 +37,8 @@ function battle_end_actions()
 
 		with instance_create_depth(obj_battlebox.x,obj_battlebox.y,obj_battlebox.depth - 20,obj_soul)
 		{
-			lerp_var_ext(id,"x",0.1,[id,"x"],cam_x + global.battlebox_x)
-			lerp_var_ext(id,"y",0.1,[id,"y"],cam_y + global.battlebox_y)
+			lerp_var_ext(id,"x",0.1,x,cam_x + global.battlebox_x)
+			lerp_var_ext(id,"y",0.1,y,cam_y + global.battlebox_y)
 		}
 
 		if !speechbubble_exits battle_turn_start() // turn start
