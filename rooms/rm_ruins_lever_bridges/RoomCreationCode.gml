@@ -1,0 +1,1 @@
+global.flags.ruins.toriel_puzzle_0 = true

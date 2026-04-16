@@ -12,7 +12,8 @@ function scr_language_main()
 		rm_ruins_startingroom: "Ruins - Flower bed",
 		rm_ruins_staircase: "Ruins - Entrance",
 		rm_ruins_puzzle_0: "Ruins - Puzzle 0",
-		rm_ruins_firstencounter: "Ruins - First encounter"
+		rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
+		rm_ruins_firstencounter_froggit: "Ruins - First encounter"
 	}
 	
 	#macro lan_battle "battle"
@@ -68,18 +69,6 @@ function scr_language_main()
 		drop: "DROP",
 	}
 	
-	#macro lan_savescreen "savescreen"
-	
-	global.language_text[$lan_savescreen] = 
-	{
-		room_text: 
-		{
-			rm_dev_testingarea: "* (Finding yourself in a room of developer things...){.&}* (Fills you with dread. yeah.)",
-			rm_ruins_startingroom: "* (The thought that this is just the start of your journey fills you with determination.)",
-			rm_ruins_staircase: "* (The shadow of the ruins looms above, filling you with determination.)"
-		}
-		
-	}
 	
 	scr_language_set_items()
 	scr_language_set_title()

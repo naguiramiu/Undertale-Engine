@@ -1,5 +1,26 @@
 function scr_language_set_title()
 {
+	#macro lan_savescreen "savescreen"
+	
+	global.language_text[$lan_savescreen] = 
+	{
+		room_text: 
+		{
+			rm_dev_testingarea: "* (Finding yourself in a room of developer things...){.&}* (Fills you with dread. yeah.)",
+			rm_ruins_startingroom: "* (The thought that this is just the start of your journey fills you with determination.)",
+			rm_ruins_staircase: "* (The shadow of the ruins looms above, filling you with determination.)"
+		}
+		
+	}
+	
+	var name_entry = function(_entry,_response,_allow = true) constructor
+	{
+		entry = _entry
+		response = _response
+		allow = _allow
+	}
+	
+	
 	#macro lan_text_title "titlescreen"
 	global.language_text[$lan_text_title] =
 	{
@@ -28,138 +49,28 @@ function scr_language_set_title()
 			name_not_creative: "Not very creative...?",
 			names: 
 			{
-				asgore:
-				{
-					entry: "Asgore",
-					response: "You cannot.",
-					allow: false
-				},
-				toriel:
-				{
-					entry: "Toriel",
-					response: "I think you should{&}think of your own{&}name, my child.",
-					allow: false
-				},
-				sans:
-				{
-					entry: "Sans",
-					response: "nope.",
-					allow: false
-				},
-				undyne:
-				{
-					entry: "Undyne",
-					response: "Get your OWN name!",
-					allow: false
-				},
-				flowey:
-				{
-					entry: "Flowey",
-					response: "I already CHOSE{&}that name.",
-					allow: false
-				},
-				chara:
-				{
-					entry: "Chara",
-					response: "The true name.",
-					allow: true
-				},
-				alphys:
-				{
-					entry: "Alphys",
-					response: "D-don't do that.",
-					allow: false
-				},
-				alphy:
-				{
-					entry: "Alphy",
-					response: "Uh... OK?",
-					allow: true
-				},
-				papyru:
-				{
-					entry: "Papyru",
-					response: "I'LL ALLOW IT!!!!",
-					allow: true
-				},
-				napsta:
-				{
-					entry: ["Napsta", "Blooky"],
-					response: "...........{&}(They're powerless to{&}stop you.)",
-					allow: true
-				},
-				route:
-				{
-					entry: ["Murder", "Mercy"],
-					response: "That's a little on-{&}the nose, isn't it...?",
-					allow: true
-				},
-				asriel:
-				{
-					entry: "Asriel",
-					response: "...",
-					allow: false
-				},
-				catty:
-				{
-					entry: "Catty",
-					response: "Bratty! Bratty!{&}That's MY name!",
-					allow: true
-				},
-				bratty:
-				{
-					entry: "Bratty",
-					response: "Like, OK I guess.",
-					allow: true
-				},
-				mtt:
-				{
-					entry: ["MTT", "Metta", "Mett"],
-					response: "OOOOH!!! ARE YOU{&}PROMOTING MY BRAND?",
-					allow: true
-				},
-				gerson:
-				{
-					entry: "Gerson",
-					response: "Wah ha ha! Why not?",
-					allow: true
-				},
-				shyren:
-				{
-					entry: "Shyren",
-					response: "...?",
-					allow: true
-				},
-				aaron:
-				{
-					entry: "Aaron",
-					response: "Is this name correct? ; )",
-					allow: true
-				},
-				temmie:
-				{
-					entry: "Temmie",
-					response: "hOI!",
-					allow: true
-				},
-				woshua:
-				{
-					entry: "Woshua",
-					response: "Clean name.",
-					allow: true
-				},
-				jerry:
-				{
-					entry: "Jerry",
-					response: "Jerry.",
-					allow: true
-				},
-				bpants:
-				{
-					entry: "Bpants",
-					response: "You are really scraping the{&}bottom of the barrel.",
-					allow: true
-				}
+				asgore: new name_entry("Asgore", "You cannot.", false),
+		        toriel: new name_entry("Toriel", "I think you should{&}think of your own{&}name, my child.", false),
+		        sans:   new name_entry("Sans", "nope.", false),
+		        undyne: new name_entry("Undyne", "Get your OWN name!", false),
+		        flowey: new name_entry("Flowey", "I already CHOSE{&}that name.", false),
+		        chara:  new name_entry("Chara", "The true name."), 
+		        alphys: new name_entry("Alphys", "D-don't do that.", false),
+		        alphy:  new name_entry("Alphy", "Uh... OK?"),
+		        papyru: new name_entry("Papyru", "I'LL ALLOW IT!!!!"),
+		        napsta: new name_entry(["Napsta", "Blooky"], "...........{&}(They're powerless to{&}stop you.)"),
+		        route:  new name_entry(["Murder", "Mercy"], "That's a little on-{&}the nose, isn't it...?"),
+		        asriel: new name_entry("Asriel", "...", false),
+		        catty:  new name_entry("Catty", "Bratty! Bratty!{&}That's MY name!"),
+		        bratty: new name_entry("Bratty", "Like, OK I guess."),
+		        mtt:    new name_entry(["MTT", "Metta", "Mett"], "OOOOH!!! ARE YOU{&}PROMOTING MY BRAND?"),
+		        gerson: new name_entry("Gerson", "Wah ha ha! Why not?"),
+		        shyren: new name_entry("Shyren", "...?"),
+		        aaron:  new name_entry("Aaron", "Is this name correct? ; )"),
+		        temmie: new name_entry("Temmie", "hOI!"),
+		        woshua: new name_entry("Woshua", "Clean name."),
+		        jerry:  new name_entry("Jerry", "Jerry."),
+		        bpants: new name_entry("Bpants", "You are really scraping the{&}bottom of the barrel.")
 			}
 		},
 		start_poppup_hint: "[Press Z or ENTER]",

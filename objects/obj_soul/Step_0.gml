@@ -6,22 +6,17 @@ if can_move
 	var right_key = right_key_hold
 	var run_key = back_key_hold
 	#region X and Y movement
-	xspd = 0;
-	yspd = 0;
-	if can_move
+	xspd = (right_key - left_key) * 1
+	yspd = (down_key - up_key) * 1
+		
+	if USING_CONTROLLER
 	{
-		xspd = (right_key - left_key) * 1
-		yspd = (down_key - up_key) * 1
+		var haxis = gamepad_get_axis_value_fixed("haxis")
+		if haxis != 0 xspd = haxis
+		var vaxis = gamepad_get_axis_value_fixed("vaxis")
+		if vaxis != 0 yspd = vaxis
+	}	
 		
-		if USING_CONTROLLER
-		{
-			var haxis = gamepad_get_axis_value_fixed("haxis")
-			if haxis != 0 xspd = haxis
-			var vaxis = gamepad_get_axis_value_fixed("vaxis")
-			if vaxis != 0 yspd = vaxis
-		}	
-		
-	}
 	if (abs(xspd) > 0 || abs(yspd) > 0)
 	{
 		var dist = 1

@@ -19,8 +19,8 @@
   ],
   "name":"rm_default_shop",
   "parent":{
-    "name":"rooms",
-    "path":"folders/rooms.yy",
+    "name":"dev",
+    "path":"folders/rooms/dev.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -3,8 +3,12 @@ sprite = spr_soul
 darken = false
 image_alpha = 0
 created = false
+if (instance_exists(obj_soul))
+{
+	x = obj_soul.xprevious
+	y = obj_soul.yprevious
+}
 cutscene_perform_event = false 
-
 var death_custscene = cutscene_create(
 	cut_wait(40),
 	cut_set_var(id,"darken",true),

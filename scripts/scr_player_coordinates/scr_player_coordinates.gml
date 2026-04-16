@@ -89,11 +89,11 @@ function player_below_half_y()
 /// @param target_y The y of the npc/object
 /// @param max_dist Hhow close the player needs to be (eg 30)
 /// @param max_angle the cone of vision (eg 30 degrees)
-function player_is_facing_point(_tx,_ty,_max_dist = 30,_max_angle = 45,debug = false) 
+function player_is_facing_point(_tx,_ty,_max_dist = 25,_max_angle = 45,debug = false) 
 {
 	if !instance_exists(player) return false;
 	var px = player.x   
-	var py = player.y - 7
+	var py = player.y
 	if debug 
 	{
 	    var col = draw_get_colour()

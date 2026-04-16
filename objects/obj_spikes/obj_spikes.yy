@@ -12,7 +12,10 @@
     "name":"ruins",
     "path":"folders/objects/ruins.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_col_parent",
+    "path":"objects/obj_col_parent/obj_col_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

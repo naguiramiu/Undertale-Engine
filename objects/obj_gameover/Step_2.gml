@@ -1,7 +1,5 @@
 if !created 
 {
-	x = obj_soul.x 
-	y = obj_soul.y 
 	audio_stop_all()
 	var rw = room_width
 	var rh = room_height

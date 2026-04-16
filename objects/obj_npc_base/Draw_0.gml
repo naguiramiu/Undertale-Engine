@@ -70,7 +70,7 @@ img += sprite_get_speed_ammount(sprite) * image_speed
 
 
 var _dir = front_direction_to_string(get_current_direction(dir))
-var sprite_test = sprite_name + _dir 
+var sprite_test = sprite_name + _dir + movement 
 
 if prev_sprite_test != sprite_test
 {
@@ -89,12 +89,11 @@ if prev_sprite_test != sprite_test
 }
 
 prev_sprite_test = sprite_test
-
 if is_undefined(sprite) exit;
 var interact = interact_key_press
 if interact && global.can_move && can_open_textbox()
 {
-	if player_is_facing_point(x,y ,,40)
+	if player_is_facing_point(x,y)
 	{
 		direction_before_dialogue = dir
 		interact = false
@@ -125,7 +124,4 @@ if interact && global.can_move && can_open_textbox()
 
 draw_sprite_ext_optional(sprite,img)
 
-
-
 if variable_self_exists("event_draw") event_draw()
-

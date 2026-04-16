@@ -56,7 +56,6 @@ function cut_interpolate_var(_object_or_instance,_var_name,_progress_speed,_star
 	cutscene_hold_arguments
 	
 	
-	
 	with instance_create(obj_interpolatevar_ext,
 	{
 		persistent: persistent
@@ -115,7 +114,7 @@ function cut_set_var(_object_or_instance,_var_name,_value,_time_till_next = 0)
 	cutscene_hold_arguments
 	
 	_object_or_instance = var_get(_object_or_instance);
-	variable_instance_set(_object_or_instance,_var_name,var_get(_value));	
+	variable_self_set(_var_name,var_get(_value),_object_or_instance)
 	time_till_next = _time_till_next;
 }
 
@@ -124,7 +123,6 @@ function cut_wait(_time_till_next)
 	cutscene_hold_arguments
 	time_till_next = _time_till_next;
 }
-
 
 function cut_playsound(_sound,_gain = 1,_time_till_next = 0, _pitch = 1, _loops = false, _is_music = false,_priority = 1,fade_in_time = 0)
 {

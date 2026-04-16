@@ -121,7 +121,10 @@ get_hit = function(inst)
 				if get_char_by_party_position(i).hp <= 0 defeated ++
 				
 				if defeated == array_length(global.stats.party)
+				{
 					battle_lose()
+					can_move = false
+				}	
 			}
 			play_sound(snd_hurt,2,,20)
 		}

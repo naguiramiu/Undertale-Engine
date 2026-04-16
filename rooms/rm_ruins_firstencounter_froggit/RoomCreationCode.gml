@@ -1,0 +1,1 @@
+global.flags.ruins.toriel_lever_puzzle = 3
