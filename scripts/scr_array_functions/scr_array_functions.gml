@@ -75,7 +75,7 @@ function rooms_get_info()
  function array_remove_value_ext(array,func)
 {
 	for (var i = 0; i < array_length(array); i++)
-	if func(i)
+	if func(i,array[i])
 	{
 		array_delete(array,i,1)
 		array_remove_value_ext(array,func)

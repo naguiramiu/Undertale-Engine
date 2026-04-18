@@ -281,7 +281,7 @@ function battle_firstmonster_available(start)
 		start = (start + 1) % array_length(global.monsters)
 		if start == true_start 
 		{
-			show_message("Error: somehow none of the monsters are avaiable")
+			show_poppup("Error: somehow none of the monsters are avaiable")
 			break;
 		}
 	}

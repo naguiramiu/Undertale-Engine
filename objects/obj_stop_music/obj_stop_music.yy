@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_stopmusic",
-    "path":"sprites/spr_stopmusic/spr_stopmusic.yy",
+    "name":"spr_dev_stopmusic",
+    "path":"sprites/spr_dev_stopmusic/spr_dev_stopmusic.yy",
   },
   "spriteMaskId":null,
   "visible":false,

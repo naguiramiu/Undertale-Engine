@@ -47,8 +47,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_battlecontroller",
-    "path":"sprites/spr_battlecontroller/spr_battlecontroller.yy",
+    "name":"spr_dev_battlecontroller",
+    "path":"sprites/spr_dev_battlecontroller/spr_dev_battlecontroller.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -16,6 +16,10 @@ function string_capitalize(str)
 {
 	return string_upper(string_char_at(str,1)) + string_lower(string_copy(str,2,string_length(str)))	
 }
+function string_prettify(str)
+{
+	return string_replace_all(string_capitalize(str),"_"," ")
+}
 
 function format_time(seconds) 
 {

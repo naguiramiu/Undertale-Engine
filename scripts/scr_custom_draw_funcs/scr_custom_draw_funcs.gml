@@ -25,6 +25,16 @@ function draw_text_shadow(x,y,text,color = c_white)
 	draw_text(x,y,text)
 	draw_set_color(col)
 }
+function draw_text_shadow_ext(x,y,text,color = c_white,scale = 1, angle = 0)
+{
+	var col = draw_get_color()
+	draw_set_color(c_black)
+	draw_text_transformed(x + scale, y + scale, text,scale,scale,angle)
+	draw_set_color(color)
+	draw_text_transformed(x,y,text,scale,scale,angle)
+	draw_set_color(col)
+}
+
 function draw_text_hyphen(x,y,text,col)
 {	
 	var current_x = 0

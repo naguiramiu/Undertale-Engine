@@ -10,8 +10,8 @@
   "name":"obj_spare_monster",
   "overriddenProperties":[],
   "parent":{
-    "name":"global instances",
-    "path":"folders/objects/dev/global instances.yy",
+    "name":"functions",
+    "path":"folders/objects/battle/functions.yy",
   },
   "parentObjectId":null,
   "persistent":false,

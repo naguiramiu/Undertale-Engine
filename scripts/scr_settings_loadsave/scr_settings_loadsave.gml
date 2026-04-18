@@ -1,55 +1,52 @@
-
 function scr_settings_save()
 {
 	ini_open(file_dir() + "settings.ini")
-	var keys = struct_get_names(global.settings)
-	for (var i = 0; i < array_length(keys); i++)
-	if !is_struct(global.settings[$keys[i]])
-	ini_write_string("settings",keys[i],global.settings[$keys[i]])
-	else 
+	
+	with global.settings
 	{
-		if keys[i] == "keys"
+		struct_foreach(self,function(key,value)
 		{
-			var keystrings = struct_get_names(global.settings.keys)
-			for (var k = 0; k < array_length(keystrings); k++)
-			ini_write_string("keys",keystrings[k],global.settings.keys[$keystrings[k]])	
-		}
-		else 
-		{	
-			if global.settings.dev.on 
-			ini_write_string("dev","on",true)
-			if ini_read_real("dev","on",false)
+			if !is_struct(value)
+				ini_write_string("settings",key,value)
+		})
+		struct_foreach(keys,function(key,value){ini_write_string("keys",key,value)})
+		
+		if dev.devmode_on 
 			{
-				ini_write_string("dev","insta_load",global.settings.dev.insta_load)	
+				ini_write_string("dev","devmode_on",true)
+				ini_write_string("dev","insta_load",dev.insta_load)	
 			}
-		}
 	}
+	
 	ini_close()
 }
 
 function scr_settings_load(set_language = false)
 {
 	ini_open(file_dir() + "settings.ini")
-	var keys = struct_get_names(global.settings)
 	
-	for (var i = 0; i < array_length(keys); i++)
-	if (is_real(global.settings[$keys[i]]) || is_int64(global.settings[$keys[i]]))
-	global.settings[$keys[i]] = ini_read_real("settings",keys[i],global.settings[$keys[i]])
-	else 
-	if is_bool(global.settings[$keys[i]]) 
-	bool(ini_read_real("settings",keys[i],global.settings[$keys[i]]))
-	
-	#region keys 
-	var keystrings = struct_get_names(global.settings.keys)
-	for (var i = 0; i < array_length(keystrings); i++)
+	struct_foreach(global.settings,function(key,value)
 	{
-		var key = ini_read_string("keys",keystrings[i],global.settings.keys[$keystrings[i]])
-		if (string_letters(key) == "" || string_length(key) > 1 || key == "")
-			key = global.settings.keys[$keystrings[i]]
+		if is_bool(value)
+			global.settings[$key] = bool(ini_read_real("settings",key,value))
+		else if is_numeric(value)
+			global.settings[$key] = ini_read_real("settings",key,value)
+		
+		#region keys 
+		struct_foreach(global.settings.keys,function(key,value)
+		{
+			var load_key = ini_read_string("keys",key,value)
+			
+			if (string_letters(load_key) == "" || string_length(load_key) > 1 || load_key == "")
+				load_key = value
+				
+			global.settings.keys[$key] = load_key
+		})
+		
+		if ini_read_real("dev","on",false)
+			global.settings.dev.insta_load = ini_read_string("dev","insta_load",false)	
+	})
 	
-		global.settings.keys[$keystrings[i]] = key
-	}
-
 	if ini_read_real("dev","on",false)
 		global.settings.dev.insta_load = ini_read_string("dev","insta_load",false)	
 		

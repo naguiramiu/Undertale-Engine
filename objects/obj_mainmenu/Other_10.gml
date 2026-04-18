@@ -140,16 +140,3 @@ if (back_key)
 	}
 	play_sound(snd_menu_move)
 }
-
-
-
-/*
-var nine = sprite_get_nineslice(spr_sprite127);
-
-// Downscaled
-nine.enabled = false;
-draw_sprite_ext(spr_sprite127, 0, mxx, myy, 0.5, 0.5, 0, c_white, 1);
-
-// Upscaled
-nine.enabled = true;
-draw_sprite_ext(spr_sprite127, 0, mxx, myy+ 50, 4, 4, 0, c_white, 1);

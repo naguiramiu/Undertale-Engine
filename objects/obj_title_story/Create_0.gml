@@ -98,7 +98,7 @@ var cut2 = cutscene_create
 )
 cutscene_start(cut2)
 
-if global.settings.dev.on
+if global.settings.dev.devmode_on
 instance_create_depth(0,0,depth - 3,obj_event_performer,
 {
 	event_draw: function()

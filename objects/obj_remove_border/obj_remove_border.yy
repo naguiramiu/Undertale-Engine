@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_remove_border",
-    "path":"sprites/spr_remove_border/spr_remove_border.yy",
+    "name":"spr_dev_remove_border",
+    "path":"sprites/spr_dev_remove_border/spr_dev_remove_border.yy",
   },
   "spriteMaskId":null,
   "visible":false,

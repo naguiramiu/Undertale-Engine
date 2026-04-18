@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_set_border",
-    "path":"sprites/spr_set_border/spr_set_border.yy",
+    "name":"spr_dev_set_border",
+    "path":"sprites/spr_dev_set_border/spr_dev_set_border.yy",
   },
   "spriteMaskId":null,
   "visible":false,

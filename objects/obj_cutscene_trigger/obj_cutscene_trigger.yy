@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_cutscenestarter",
-    "path":"sprites/spr_cutscenestarter/spr_cutscenestarter.yy",
+    "name":"spr_dev_cutscenestarter",
+    "path":"sprites/spr_dev_cutscenestarter/spr_dev_cutscenestarter.yy",
   },
   "spriteMaskId":null,
   "visible":false,

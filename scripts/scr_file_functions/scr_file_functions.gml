@@ -197,6 +197,7 @@ function savefile_basic_information(num)
 		} 
 		catch (e) 
 		{
+			show_poppup("Error: File information for savefile " + string(num) + " is corrupted")
 			corrupted = true
 			show_debug_message(e)
 		}

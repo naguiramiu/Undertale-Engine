@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_dev_config",
+    "path":"sprites/spr_dev_config/spr_dev_config.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

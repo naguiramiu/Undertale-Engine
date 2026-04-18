@@ -6,3 +6,10 @@ in_submenu = false
 stats_screen = undefined
 selected_char = 0
 item_textbox = noone
+
+event_destroy = function()
+{
+	play_sound(snd_menu_move)
+	global.can_move = could_move
+	instance_destroy()
+}

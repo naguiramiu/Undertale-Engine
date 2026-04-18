@@ -23,9 +23,11 @@ function scr_checkforduplicate()
 {
 	if (instance_number(object_index) > 1)
 	{ 
-		show_debug_message("Error! There are " + string(instance_number(object_index)) + " instances of " + object_get_name(object_index) + " when there should only be one present at runtime!");
+		show_poppup("Error! There are " + string(instance_number(object_index)) + " instances of " + object_get_name(object_index) + " when there should only be one present at runtime!");
 		instance_destroy();
+		return true 
 	}
+	return false
 }
 
 function audiogroups_load()
@@ -178,4 +180,16 @@ function array_from_struct_value(array, value_name)
     for (var i = 0; i < len; i++)
         result[i] = array[i][$value_name];
     return result;
+}
+
+function show_poppup(str) 
+{
+	instance_create(obj_info_poppup,{text: str})
+}
+function instances_exist(instances_array)
+{
+	if !is_array(instances_array) instances_array = [instances_array]
+	for (var i = 0; i < array_length(instances_array); i++)
+	if instance_exists(instances_array[i]) return true;
+	return false;
 }

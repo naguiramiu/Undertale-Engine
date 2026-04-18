@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ruins_area",
-    "path":"sprites/spr_ruins_area/spr_ruins_area.yy",
+    "name":"spr_dev_ruins_area",
+    "path":"sprites/spr_dev_ruins_area/spr_dev_ruins_area.yy",
   },
   "spriteMaskId":null,
   "visible":false,

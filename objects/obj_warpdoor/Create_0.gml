@@ -19,7 +19,7 @@ func = function(rm)
 			event_destroy: function(rm)
 			{
 				cutscene_perform_event = false
-				var inst = instance_create_depth(0,0,UI_DEPTH + 10,obj_darken,{image_alpha: 0, persistent: true})
+				var inst = instance_create_depth(0,0,UI_DEPTH + 1,obj_darken,{image_alpha: 0, persistent: true})
 				
 				cutscene_start(cutscene_create
 				(

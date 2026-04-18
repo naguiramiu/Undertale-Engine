@@ -2,7 +2,6 @@ y += 10
 
 hp /= 2
 x = scr_enemy_align_to_grid_x(x) + sprite_width / 2
-can_be_spared = true
 potential_dialogue = ["Ribbit, ribbit.","Croak, croak.","Hop, hop.","Meow."]
 actions = 
 [
@@ -24,9 +23,10 @@ event_turn_end = function()
 	global.flavor_text = "* Froggit is alone and depressed."
 } 
 
-spared = function(monster)
+event_spared = function(monster)
 {
 	if !monster.can_be_spared
-	show_message("HAHA I CANT BE SPARED!")
+	{
+		// i cant be spared!
+	}
 }
-

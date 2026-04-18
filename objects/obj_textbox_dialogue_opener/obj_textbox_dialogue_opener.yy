@@ -40,8 +40,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_textbox_opener",
-    "path":"sprites/spr_textbox_opener/spr_textbox_opener.yy",
+    "name":"spr_dev_textbox_opener",
+    "path":"sprites/spr_dev_textbox_opener/spr_dev_textbox_opener.yy",
   },
   "spriteMaskId":null,
   "visible":false,

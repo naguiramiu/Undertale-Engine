@@ -114,7 +114,7 @@ if !getting_details
 		if (talker_has("sprite_emotion") && is_string(talker.sprite_emotion) && talker.sprite_emotion != "")
 			sprite_name += "_" + talker.sprite_emotion
 			
-		var sprite = asset_get_index(sprite_name) ?? spr_textbox_error
+		var sprite = asset_get_index(sprite_name) ?? spr_dev_error
 		
 		scr_textbox_sprite_talker(sprite,drawn_x,drawn_y)
 		

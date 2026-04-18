@@ -1,4 +1,5 @@
-if !audio_exists(sound_asset) show_message(sound_asset)
+if !audio_exists(sound_asset) 
+	show_poppup("Error: Sound asset loaded doesn't exist or is undefined")
 
 audio_data = {}
 audio_data[$audio_get_name(sound_asset)] = {}

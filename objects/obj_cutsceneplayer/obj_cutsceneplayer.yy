@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_cutplay",
-    "path":"sprites/spr_cutplay/spr_cutplay.yy",
+    "name":"spr_dev_cutplay",
+    "path":"sprites/spr_dev_cutplay/spr_dev_cutplay.yy",
   },
   "spriteMaskId":null,
   "visible":false,

@@ -77,8 +77,5 @@ draw_set_color(c_white)
 if in_submenu 
 	event_user(main_menu_selection)
 
-if back_key 
-{
-	instance_destroy()
-	exit 	
-}
+if (back_key)
+	event_destroy()

@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_roomspawn",
-    "path":"sprites/spr_roomspawn/spr_roomspawn.yy",
+    "name":"spr_dev_roomspawn",
+    "path":"sprites/spr_dev_roomspawn/spr_dev_roomspawn.yy",
   },
   "spriteMaskId":null,
   "visible":false,

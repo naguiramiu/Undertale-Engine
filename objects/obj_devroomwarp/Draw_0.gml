@@ -43,7 +43,7 @@ draw_menu_linealpha(cam_x + menu_x,cam_y + menu_y,width,height,,,(mouse_check_ho
 draw_reset_alpha()
 
 for (var i = 1; i <= string_length(str); i++) 
-    draw_text((menu_x + ((width + 90) / 2) - ((string_length(str) * 8) / 2)) + 8 * (i - 1), y + 7 + sin((current_time * 0.005) + ((i / string_length(str)) * (pi * 2))) * 0.5, string_char_at(str, i))
+    draw_text((cam_x + menu_x + ((width + 90) / 2) - ((string_length(str) * 8) / 2)) + 8 * (i - 1),cam_y +  y + 7 + sin((current_time * 0.005) + ((i / string_length(str)) * (pi * 2))) * 0.5, string_char_at(str, i))
 
 
 var current_x = menu_x + padding 
@@ -60,6 +60,8 @@ for (var i = 0; i < array_length(room_info); i++)
 		mouse = cr_handpoint	
 		if mouse_check_button_pressed(mb_left)
 		{
+			if instance_exists(obj_devmenu_debug)
+			obj_devmenu_debug.self_visible = false 
 			instance_activate_object(parent_char)
 			if !instance_exists(player) load_player()
 			global.can_move = true 
@@ -114,3 +116,9 @@ for (var i = 0; i < array_length(room_options); i++)
 	_y += (6 + h)
 }
 window_set_cursor(mouse)
+
+if keyboard_check_pressed(vk_f3) || back_key_press
+{
+	instance_destroy()
+	window_set_cursor(cr_default)
+}

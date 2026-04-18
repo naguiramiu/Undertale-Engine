@@ -68,7 +68,10 @@ enum e_settingstype
 	event,
 	result,
 	key,
-	array
+	array,
+	set_menu,
+	get_numeric,
+	get_str
 }
 
 enum e_waitforinput_type 

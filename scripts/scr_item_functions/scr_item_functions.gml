@@ -185,7 +185,7 @@ function get_number_of_items(inventory = global.stats.inventory)
 {
 	var item_ary = 0
 	for (var i = 0; i < array_length(inventory);i++)
-	if inventory[i] != -1 item_ary ++ else break;
+	if inventory[i] != ITEM_EMPTY item_ary ++ else break;
 	return item_ary
 }
 
@@ -217,13 +217,13 @@ function string_pos_in_array(array,str)
 	return false 
 }
 
-function add_item_to_inventory(item)
+function add_item_to_inventory(item,inventory = global.stats.inventory)
 {
-	for (var i = 0; i < array_length(global.stats.inventory); i++)	
+	for (var i = 0; i < array_length(inventory); i++)	
 	{
-		if global.stats.inventory[i] == ITEM_EMPTY
+		if inventory[i] == ITEM_EMPTY
 		{
-			global.stats.inventory[i] = item 
+			inventory[i] = item 
 			return true;
 		}
 	}

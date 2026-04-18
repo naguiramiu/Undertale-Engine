@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_warp_vertical",
-    "path":"sprites/spr_warp_vertical/spr_warp_vertical.yy",
+    "name":"spr_dev_warp_vertical",
+    "path":"sprites/spr_dev_warp_vertical/spr_dev_warp_vertical.yy",
   },
   "spriteMaskId":null,
   "visible":false,

@@ -1,6 +1,9 @@
 /// @description Initiate battle room
 function battle_start()
 {
+	if (scr_checkforduplicate())
+		exit;
+		
 	// everything here only runs once
 	instance_create(background_object)
 	

@@ -9,6 +9,7 @@ destroy_instances
 		obj_savescreen_files,
 	]
 )
+
 globalmusic_stop()
 play_sound(snd_encounter)
 soul_progress = 0

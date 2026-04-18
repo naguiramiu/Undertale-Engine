@@ -1,7 +1,7 @@
 function declare_items()
 {
 	// you must have an item id for each item
-	#macro ITEM_EMPTY -1
+	#macro ITEM_EMPTY "empty"
 	#macro ITEM_ERROR "error"
 	#macro ITEM_BANDAGE "bandage"
 	#macro ITEM_MONSTER_CANDY "monster_candy"

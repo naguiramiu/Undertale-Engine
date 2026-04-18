@@ -15,8 +15,11 @@ function load_game(savefile_num = 0, load_from_file = true)
 			{
 				var main_struct = load_savefile(data)
 				global.information = struct_merge(global.information, main_struct.saved_information)
-				global.stats = struct_merge(global.stats,main_struct.stats)
-				global.flags = struct_merge(global.flags,main_struct.flags) 
+				
+				var to_merge = ["stats","flags"]
+				for (var i = 0; i < array_length(to_merge); i++)
+				global[$to_merge[i]] = struct_merge(global[$to_merge[i]],main_struct[$to_merge[i]])
+				
 				delete main_struct
 			}
 			else checked = true
@@ -52,7 +55,11 @@ function load_game(savefile_num = 0, load_from_file = true)
 
 function load_player()
 {
+	if !variable_global_exists("can_move")
 	global.can_move = true
+	if variable_global_exists("party_instances")
+		array_foreach(global.party_instances,function(val){instance_destroy(val)})
+	
 	global.party_instances = []
 	for (var i = 0; i < array_length(global.stats.party); i++)
 	{
@@ -67,7 +74,7 @@ function load_player()
 		global.party_instances[i] = instance_create_depth(_x,_y,-_y,(is_player_character ? player : obj_char_follower), 
 		{
 			char_name: _char_name,
-			array_size: ((array_length(global.stats.party) - 1) * global.party_distance),
+			follower_remember_size: ((array_length(global.stats.party) - 1) * global.party_distance),
 			number_in_party: i,
 			depth: -_y,
 			front_vector: saved_coords.front_vector,
@@ -79,7 +86,7 @@ function load_player()
 			{
 				event_perform(ev_create,0)
 				var reverse_dir = (dir + 180) % 360;
-				for (var a = array_size - 1; a >= 0; a--)
+				for (var a = follower_remember_size - 1; a >= 0; a--)
 					{
 						record[a] = 
 						{
@@ -88,7 +95,6 @@ function load_player()
 							front_vector: dir
 						}
 					}
-				
 			} 
 			set_depth(dir)
 		}

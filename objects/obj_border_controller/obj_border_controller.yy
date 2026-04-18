@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_dev_set_border",
+    "path":"sprites/spr_dev_set_border/spr_dev_set_border.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

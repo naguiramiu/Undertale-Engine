@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_dev_area",
-    "path":"sprites/spr_dev_area/spr_dev_area.yy",
+    "name":"spr_dev_testing",
+    "path":"sprites/spr_dev_testing/spr_dev_testing.yy",
   },
   "spriteMaskId":null,
   "visible":false,

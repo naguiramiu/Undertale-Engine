@@ -36,7 +36,7 @@ function scr_initiate_settings()
 		auto_run: false,
 		dev: 
 		{
-			on: true,
+			devmode_on: true,
 			insta_load: false,
 		},
 		keys: scr_default_keys()

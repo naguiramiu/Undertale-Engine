@@ -34,7 +34,7 @@ if interact_key_press
 {
 	var er = "Error! Textbox option call not assigned correctly"
 	var result = options[option_selected].result
-	if result == -1 show_message(er + "\n Result is -1") else
+	if result == -1 show_poppup(er + "\n Result " + string(option_selected) + " is -1") else
 	try 
 	{
 		with options[option_selected]
@@ -44,7 +44,7 @@ if interact_key_press
 	}
 	catch (e)
 	{
-		show_message(er)
+		show_poppup(er)
 		show_debug_message(e)
 	}
 	instance_destroy()

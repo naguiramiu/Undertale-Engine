@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_startencounter",
-    "path":"sprites/spr_startencounter/spr_startencounter.yy",
+    "name":"spr_dev_startencounter",
+    "path":"sprites/spr_dev_startencounter/spr_dev_startencounter.yy",
   },
   "spriteMaskId":null,
   "visible":false,

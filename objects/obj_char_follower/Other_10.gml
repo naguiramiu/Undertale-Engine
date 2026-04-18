@@ -3,7 +3,7 @@
 
 var lerpspeed = 0.7
 
-for (var i = array_size -1; i > 0; i--)
+for (var i = follower_remember_size -1; i > 0; i--)
 {
 	var prev = record[i - 1]
 	var this = record[i]
@@ -12,7 +12,8 @@ for (var i = array_size -1; i > 0; i--)
 		{
 			this.x = prev.x 
 			this.y = prev.y
-		} else
+		}
+		else
 		{
 			this.x = lerp(this.x,prev.x,lerpspeed)
 			this.y = lerp(this.y,prev.y,lerpspeed)

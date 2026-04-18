@@ -3,7 +3,12 @@ function truefile_write(struct)
 	var tf = truefile_load()
 	struct_replace_unique(tf,struct)
 	
-	file_write_all_text(TRUE_FILE_NAME,(ENCRYPT_SAVEDATA ? string_quote_parse(scr_struct_fy_save(tf),0) : json_stringify(tf,1)))
+	truefile_overwrite(tf)
+} 
+
+function truefile_overwrite(struct)
+{
+	file_write_all_text(TRUE_FILE_NAME,(ENCRYPT_SAVEDATA ? string_quote_parse(scr_struct_fy_save(struct),0) : json_stringify(struct,1)))
 } 
 
 function truefile_load()

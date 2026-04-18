@@ -17,6 +17,8 @@
 	#macro space_key_hold (keyboard_check(vk_space)) 
 	#macro escape_key_hold (key_check(keyboard_check,vk_escape)) 
 	#macro escape_key_press (key_check(keyboard_check_pressed,vk_escape)) 
+	#macro mouse_left_press (key_check(keyboard_check_pressed,mb_left)) 
+	#macro mouse_right_press (key_check(keyboard_check_pressed,mb_right)) 
 #endregion
 
 function key_check(check_func,key)
@@ -42,6 +44,9 @@ function key_check(check_func,key)
 			return (check_func(vk_control) || check_func(vk_alt) || check_func(ord(global.settings.keys.key_menu)));
 		case vk_escape:
 			return (check_func(vk_escape));
+		case mb_left:
+		case mb_right:
+			return (mouse_check_button_pressed(key))
 	}	
 }
 

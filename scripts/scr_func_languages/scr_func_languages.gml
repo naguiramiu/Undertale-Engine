@@ -61,7 +61,7 @@ function scr_load_language(language_name)
 	}
 	if !worked 
 	{
-		show_message("Error: Language not properly set.")
+		show_poppup("Error: Language " + filename_nameonly(language_name) + "not properly set.")
 		language_name = "English.json"
 	}
 	global.settings.language = filename_nameonly(language_name)

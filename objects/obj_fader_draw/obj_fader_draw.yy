@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_1x1whitepixel",
+    "path":"sprites/spr_1x1whitepixel/spr_1x1whitepixel.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

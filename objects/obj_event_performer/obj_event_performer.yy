@@ -39,8 +39,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_config",
-    "path":"sprites/spr_config/spr_config.yy",
+    "name":"spr_dev_config",
+    "path":"sprites/spr_dev_config/spr_dev_config.yy",
   },
   "spriteMaskId":null,
   "visible":true,

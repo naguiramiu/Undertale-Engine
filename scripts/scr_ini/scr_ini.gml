@@ -29,21 +29,8 @@ function initialize()
 		}
 	}
 	
-	global.flags = 
-	{
-		has_cell: false,
-		ruins: 
-		{
-			flowey_cutscene_0 : false,
-			toriel_walked_0: false, 
-			toriel_puzzle_0: false,
-			toriel_lever_puzzle: 0,
-		}
-	}
-	
+	scr_init_flags()
 	declare_items()
-	
-	
 	scr_textbox_talkers()
 	scr_initiate_information()
 	scr_initiate_settings()

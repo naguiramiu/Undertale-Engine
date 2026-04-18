@@ -137,13 +137,15 @@ function do_later(time_to,func,args = [],self_id = noone,var_struct = {})
 
 function set_later(_time_to,_instance_or_struct,_variable_name,_value)
 {
-	instance_create(obj_set_later,
+	with instance_create(obj_set_later,
 	{
 		time_to: _time_to,
 		instance_or_struct: _instance_or_struct,
 		variable_name: _variable_name,
 		value: _value
 	})
+	if _time_to == 0 
+		event_perform(ev_alarm,0)
 }
 
 
@@ -244,7 +246,6 @@ function var_get(value)
 					return final_value[edit]
 			}
 		}
-		show_message(final_value)
 		return final_value
 	}
 	

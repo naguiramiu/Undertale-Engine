@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_interact_event",
-    "path":"sprites/spr_interact_event/spr_interact_event.yy",
+    "name":"spr_dev_interact_event",
+    "path":"sprites/spr_dev_interact_event/spr_dev_interact_event.yy",
   },
   "spriteMaskId":null,
   "visible":false,

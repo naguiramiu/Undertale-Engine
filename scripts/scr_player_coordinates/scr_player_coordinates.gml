@@ -56,7 +56,7 @@ function scr_teleport_player(to_x,to_y,insta_tp_party = false)
 		with global.party_instances[i]
 		{
 			var reverse_dir = (player.front_vector + 180) % 360;
-			for (var p = array_size - 1; p >= 0; p--)
+			for (var p = follower_remember_size - 1; p >= 0; p--)
 			{
 				var this = record[p]
 				if insta_tp_party //insta tp party ignores the characters previous x from the other room and places them at a set position from the player
