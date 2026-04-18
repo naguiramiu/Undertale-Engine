@@ -43,11 +43,9 @@ function scr_settings_load(set_language = false)
 			global.settings.keys[$key] = load_key
 		})
 		
-		if ini_read_real("dev","on",false)
-			global.settings.dev.insta_load = ini_read_string("dev","insta_load",false)	
-	})
 	
-	if ini_read_real("dev","on",false)
+	})
+	if ini_read_real("dev","devmode_on",false)
 		global.settings.dev.insta_load = ini_read_string("dev","insta_load",false)	
 		
 	// make sure all of the settings are clamped, and are their correct types.

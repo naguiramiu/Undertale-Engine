@@ -15,6 +15,11 @@ setting = function(_title,_var_name,_default,_type,_from = obj_devmenu_debug,_cu
 	custom_func = _custom_func
 }
 
+array_val_name = function(_var,i)
+{
+	return "Index " + string(i) + ": " + "(" + string_capitalize(typeof(_var))  + ") "
+}
+
 slider_setting = function(_title,_var_name,_from = obj_devmenu_debug,_min,_max,_default = 0) constructor
 {
 	draw_underline = false
@@ -25,6 +30,7 @@ slider_setting = function(_title,_var_name,_from = obj_devmenu_debug,_min,_max,_
 
 set_menu_setting = function(_title,_settings,_func,_params = []) constructor
 {
+	var_name = "n"
 	draw_underline = true
 	title = _title
 	menu = 
@@ -62,7 +68,7 @@ create_struct_segment = function(name,value,var_name,from,_custom_func = -1)
 	if is_bool(value)
 			return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.boolean,from,_custom_func)
 	else if is_struct(value)
-		return new obj_devmenu_debug.struct_setting(name,value,,,_custom_func,,var_name)
+		return new obj_devmenu_debug.struct_setting(name,value,,,_custom_func,,var_name,from)
 	else if is_numeric(value)
 			return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.get_numeric,from,_custom_func)
 	else if is_string(value)
@@ -94,9 +100,10 @@ struct_settings_simple = function(_values,_to_remove = [],_custom_func = -1)
 	return settings
 }
 
-struct_setting = function(_title,_values,_to_remove = [],event = -1,_every_func = -1,_max_height = 206,_var_name = "") constructor
+struct_setting = function(_title,_values,_to_remove = [],event = -1,_every_func = -1,_max_height = 206,_var_name = "",_from = -1) constructor
 {
 	var_name = _var_name
+	from = _from
 	draw_underline = true
 	title = _title
 	type = e_settingstype.set_menu 

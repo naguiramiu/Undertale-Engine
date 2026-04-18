@@ -11,7 +11,6 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 			this_setting = settings[i],
 			title = this_setting.title,
 			textcol = c_white
-		
 		if variable_struct_exists(this_setting,"from")
 			var me = (!is_array(this_setting.from) ? variable_self_get(this_setting.var_name,this_setting.from) : this_setting.from[this_setting.var_name])
 		switch this_setting.type
@@ -44,7 +43,7 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 			{
 				textcol = c_yellow
 				mouse_cursor = cr_handpoint
-				if interact || right_interact
+				if interact ^^ right_interact ^^ mouse_check_button_pressed(mb_middle)
 				{
 					var has_custom = (variable_self_exists("custom_func",this_setting) && this_setting.custom_func != -1)
 					if has_custom
@@ -58,6 +57,10 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 					
 					var f = global.settings.fullscreen
 					interact = false
+					
+					if mouse_check_button_pressed(mb_middle) && array_contains([e_settingstype.get_numeric,e_settingstype.get_str,e_settingstype.boolean,e_settingstype.set_menu],this_setting.type) 
+						change_var(f,this_setting)
+					else
 					switch this_setting.type
 					{
 						case e_settingstype.array:
@@ -70,9 +73,9 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 							
 							this_setting.menu = {} 
 							this_setting.menu.settings = []
-							var set = this_setting.from[$this_setting.var_name]
+							var set = (is_array(this_setting.from) ? this_setting.from[this_setting.var_name] : this_setting.from[$this_setting.var_name])
 							for (var i = 0; i < array_length(set); i++)
-								this_setting.menu.settings[i] = obj_devmenu_debug.create_struct_segment("Index " + string(i) + ": " + "(" + string_capitalize(typeof(set[i]))  + ") ",set[i],i,set)
+								this_setting.menu.settings[i] = obj_devmenu_debug.create_struct_segment(array_val_name(set[i],i),set[i],i,set)
 							this_setting.menu.func = -1
 							this_setting.menu.title = this_setting.title
 							obj_devmenu_debug.current_menu = this_setting.menu

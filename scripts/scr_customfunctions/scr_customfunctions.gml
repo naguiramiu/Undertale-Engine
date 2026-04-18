@@ -84,33 +84,46 @@ function get_variable()
 		if string_length(v) != 0
 		show_message("Error! Unknown token(s): \"" + v + "\"")
 		else
-		{
-			var a = get_string(
-			"Please enter the value for this variable.\n" +
-			"Make sure it follows these examples:\n" +
-			"for a struct: {\"variable_name\":value, \"variable_name_2\":value2}\n" +
-			"for a number: 50.0\n" + 
-			"for a string: \"string\"\n" + 
-			"for an array: [23.0,\"string\"]",
-			""
-			)
-				if string_length(string_letters(a))
-				&& !(string_pos("{",a) || string_pos("[",a))
-					a = "\"" + string(a) + "\""
-							
-			var final = "{\"" + variable_name + "\" : " + a + "}"
-							
-			try 
-			{
-				final = json_parse(final)	
-			}
-			catch (e) 
-			{
-				show_message("Error! Malformed variable:\n" + get_error_message(e) )
-				return -1
-			}
-			return final
-		}
+			return get_variable_value(variable_name)
 	}
 	return -1
+}
+
+function get_variable_value(variable_name,default_value = "")
+{
+	var a = get_string
+	(
+		"Please enter the value for this variable.\n" +
+		"Make sure it follows these examples:\n" +
+		"for a struct: {\"variable_name\":value, \"variable_name_2\":value2}\n" +
+		"for a number: 50.0\n" + 
+		"for a string: \"string\"\n" + 
+		"for an array: [23.0,\"string\"]",
+		default_value
+	)
+	if (is_undefined(a) || string_length(a) == 0)
+	{
+		show_message("Error! Please ensure the value is valid.")
+		return -1
+	}
+		if string_length(string_letters(a))
+		&& !(string_pos("{",a) || string_pos("[",a))
+		{
+			if !string_starts_with(a,"\"")
+			a = "\"" + string(a)
+			if !string_ends_with(a,"\"")
+			a += "\""
+		}
+							
+	var final = "{\"" + variable_name + "\" : " + a + "}"
+	try 
+	{
+		final = json_parse(final)	
+	}
+	catch (e) 
+	{
+		show_message("Error! Malformed variable:\n" + get_error_message(e) )
+		return -1
+	}
+	return final
 }

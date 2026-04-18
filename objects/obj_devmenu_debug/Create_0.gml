@@ -120,20 +120,11 @@ function(inv_name = "inventory")
 		}
 	}
 	
-	if (interact || back_key)
-	{
-		if selected_item == -1
-		event_perform(ev_create,0)
-		else 
-		selected_char = -1
-		back_key = false	
-		interact = false	
-	}
-	
 	var inb = get_inventory(inv_name)
 	inb = inv 
 	
 }
+event_user(2)
 
 true_savedata = truefile_load()
 
