@@ -41,5 +41,4 @@ if global.settings.dev.insta_load
 }
 
 room_goto(rm_title_story)
-
 instance_destroy()

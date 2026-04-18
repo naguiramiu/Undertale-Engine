@@ -5,6 +5,7 @@ top_selection = 0
 whiten = 0
 can_move = true
 event_user(0)
+
 move = NUMBER_OF_SAVEFILES > 1 ? 
 function()
 {

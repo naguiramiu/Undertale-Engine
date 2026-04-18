@@ -32,7 +32,8 @@ function load_game(savefile_num = 0, load_from_file = true)
 			exit;
 		}
 	}
-				
+	
+	global.can_move = true
 	load_player()
 	
 	var room_to_go = undefined 
@@ -51,10 +52,12 @@ function load_game(savefile_num = 0, load_from_file = true)
 	with obj_camera set_camera_position(true,room_to_go)
 	lerp_var_ext(obj_camera,"darken_screen",0.1,1,0)
 	global.information.savefile_num = savefile_num
+	
 }
 
 function load_player()
 {
+	
 	if !variable_global_exists("can_move")
 	global.can_move = true
 	if variable_global_exists("party_instances")

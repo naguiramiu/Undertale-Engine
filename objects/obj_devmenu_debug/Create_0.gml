@@ -171,6 +171,7 @@ main_settings =
 	new event_setting("Restart game",game_restart),
 	new event_setting("Show active instances",get_active_instances),
 	new setting("Skip title sequence","insta_load",scr_dev_load_instantly,e_settingstype.boolean,global.settings.dev),
+	new setting("Can move","can_move",global.can_move,e_settingstype.boolean,0),
 	new setting("Show GML overlay","debug_overlay",function(){
 		show_debug_overlay(!is_debug_overlay_open(),true,1.1,0.5)
 	},e_settingstype.boolean),

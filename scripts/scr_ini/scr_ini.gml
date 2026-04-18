@@ -1,6 +1,5 @@
 function initialize()
 {
-	
 	global.stats =
 	{
 		party: [CHARACTER_FRISK],

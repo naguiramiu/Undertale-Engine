@@ -27,6 +27,9 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 				title += ": " + string(me)
 			break;
 			case e_settingstype.boolean:
+				if this_setting.from == 0 
+					me = variable_global_get(this_setting.var_name)
+			
 				title += ": " + (me ? "True  " : "False")
 			break;
 			
@@ -109,10 +112,15 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 						case e_settingstype.boolean:
 						if is_bool(this_setting.default_type) 
 						{
-							if is_array(this_setting.from)
-								this_setting.from[this_setting.var_name] = !this_setting.from[this_setting.var_name]
+							if this_setting.from == 0 
+								variable_global_set(this_setting.var_name,!variable_global_get(this_setting.var_name))
 							else
-							variable_self_set(this_setting.var_name,!variable_self_get(this_setting.var_name,this_setting.from),this_setting.from)
+							{
+								if is_array(this_setting.from)
+									this_setting.from[this_setting.var_name] = !this_setting.from[this_setting.var_name]
+								else
+								variable_self_set(this_setting.var_name,!variable_self_get(this_setting.var_name,this_setting.from),this_setting.from)
+							}
 						}
 						else 
 							this_setting.default_type()

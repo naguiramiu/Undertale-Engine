@@ -11,6 +11,7 @@ title_option =
 		{
 			load_game(num)	
 			lerp_var_ext(obj_camera,"screen_darken",0.05,1,0)	
+			
 		},
 		event_parameters: savefile_number
 	},
