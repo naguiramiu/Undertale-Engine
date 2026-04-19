@@ -126,18 +126,7 @@ function(inv_name = "inventory")
 	
 }
 
-
-
 true_savedata = truefile_load()
-
-//if array_length(variable_struct_get_names(true_savedata)) == 0 
-//truefile_overwrite(
-//{
-//	john: "Pork",
-	
-	
-	
-//})
 
 edit_struct_setting = function(_var_name,_from,_title = undefined,_to_remove = [],_max_height = 206,_always_runs_func = -1,_every_func = -1) constructor
 {
