@@ -64,7 +64,7 @@ function is_missing_text(n)
 	return (n == DEFAULT_MISSING_TEXT)
 }
 
-function get_variable()
+function get_variable(default_name_message = "",default_value_message = "")
 {
 	var is_variable_valid = function (str) 
 	{
@@ -75,7 +75,7 @@ function get_variable()
 			str = string_replace_all(str, string_char_at(_allowed, i), "")
 			return str 
 	}
-	var variable_name = get_string("Please enter the name for the new variable","")
+	var variable_name = get_string("Please enter the name for the new variable",default_name_message)
 	if (is_undefined(variable_name) || string_length(variable_name) == 0)
 	show_message("Error! Please ensure the variable name is valid.")
 	else
@@ -84,7 +84,7 @@ function get_variable()
 		if string_length(v) != 0
 		show_message("Error! Unknown token(s): \"" + v + "\"")
 		else
-			return get_variable_value(variable_name)
+			return get_variable_value(variable_name,default_value_message)
 	}
 	return -1
 }
@@ -106,6 +106,9 @@ function get_variable_value(variable_name,default_value = "")
 		show_message("Error! Please ensure the value is valid.")
 		return -1
 	}
+	
+		var is_boolean = (a == "false" || a == "true") 
+		
 		if string_length(string_letters(a))
 		&& !(string_pos("{",a) || string_pos("[",a))
 		{
@@ -119,6 +122,7 @@ function get_variable_value(variable_name,default_value = "")
 	try 
 	{
 		final = json_parse(final)	
+		if is_boolean final[$variable_name] = bool(final[$variable_name])
 	}
 	catch (e) 
 	{

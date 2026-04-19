@@ -71,7 +71,8 @@ enum e_settingstype
 	array,
 	set_menu,
 	get_numeric,
-	get_str
+	get_str,
+	get_struct
 }
 
 enum e_waitforinput_type 

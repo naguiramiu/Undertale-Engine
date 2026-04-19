@@ -35,6 +35,7 @@ set_menu_setting = function(_title,_settings,_func,_params = []) constructor
 	title = _title
 	menu = 
 	{
+		menu_from_array: false,
 		settings: _settings,
 		title: _title,
 		func: _func,
@@ -63,70 +64,6 @@ change_party_options = function(i)
 	)
 }
 
-create_struct_segment = function(name,value,var_name,from,_custom_func = -1)
-{
-	if is_bool(value)
-			return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.boolean,from,_custom_func)
-	else if is_struct(value)
-		return new obj_devmenu_debug.struct_setting(name,value,,,_custom_func,,var_name,from)
-	else if is_numeric(value)
-			return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.get_numeric,from,_custom_func)
-	else if is_string(value)
-		return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.get_str,from,_custom_func)
-	else if is_array(value)
-			return new obj_devmenu_debug.setting(name,var_name,false,e_settingstype.array,from,_custom_func)
-}
-
-struct_settings_simple = function(_values,_to_remove = [],_custom_func = -1)
-{
-	var settings = []
-	
-	var vars = variable_struct_get_names(_values)
-		
-	if array_length(_to_remove)
-	for (var i = 0; i < array_length(vars); i++)
-	if array_contains(_to_remove,vars[i])
-	{
-		array_delete(vars,i,1)
-		i --
-	}	
-		
-	for (var i = 0; i < array_length(vars); i++)
-	{
-		var this = _values[$vars[i]]
-		var name = string_prettify(vars[i])
-		settings[i] = obj_devmenu_debug.create_struct_segment(name,this,vars[i],_values,_custom_func)
-	}
-	return settings
-}
-
-struct_setting = function(_title,_values,_to_remove = [],event = -1,_every_func = -1,_max_height = 206,_var_name = "",_from = -1) constructor
-{
-	var_name = _var_name
-	from = _from
-	draw_underline = true
-	title = _title
-	type = e_settingstype.set_menu 
-	menu = {}
-	
-	with menu 
-	{
-		if is_array(_values)
-		{
-			settings = []
-			for (var i = 0; i < array_length(_values); i++)
-			settings = array_concat(settings,obj_devmenu_debug.struct_settings_simple(_values[i],_to_remove,_every_func))
-		}
-		else 
-		settings = obj_devmenu_debug.struct_settings_simple(_values,_to_remove,_every_func)
-		
-		func = event
-		func_params = []
-		title = _title
-		every_func = _every_func
-		max_height = _max_height
-	}
-}
 
 get_inventory = function(str)
 {
@@ -172,10 +109,9 @@ change_inventory_options = function(inv_name = "inventory")
 
 truefile_custom_func = function()
 {
-	var str = "True savedata is saved and loaded as the\nstory progresses.\nClick here to add a new variable to the struct."
 	var h = height + y_add / 2
-	if h > 173
-		str = "Add custom variable"
+	var shorten = mzz//(h > 173)
+	var str = (shorten ? "Add custom variable" : "True savedata is saved and loaded as the story progresses. Click here to add a new variable to the struct.")
 	var this = 
 	{
 		title: "",
@@ -183,42 +119,18 @@ truefile_custom_func = function()
 		[
 			new event_setting(str,function()
 			{
-				var a = true_savedata
-				for (var i = 1; i < array_length(prev_menu); i++)
-					a = a[$prev_menu[i].where_im_at]
-					
 				var _var = get_variable()
 				if _var != -1
 				{
-					struct_replace_unique(a,_var)
-				
+					struct_replace_unique(get_struct_ext(),_var)
 					truefile_overwrite(true_savedata)
-				
-					var a = true_savedata
-					for (var i = 1; i < array_length(prev_menu); i++)
-					{
-						prev_menu[i].settings = struct_settings_simple(a,,prev_menu[i].every_func)
-						a = a[$prev_menu[i].where_im_at]
-					}
-					current_menu.settings = struct_settings_simple(a,,current_menu.every_func)
 				}
-			})
+			}),
 		],
 	}
 	setup_vars()
 	menu_y += h
-	draw_me(false,false,this,false)
-	if (h > 173)
-	{
-		menu_y += 4
-		height += -7 
-	}
-	else 
-	{
-		menu_y += 2
-		height += -8
-	}
-	draw_devmenu()
+	draw_me(true,false,this,false)
 	setup_vars()
 	menu_y += h
 	draw_me(false,true,this,false)	

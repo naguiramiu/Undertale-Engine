@@ -1,6 +1,7 @@
 depth = UI_DEPTH + 10
 self_visible = true
-event_user(1)
+for (var i = 0; i <= 4; i++)
+event_user(i)
 
 scr_checkforduplicate()
 
@@ -124,9 +125,35 @@ function(inv_name = "inventory")
 	inb = inv 
 	
 }
-event_user(2)
+
+
 
 true_savedata = truefile_load()
+
+//if array_length(variable_struct_get_names(true_savedata)) == 0 
+//truefile_overwrite(
+//{
+//	john: "Pork",
+	
+	
+	
+//})
+
+edit_struct_setting = function(_var_name,_from,_title = undefined,_to_remove = [],_max_height = 206,_always_runs_func = -1,_every_func = -1) constructor
+{
+	title = _title ?? string_prettify(_var_name)
+	var_name = _var_name
+	from = _from
+	type = e_settingstype.get_struct
+	draw_underline = true
+	to_remove = _to_remove
+	max_height = _max_height
+	always_runs_func = _always_runs_func
+	func_params = []
+	every_func = _every_func
+}
+ 
+
 
 main_settings = 
 [
@@ -135,25 +162,10 @@ main_settings =
 	new set_menu_setting("Change party",array_create_ext(3,change_party_options),change_party_func),
 	new set_menu_setting("Inventory",change_inventory_options(),item_func),
 	new set_menu_setting("Storage box",change_inventory_options("storage"),item_func,"storage"),
-	new struct_setting("Flags", global.flags),
-	new struct_setting("Stats", [global.stats, get_char_by_party_position(0)],["inventory","party","storage_box","ui_color"]),
-	new struct_setting("True savedata",true_savedata,,truefile_custom_func,function(this_setting,right)
-	{
-		if right
-		{
-			if show_question("Remove value " + this_setting.var_name + "?")
-			{
-				variable_struct_remove(this_setting.from,this_setting.var_name)
-				truefile_overwrite(true_savedata)
-			}
-			else return false
-		}
-		else
-		truefile_write(true_savedata)
-		
-		current_menu.settings = struct_settings_simple(this_setting.from,,current_menu.every_func)
-		return right
-	},177),
+	new edit_struct_setting("flags", "global"),
+	new edit_struct_setting("stats.char.frisk", "global","Player stats"),
+	new edit_struct_setting("stats", "global","Party stats",["inventory","storage_box","party"]),
+	new edit_struct_setting("true_savedata",obj_devmenu_debug,"True savedata",,177,truefile_custom_func,function(){truefile_overwrite(true_savedata)}),
 	new event_setting("Save game",function()
 	{
 		save_game()	
@@ -188,7 +200,7 @@ setup_vars = function(_max_height = 206)
 	current_x = padding
 	current_y = padding
 	max_height = _max_height
-	y_add = 11
+	y_add = 3
 	line_broke = false
 	width = 0
 	height = 0
@@ -197,7 +209,6 @@ setup_vars = function(_max_height = 206)
 	draw_reset_alpha()
 	draw_reset_color()
 }
-event_user(0)
 
 draw_devmenu = function()
 {

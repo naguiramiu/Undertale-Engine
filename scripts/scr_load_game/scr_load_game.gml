@@ -57,7 +57,6 @@ function load_game(savefile_num = 0, load_from_file = true)
 
 function load_player()
 {
-	
 	if !variable_global_exists("can_move")
 	global.can_move = true
 	if variable_global_exists("party_instances")
@@ -77,7 +76,6 @@ function load_player()
 		global.party_instances[i] = instance_create_depth(_x,_y,-_y,(is_player_character ? player : obj_char_follower), 
 		{
 			char_name: _char_name,
-			follower_remember_size: ((array_length(global.stats.party) - 1) * global.party_distance),
 			number_in_party: i,
 			depth: -_y,
 			front_vector: saved_coords.front_vector,

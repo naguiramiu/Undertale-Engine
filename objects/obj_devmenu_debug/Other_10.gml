@@ -5,166 +5,118 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 		setup_vars(_max_height)
 	var settings = this_menu.settings
 	
+	if is_struct(settings)
+		settings = variable_struct_get_names(settings)
+	
+	var is_from_array = variable_struct_exists(this_menu,"menu_from_array")
+	&& this_menu.menu_from_array
+	
 	for (var i = 0; i < array_length(settings); i++)
 	{
-		var 
-			this_setting = settings[i],
-			title = this_setting.title,
-			textcol = c_white
-		if variable_struct_exists(this_setting,"from")
-			var me = (!is_array(this_setting.from) ? variable_self_get(this_setting.var_name,this_setting.from) : this_setting.from[this_setting.var_name])
-		switch this_setting.type
+		if !is_struct(settings[i]) || is_from_array
 		{
-			case e_settingstype.array:
-				title += ": (Array)"
-			break;
-			case e_settingstype.slider:
-				title += ": [-]" + string(me) + "[+]"
-			break;
-			case e_settingstype.get_numeric:
-			case e_settingstype.get_str:
-				title += ": " + string(me)
-			break;
-			case e_settingstype.boolean:
-				if this_setting.from == 0 
-					me = variable_global_get(this_setting.var_name)
+			if variable_struct_exists(current_menu,"to_remove")
+				if is_string(settings[i]) && array_contains(current_menu.to_remove,settings[i])
+					continue;
 			
-				title += ": " + (me ? "True  " : "False")
-			break;
+			var 
+				this_setting = (is_from_array ? this_menu.settings[i] : this_menu.settings[$settings[i]]),
+				title = (is_from_array ? array_val_name(this_setting,i) : string_prettify(settings[i])),
+				textcol = c_white,
+				draw_underline = false 
 			
+			switch typeof(this_setting)
+			{
+				case "bool": case "boolean":
+					title += ":  " + (this_setting ? "True  " : "False")
+				break;
+				case "struct":
+					draw_underline = true 
+				break;
+				case "array":
+					title += ": (Array)"
+					draw_underline = true
+				break;
+				default:
+					title += ": " + string(this_setting)
+				break;
+			}
+		} 
+		else
+		{
+			var 
+				this_setting = settings[i],
+				title = this_setting.title,
+				textcol = c_white,
+				draw_underline =  this_setting.draw_underline
+		
+			if variable_struct_exists(this_setting,"from")
+			{
+				if this_setting.type == e_settingstype.get_struct
+				{
+					if this_setting.from == "global"
+						me = variable_global_get(this_setting.var_name)
+					else me = variable_self_get(this_setting.var_name)
+				}
+				else
+				var me = (!is_array(this_setting.from) ? variable_self_get(this_setting.var_name,this_setting.from) : this_setting.from[this_setting.var_name])
+			}
+			
+			switch this_setting.type
+			{
+				case e_settingstype.array:
+					title += ": (Array)"
+				break;
+				case e_settingstype.get_numeric:
+				case e_settingstype.get_str:
+					title += ": " + string(me)
+				break;
+				case e_settingstype.boolean:
+					if this_setting.from == 0 
+						me = variable_global_get(this_setting.var_name)
+			
+					title += ": " + (me ? "True  " : "False")
+				break;
+			
+			}
 		}
-		
+		var sw = 143 + 26
+		var sh = 15
 		draw_set_colour(c_white)
-		
 		 if (draw_options)
 		 {
-			var str_w = string_width(title) / 2
-			if mouse_check_hovers_rect_wh(menu_x + current_x,menu_y + current_y,str_w, string_height(title) / 2,mouse_xx,mouse_yy)
+			var str_w = string_width_ext(title,sh,sw) / 2
+			if mouse_check_hovers_rect_wh(menu_x + current_x,menu_y + current_y,str_w, string_height_ext(title,sh,sw) / 2,mouse_xx,mouse_yy)
 			{
 				textcol = c_yellow
 				mouse_cursor = cr_handpoint
 				if interact ^^ right_interact ^^ mouse_check_button_pressed(mb_middle)
 				{
-					var has_custom = (variable_self_exists("custom_func",this_setting) && this_setting.custom_func != -1)
-					if has_custom
-					{
-						if this_setting.custom_func(this_setting,right_interact)
-						{
-							right_interact = false
-							continue;
-						}
-					}
-					
-					var f = global.settings.fullscreen
-					interact = false
-					
-					if mouse_check_button_pressed(mb_middle) && array_contains([e_settingstype.get_numeric,e_settingstype.get_str,e_settingstype.boolean,e_settingstype.set_menu],this_setting.type) 
-						change_var(f,this_setting)
+					if (!is_struct(settings[i]) || is_from_array)
+					interact_struct_menu(this_setting,(is_from_array ? i : settings[i]),is_from_array)
 					else
-					switch this_setting.type
-					{
-						case e_settingstype.array:
-						
-						current_menu.where_im_at = this_setting.var_name
-						do_later(1,function(this_setting)
-						{
-							var func = current_menu.func
-							array_push(obj_devmenu_debug.prev_menu, current_menu)
-							
-							this_setting.menu = {} 
-							this_setting.menu.settings = []
-							var set = (is_array(this_setting.from) ? this_setting.from[this_setting.var_name] : this_setting.from[$this_setting.var_name])
-							for (var i = 0; i < array_length(set); i++)
-								this_setting.menu.settings[i] = obj_devmenu_debug.create_struct_segment(array_val_name(set[i],i),set[i],i,set)
-							this_setting.menu.func = -1
-							this_setting.menu.title = this_setting.title
-							obj_devmenu_debug.current_menu = this_setting.menu
-						},this_setting)
-						
-						break;
-						case e_settingstype.get_numeric:
-						case e_settingstype.get_str:	
-						window_set_fullscreen(false)
-						with obj_maincontroller
-							event_perform(ev_alarm,0)
-						
-						do_later(f,function(this_setting)
-						{
-							var f = (this_setting.type == e_settingstype.get_numeric ? get_integer : get_string)
-							obj_devmenu_debug.mouse_cursor = cr_default
-							window_set_cursor(cr_default)
-							obj_devmenu_debug.interact = false
-							if is_array(this_setting.from)
-							{
-								var prev = this_setting.from[this_setting.var_name]
-								this_setting.from[this_setting.var_name] = f("Insert the value",prev)
-								var n = this_setting.from[this_setting.var_name]
-								if is_undefined(n) || (string_length(n) == 0)
-								this_setting.from[this_setting.var_name] = prev
-							}
-							else
-							{
-								var prev = variable_self_get(this_setting.var_name,this_setting.from) 
-								variable_self_set(this_setting.var_name,f("Insert the value",prev),this_setting.from)
-								var n = variable_self_get(this_setting.var_name,this_setting.from)
-								if is_undefined(n) || (string_length(n) == 0)
-								variable_self_set(this_setting.var_name,prev,this_setting.from)
-							}
-						},[this_setting],id)
-						break;
-						case e_settingstype.boolean:
-						if is_bool(this_setting.default_type) 
-						{
-							if this_setting.from == 0 
-								variable_global_set(this_setting.var_name,!variable_global_get(this_setting.var_name))
-							else
-							{
-								if is_array(this_setting.from)
-									this_setting.from[this_setting.var_name] = !this_setting.from[this_setting.var_name]
-								else
-								variable_self_set(this_setting.var_name,!variable_self_get(this_setting.var_name,this_setting.from),this_setting.from)
-							}
-						}
-						else 
-							this_setting.default_type()
-						break;
-						case e_settingstype.set_menu:
-						current_menu.where_im_at = this_setting.var_name
-						do_later(1,function(this_setting)
-						{
-							var func = current_menu.func
-							array_push(obj_devmenu_debug.prev_menu, current_menu)
-							obj_devmenu_debug.current_menu = this_setting.menu
-							if obj_devmenu_debug.current_menu.func == -1 obj_devmenu_debug.current_menu.func = func
-						},this_setting)
-						break;
-						case e_settingstype.event:
-						function_call(this_setting.event,array_concat(this_setting.params,[this_setting,i]))
-						break;
-					}
-					
-					if has_custom
-						do_later(f*2,function(this_setting)
-						{
-							this_setting.custom_func(this_setting,false)
-						},this_setting,obj_devmenu_debug)
+					if interact_array_menu(this_setting,i) continue;
 				}
 			}
-				if this_setting.draw_underline
+				var col = draw_get_colour()
+				if draw_underline
 				draw_line_width_colour(menu_x + current_x - 1, menu_y + current_y + 7,menu_x + current_x + str_w - 1,menu_y + current_y + 7,0.5,c_gray,c_gray)
-				draw_text_color_ext(menu_x + current_x + 0.5,menu_y + current_y + 0.5,title,c_black,0.5,0.5,0)
-				draw_text_color_ext(menu_x + current_x,menu_y + current_y,title,textcol,0.5,0.5,0)
+				draw_set_colour(c_black)
+				draw_text_ext_transformed(menu_x + current_x + 0.5,menu_y + current_y + 0.5,title,sh,sw,0.5,0.5,0)
+				draw_set_colour(textcol)
+				draw_text_ext_transformed(menu_x + current_x ,menu_y + current_y,title,sh,sw,0.5,0.5,0)
+				draw_set_colour(col)
 		 }
 		 
-		current_y += y_add * (string_height(title) div 16)
+		current_y += (string_height_ext(title,sh,sw) * 0.5) + y_add
 		height = max(height,current_y + padding / 2)
 		if current_y + padding > max_height
 		{
 			line_broke = true
-			current_x += 93
+			current_x += width + -11
 			current_y = padding
 		}
-		width = max(width,current_x + padding + string_width(title) * 0.5)  
+		width = max(width,current_x + padding + string_width_ext(title,sh,sw) * 0.5)  
 	}
 	
 	if draw_box

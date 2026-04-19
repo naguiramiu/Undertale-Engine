@@ -100,8 +100,19 @@ if (self_visible)
 			prev_menu = []
 		}
 		else 
-			current_menu = array_pop(prev_menu)
-		window_set_cursor(cr_default)	
+		{
+			var last = prev_menu[array_length(prev_menu) - 2]
+			var var_name = last.where_im_at
+			var a = get_struct_ext(1)
+
+			current_menu.settings = a 
+			if variable_struct_exists(last,"title")
+			current_menu.title = last.title
+			else
+			current_menu.title = string_prettify(var_name)
+			
+			current_menu.menu_from_array = array_pop(prev_menu).menu_from_array
+		}
+		window_set_cursor(cr_default)	 
 	}
 }
-

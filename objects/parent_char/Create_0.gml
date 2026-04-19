@@ -2,8 +2,6 @@ sprite_name = "spr_{char_name}_{move_state}_{dir}"
 was_moving = false
 frames_to_stop = -1
 prev_changed = ""
-
-
 compensate_for_diagonal_speed = function(spd,run_key)
 {
 	var dir = round(front_vector / 45) * 45;

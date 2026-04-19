@@ -193,3 +193,29 @@ function instances_exist(instances_array)
 	if instance_exists(instances_array[i]) return true;
 	return false;
 }
+
+
+function array_burst(array)
+{
+	if array_length(array)
+	{
+		var res = array_first(array)
+		array_delete(array,0,1)
+		return res 
+	}
+	return undefined
+}
+function string_shorten(str,l = 10)
+{
+	if string_length(str) > l 
+	{
+		str = string_copy(str,1,l - 1)
+		str += "-"
+	}
+	return str 
+}
+
+function party_get_follower_remember_size()
+{
+	return ((array_length(global.stats.party) - 1) * global.party_distance)
+}

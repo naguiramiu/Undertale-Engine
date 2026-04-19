@@ -1,9 +1,10 @@
 
-var down_key = down_key_hold
-var up_key = up_key_hold
-var left_key = left_key_hold
-var right_key = right_key_hold
-var run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold)
+var 
+down_key = down_key_hold,
+up_key = up_key_hold,
+left_key = left_key_hold,
+right_key = right_key_hold,
+run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold)
 
 if run_key
 	current_run_speed = lerp(current_run_speed,max_run_speed,0.2)	
@@ -89,19 +90,19 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	walking_speed = compensate_for_diagonal_speed(walking_speed,run_key)
 	if !prev_meetingwall
 	walking_speed += current_run_speed
-	// IF EVER WANT TO ADD SPEED MODIFIERS ADD HERE
-	var lenx = lengthdir_x(walking_speed, target_dir)
-	var leny = lengthdir_y(walking_speed, target_dir)
 	
 	#region apply speed and edge detection - purely wall colisions
-	
-	// change this to 1 if you dont want the player to get slower when hugging walls
-	var speed_modifier_hugging_wall = run_key ? 0.8 : 1
-	var meetingwall = false
-	var movingthisinstance = ((right_key + left_key + up_key + down_key) == 1)
-	var max_steps = 12
-	var steps = max_steps
-	var current = 1 
+
+	// IF EVER WANT TO ADD SPEED MODIFIERS ADD HERE
+	var
+	lenx = lengthdir_x(walking_speed, target_dir),
+	leny = lengthdir_y(walking_speed, target_dir),
+	speed_modifier_hugging_wall = run_key ? 0.8 : 1, // change this to 1 if you dont want the player to get slower when hugging walls
+	meetingwall = false,
+	movingthisinstance = ((right_key + left_key + up_key + down_key) == 1),
+	max_steps = 12,
+	steps = max_steps,
+	current = 1 
 	while place_meeting(x + lenx, y, obj_col_parent)
 	{
 		// hugging wall
@@ -202,4 +203,3 @@ if (array_length(global.party_instances) != 1 && ((x != xprevious || y != yprevi
 	      event_user(0)
 
 with obj_camera set_camera_position();
-

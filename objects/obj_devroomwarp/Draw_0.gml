@@ -67,12 +67,14 @@ for (var i = 0; i < array_length(room_info); i++)
 			global.can_move = true 
 			scr_teleport_player(room_info[i].x,room_info[i].y,true)
 			room_goto(room_info[i].room_id)
+			show_poppup(room_info[i].room_id)
 			globalmusic_stop(true)
 			audio_stop_all()
 			window_set_cursor(cr_default) 
 			instance_destroy()
 			audio_group_stop_all(audiogroup_sound)
 			mouse = cr_default
+			exit
 		}
 	}
 	

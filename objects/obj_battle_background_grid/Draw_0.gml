@@ -17,6 +17,6 @@ var distx = [ 7.50,57.50,108.60,158.25,209.90,261.45,311.40 ]
 for (var w = 0; w < 7; w ++)
 {
 	var line_distance_x = distx[w]
-	draw_line(line_x +line_distance_x,line_y + 4.5,line_x + line_distance_x,line_y + 122)
+	draw_line(line_x + line_distance_x,line_y + 4.5,line_x + line_distance_x,line_y + 122)
 }
 draw_set_colour(c_white)

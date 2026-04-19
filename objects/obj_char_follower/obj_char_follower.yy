@@ -35,7 +35,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_toriel_talk_down",
+    "path":"sprites/spr_toriel_talk_down/spr_toriel_talk_down.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
