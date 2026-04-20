@@ -13,7 +13,27 @@ function scr_language_main()
 		rm_ruins_staircase: "Ruins - Entrance",
 		rm_ruins_puzzle_0: "Ruins - Puzzle 0",
 		rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
-		rm_ruins_firstencounter_froggit: "Ruins - First encounter"
+		rm_ruins_firstencounter_froggit: "Ruins - First encounter",
+		_rm_dev_testingarea: "Testing Area",
+		_rm_default_shop: "Default Shop",
+		_rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
+		_rm_ruins_startingroom: "Ruins - Flower bed",
+		_rm_ruins_staircase: "Ruins - Entrance",
+		_rm_ruins_puzzle_0: "Ruins - Puzzle 0",
+		_rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
+		_rm_ruins_firstencounter_froggit: "Ruins - First encounter",
+		__rm_dev_testingarea: "Testing Area",
+		__rm_default_shop: "Default Shop",
+		__rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
+		__rm_ruins_startingroom: "Ruins - Flower bed",
+		__rm_ruins_staircase: "Ruins - Entrance",
+		__rm_ruins_puzzle_0: "Ruins - Puzzle 0",
+		__rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
+		__rm_ruins_firstencounter_froggit: "Ruins - First encounter",
+		pork: {
+			grinhento: 122	
+		}
+			
 	}
 	
 	#macro lan_battle "battle"

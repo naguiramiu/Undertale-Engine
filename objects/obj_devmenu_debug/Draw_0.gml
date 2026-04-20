@@ -24,8 +24,6 @@ if !instance_exists(obj_battlecontroler)
 	}
 }	
 
-debug_overlay = is_debug_overlay_open()
-
 if (show_information)
 {
 	var tt = 
@@ -82,12 +80,25 @@ if (self_visible)
 	back_key = back_key_press
 	var h = variable_struct_get(current_menu,"max_height")
 	
+	has_scroll = false 
+	
 	draw_me(true,false,,,h)
 	draw_me(,,,,h)
 	
 	if current_menu.func != -1 
 		function_call(current_menu.func,current_menu.func_params)
 	window_set_cursor(mouse_cursor)
+	
+	if (has_scroll) with current_menu
+	{
+		var scroll_spd = 0.15
+		var wheel = (mouse_wheel_down() - mouse_wheel_up());
+		if (wheel != 0) 
+			other.scroll_target += wheel * 32
+		other.scroll_target = clamp(other.scroll_target, 0, abs(other.max_scroll_height));
+		scroll_amount = lerp(scroll_amount, other.scroll_target, scroll_spd);
+		if (abs(scroll_amount - other.scroll_target) < 0.1) scroll_amount = other.scroll_target;
+	}
 	
 	if back_key || (outside && interact)
 	{
@@ -104,14 +115,18 @@ if (self_visible)
 			var last = prev_menu[array_length(prev_menu) - 2]
 			var var_name = last.where_im_at
 			var a = get_struct_ext(1)
-
-			current_menu.settings = a 
-			if variable_struct_exists(last,"title")
-			current_menu.title = last.title
-			else
-			current_menu.title = string_prettify(var_name)
 			
-			current_menu.menu_from_array = array_pop(prev_menu).menu_from_array
+			with current_menu
+			{
+				settings = a 
+				if variable_struct_exists(last,"title")
+				title = last.title
+				else
+				title = string_prettify(var_name)
+				scroll_amount = array_last(other.prev_menu).scroll_amount
+				other.scroll_target = scroll_amount
+				menu_from_array = array_pop(other.prev_menu).menu_from_array
+			}
 		}
 		window_set_cursor(cr_default)	 
 	}

@@ -14,6 +14,7 @@ interact_array_menu = function(this_setting,i)
 		case e_settingstype.get_struct:
 		do_later(1,function(this_setting)
 		{
+			obj_devmenu_debug.scroll_target = 0
 			array_push(obj_devmenu_debug.prev_menu,
 			{
 				where_im_at: this_setting.var_name,
@@ -40,12 +41,12 @@ interact_array_menu = function(this_setting,i)
 		},this_setting)
 		break;
 						
-						
 		case e_settingstype.array:
 						
 		current_menu.where_im_at = this_setting.var_name
 		do_later(1,function(this_setting)
 		{
+			obj_devmenu_debug.scroll_target = 0
 			var func = current_menu.func
 			array_push(obj_devmenu_debug.prev_menu, current_menu)
 							
@@ -55,6 +56,7 @@ interact_array_menu = function(this_setting,i)
 			for (var i = 0; i < array_length(set); i++)
 				this_setting.menu.settings[i] = obj_devmenu_debug.create_struct_segment(array_val_name(set[i],i),set[i],i,set)
 			this_setting.menu.func = -1
+			this_setting.scroll_amount = 0 
 			this_setting.menu.title = this_setting.title
 			obj_devmenu_debug.current_menu = this_setting.menu
 		},this_setting)
@@ -110,9 +112,11 @@ interact_array_menu = function(this_setting,i)
 		current_menu.where_im_at = this_setting.var_name
 		do_later(1,function(this_setting)
 		{
+			obj_devmenu_debug.scroll_target = 0
 			var func = current_menu.func
 			array_push(obj_devmenu_debug.prev_menu, current_menu)
 			obj_devmenu_debug.current_menu = this_setting.menu
+			obj_devmenu_debug.current_menu.scroll_amount = 0
 			if obj_devmenu_debug.current_menu.func == -1 obj_devmenu_debug.current_menu.func = func
 		},this_setting)
 		break;

@@ -21,7 +21,7 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 			
 			var 
 				this_setting = (is_from_array ? this_menu.settings[i] : this_menu.settings[$settings[i]]),
-				title = (is_from_array ? array_val_name(this_setting,i) : string_prettify(settings[i])),
+				title = (is_from_array ? array_val_name(this_setting,i) : string_capitalize(settings[i])),
 				textcol = c_white,
 				draw_underline = false 
 			
@@ -83,9 +83,9 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 		var sw = 143 + 26
 		var sh = 15
 		draw_set_colour(c_white)
+		var str_w = string_width_ext(title,sh,sw) / 2
 		 if (draw_options)
 		 {
-			var str_w = string_width_ext(title,sh,sw) / 2
 			if mouse_check_hovers_rect_wh(menu_x + current_x,menu_y + current_y,str_w, string_height_ext(title,sh,sw) / 2,mouse_xx,mouse_yy)
 			{
 				textcol = c_yellow
@@ -110,17 +110,25 @@ draw_me = function(draw_box = false,draw_options = true, this_menu = current_men
 		 
 		current_y += (string_height_ext(title,sh,sw) * 0.5) + y_add
 		height = max(height,current_y + padding / 2)
-		if current_y + padding > max_height
+		if (current_y + padding) > max_height
 		{
 			line_broke = true
 			current_x += width + -11
+			if current_x + str_w > (320 - (11 + padding))
+			{
+				has_scroll = true
+				current_x = padding
+			}
+			else
 			current_y = padding
 		}
 		width = max(width,current_x + padding + string_width_ext(title,sh,sw) * 0.5)  
 	}
-	
 	if draw_box
 	{
+		if (has_scroll)
+			max_scroll_height = height - 62
+
 		draw_devmenu()
 		draw_set_align_center()
 		if string_width(this_menu.title) > (width + 30)

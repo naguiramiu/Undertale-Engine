@@ -1,4 +1,4 @@
-if (push_player)
+if (push_player) && (instance_exists(player))
 {
     var _dir = point_direction(x, y, player.x, player.y);
 	var _too_much = 0

@@ -1,4 +1,3 @@
-
 function is_even(n)
 {
 	return ((n % 2) == 0)	
@@ -14,8 +13,7 @@ function can_open_textbox()
 {
 	if !instance_exists(player) return false 
 	if !global.can_move return false
-	if instance_exists(obj_textbox) return false 
-	if instance_exists(obj_mainmenu) return false 
+	if instances_exist([obj_textbox,obj_mainmenu]) return false 
 	return true
 }
 
@@ -36,7 +34,6 @@ function audiogroups_load()
 	audio_group_load(audiogroup_music)
 	if !audio_group_is_loaded(audiogroup_sound)
 	audio_group_load(audiogroup_sound)
-	
 	return 0;
 }
 
@@ -93,9 +90,7 @@ function get_party_array_by_depth()
 	var chars = []
 	with parent_char array_push(chars,id)
 	array_sort(chars,function(this,next){return this.depth < next.depth})
-	
 	return chars
-	
 }
 
 function get_player_direction()
@@ -108,8 +103,6 @@ function get_current_direction(vec)
 	var dir = round(vec / 90) * 90;
 	return (dir + 360) % 360;
 }
-	
-	
 
 function scr_warpdoor_get(warpdoor_id = 0)
 {
@@ -146,23 +139,17 @@ function scr_buildversion()
 
 function scr_get_char_item_attack(char)
 {
-	var _attack = 0
-	if char.weapon != ITEM_EMPTY
-		_attack += global.items[$char.weapon].attack
-	if char.armor != ITEM_EMPTY
-		_attack += global.items[$char.armor].attack
-	return _attack
+	return get_item_value_safe(char.weapon,"attack") + get_item_value_safe(char.armor,"attack") 
 }
-
 
 function scr_get_char_item_defense(char)
 {
-	var _defense = 0
-	if char.weapon != ITEM_EMPTY
-		_defense += global.items[$char.weapon].defense
-	if char.armor != ITEM_EMPTY
-		_defense += global.items[$char.armor].defense
-	return _defense
+	return get_item_value_safe(char.weapon,"defense") + get_item_value_safe(char.armor,"defense") 
+}
+
+function get_item_value_safe(item,value)
+{
+	return (item == ITEM_EMPTY? undefined : global.items[$item][$value])
 }
 
 function sprite_get_speed_ammount(sprite)
@@ -184,8 +171,9 @@ function array_from_struct_value(array, value_name)
 
 function show_poppup(str) 
 {
-	instance_create(obj_info_poppup,{text: str})
+	return instance_create(obj_info_poppup,{text: str})
 }
+
 function instances_exist(instances_array)
 {
 	if !is_array(instances_array) instances_array = [instances_array]
@@ -193,7 +181,6 @@ function instances_exist(instances_array)
 	if instance_exists(instances_array[i]) return true;
 	return false;
 }
-
 
 function array_burst(array)
 {
@@ -210,7 +197,7 @@ function string_shorten(str,l = 10)
 	if string_length(str) > l 
 	{
 		str = string_copy(str,1,l - 1)
-		str += "-"
+		str += "."
 	}
 	return str 
 }

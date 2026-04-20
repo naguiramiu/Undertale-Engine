@@ -355,21 +355,19 @@ function check_perfom_event(event_name)
 function battle_draw_bottom_ui()
 {
 	#region battle buttons 
-	
 	var cur = current_character_selections[selected_char_number]
 	var disabled_menus = get_unavailable_battle_menus()
-
+	var button_xpositions = [ 16,92.50,172.50,250 ]
 	for (var p = 0; p < array_length(global.stats.party); p++)
 	for (var i = 0; i < 4; i++)
 	{ 
-		var current_x = cam_x + 17.5 + (77.5 * i) + (-button_xoffset * 320) + (p * 320) + (i == 0 ? -1.5 : (i == 1 ? -2.5 : 0))
-		var current_y = cam_y + 216
-	
+		var current_x = cam_x + button_xpositions[i] + (-button_xoffset * 320) + (p * 320) 
+		var current_y = cam_y + 216															// those are just aligning thhem towhere undertale is
 		var sprite = spr_battlebuttons_icon
 		var col = #FF7F27
 		var selected = (i == cur.main_menu_selection)
 		if array_contains(disabled_menus,i)
-		col = #707070
+			col = #707070
 	 
 		if selected && controler_can_move
 		{
@@ -381,7 +379,6 @@ function battle_draw_bottom_ui()
 		if selected && !cur.in_submenu && controler_can_move
 		draw_sprite_ext(spr_soul,soul_frame,8 + current_x, 10.5 + current_y + 0.5,0.5,0.5,1,c_white,1)
 	}
-	
 	#endregion
 	
 	#region hp and stats thingy
@@ -419,20 +416,33 @@ function scr_battle_draw_player_healthbar()
 	exit;	
 }
 
+
+function scr_battle_facesprite(i)
+{
+	var var_name = "facechar_" + string(i)
+	if !variable_instance_exists(obj_battlecontroler,var_name)
+	{
+		var s = asset_get_index("spr_" + global.stats.party[i] + "_battle_face")
+		variable_instance_set(obj_battlecontroler,var_name, sprite_exists(s) ? s : spr_battle_face_default)
+	}
+	return variable_instance_get(obj_battlecontroler,var_name)
+}
+
 function scr_battle_draw_party_healthbars()
 {
 	static ui_anim = array_create_ext(array_length(global.stats.party),function(i){return!i})
-
-	var ary = array_length(global.stats.party)
-	var w = 82 + 10;
-	var h = 16; 
-	var x_spacing = 20;
-	if ary = 3 x_spacing = 5
-	var screen_bottom_y = 240;
-	var margin = 10; 
-	var screen_mid_x = 160
-	var total_block_width = (ary * w) + ((ary - 1) * x_spacing);
-	var start_x = screen_mid_x - (total_block_width / 2);
+	
+	var 
+		ary = array_length(global.stats.party),
+		w = 82 + 10,
+		h = 16,
+		x_spacing = (ary == 3 ? 5 : 20),
+		screen_bottom_y = 240,
+		margin = 10,
+		screen_mid_x = 160,
+		total_block_width = (ary * w) + ((ary - 1) * x_spacing),
+		start_x = screen_mid_x - (total_block_width / 2)
+		
 	for (var i = 0; i < ary; i++)
 	{
 		var char = get_char_by_party_position(i)
@@ -480,11 +490,7 @@ function scr_battle_draw_party_healthbars()
 		draw_sprite_ext(spr_ui_bar,0,draw_x + w + -3 - string_width(char.max_hp), draw_y + 9,1,1,0,draw_get_colour(),1)
 		draw_text(draw_x + w + -9 - string_width(char.max_hp),draw_y + 10,char.hp)
 		draw_set_halign(fa_left)
-		var _sprite = spr_battle_face_default
-		var spr = asset_get_index("spr_" + global.stats.party[i] + "_battle_face")
-		if sprite_exists(spr)
-		_sprite = spr 
-		draw_sprite_ext(_sprite,0,draw_x + 9, draw_y + 8,1,1,0,char_color,1)
+		draw_sprite_ext(scr_battle_facesprite(i),0,draw_x + 9, draw_y + 8,1,1,0,char_color,1)
 	}
 }
 

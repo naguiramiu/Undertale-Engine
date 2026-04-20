@@ -48,7 +48,6 @@ function filename_nameonly(fname)
 
 function scr_load_language(language_name)
 {
-	var worked = false 
 	var fname = working_directory + "Languages\\" + language_name
 	var file_all = file_read_all_text(fname)
 	if !is_undefined(file_all) && string_length(file_all) != ""
@@ -57,11 +56,11 @@ function scr_load_language(language_name)
 		var temp = json_parse(file_all)
 		global.language_text = struct_merge_ext(global.language_text, temp)
 		delete temp 
-		worked = true 
 	}
-	if !worked 
+	catch(e)
 	{
 		show_poppup("Error: Language " + filename_nameonly(language_name) + "not properly set.")
+		show_poppup(e)
 		language_name = "English.json"
 	}
 	global.settings.language = filename_nameonly(language_name)
@@ -82,31 +81,25 @@ function string_replace_markup(str,markups)
 	}
 }
 
-/* example: 
-	string_replace_markup_ext("My name is {name}, I made the {robot}, I am also {age} years old.",  
-	{
-		name: "Edwin",
-		robot: "Mimic",
-		age: 56
-	}
-	--> 
-	"My name is Edwin, I made the mimic, I am also 56 years old. "
-*/
+///@desc example: 
+///string_replace_markup_ext("My name is {name}, I am the {profession} of the {place}.",  
+///{
+///		name: "Toriel",
+///		profession: "guardian",
+///		place: Ruins
+///} --> My name is Toriel, I am the guardian of the Ruins.
 function string_replace_markup_ext(str, markup_struct)
 {
     var result = ""
     var len = string_length(str)
     var last_pos = 1
     var open_pos = string_pos_ext("{", str, last_pos)
-
     if !open_pos return str
 
     while open_pos > 0
 	{
         result += string_copy(str, last_pos, open_pos - last_pos)
-		
         var close_pos = string_pos_ext("}", str, open_pos)
-		
         if close_pos > 0
 		{
             var _key = string_copy(str, open_pos + 1, close_pos - open_pos - 1)
@@ -124,14 +117,12 @@ function string_replace_markup_ext(str, markup_struct)
         }
         open_pos = string_pos_ext("{", str, last_pos)
     }
-
     result += string_copy(str, last_pos, len - last_pos + 1)
-    
     return result;
 }
 
 
-// ("My name is {name}, I made the mimic.", "Edwin") --> "My name is Edwin, I made the mimic. 
+///@desc ("My name is {name}, I am the guardian of the Ruins.", "Toriel") --> "My name is Toriel, I am the guardian of the Ruins."
 function scr_replace_markup_single(str, markups)
 {
     var start = string_pos("{", str);

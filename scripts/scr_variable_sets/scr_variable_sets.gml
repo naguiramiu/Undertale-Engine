@@ -120,13 +120,16 @@ function struct_merge_ext(original, replacement)
 }
 
 
-function alarm_create_free(time_to,func,args = [],self_id = noone,var_struct = {})
+function alarm_create_free(_time_to,_func,_args = [],_self_id = noone,var_struct = {})
 {
-	if !is_array(args) args = [args]	
-	var_struct.time_to = time_to 
-	var_struct.func = func 
-	var_struct.args = args 
-	var_struct.target_instance = self_id 
+	if !is_array(_args) _args = [_args]	
+	with var_struct
+	{
+		time_to = _time_to 
+		func = _func 
+		args = _args 
+		target_instance = _self_id 
+	}
 	return instance_create(obj_free_alarm,var_struct)
 }
 
@@ -148,8 +151,6 @@ function set_later(_time_to,_instance_or_struct,_variable_name,_value)
 		event_perform(ev_alarm,0)
 }
 
-
-
 //custom function for setting alarms that allows it to automatically perform if timer == 0
 function alarm_set_instant(alarm_number,timer) 
 {
@@ -163,12 +164,15 @@ function customevent_get_params(event_name = "",_id = self)
 	var add_space = (event_name == "" ? "" : "_")
 	var params = []
 	var possible = ["arguments","params","parameters","args"]
-	for (var i = 0; i < array_length(possible);i++){ 
-	if variable_self_exists("event_" + event_name + add_space + possible[i],_id)
-	{
-		params = variable_self_get("event_" + event_name + add_space + possible[i],_id)
-		break;
-	}}
+	for (var i = 0; i < array_length(possible);i++)
+	{ 
+		var var_name = "event_" + event_name + add_space + possible[i]
+		if variable_self_exists(var_name,_id)
+		{
+			params = variable_self_get(var_name,_id)
+			break;
+		}
+	}
 	if !is_array(params) params = [params]
 	return params;
 }
@@ -191,7 +195,8 @@ function var_id_set(name,val)
 function lerp_var_ext(_object_or_instance,_var_name,_progress_speed,_start,_end,_ease_type = ease_square,_ease_params = [],var_struct = {})
 {  
 	if !variable_instance_exists(_object_or_instance,_var_name) variable_instance_set(_object_or_instance,_var_name,_start)
-	with instance_create(obj_interpolatevar_ext,var_struct){
+	with instance_create(obj_interpolatevar_ext,var_struct)
+	{
 			var_start = var_get(_start);
 			var_end = var_get(_end);
 			progress_speed = _progress_speed;
@@ -201,10 +206,8 @@ function lerp_var_ext(_object_or_instance,_var_name,_progress_speed,_start,_end,
 			creator = other;
 			ease_params = _ease_params;
 			return id;
-		}
+	}
 }
-
-
 
 /*
  this function allows you to find variables which are declared at runtime, for example,
@@ -285,15 +288,12 @@ function angle_lerp(a, b, t)
 }
 
 
-
 /**
- 
-Add Wrap
-Adds or subtracts an amount to a number, and wraps it around a set size.
-input {Real} the original number that will be added or subtracted from.
-change {Real} the amount to add to the number. can be negative.
-size {Real} The size to wrap the number around, works like array_length, starts at 1.
-array_denied {Array} (Optional) an array of numbers that will be skipped if the added to amount happens to equal it.*/
+/// @desc modwrap(input ,change ,size ,array_denied = [] )
+/// @param input {Real} the original number that will be added or subtracted from.
+/// @param change {Real} the amount to add to the number. can be negative.
+/// @param size {Real} The size to wrap the number around, works like array_length, starts at 1.
+/// @param array_denied {Array} (Optional) an array of numbers that will be skipped if the added to amount happens to equal it.*/
 
 function modwrap(input,change,size,array_denied = [])
 {

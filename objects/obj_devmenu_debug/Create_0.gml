@@ -79,7 +79,6 @@ function(inv_name = "inventory")
 	if !variable_self_exists("selected_item")
 		selected_item = -1
 	
-	
 	if (selected_item != -1)
 	{
 		var this_menu = 
@@ -126,7 +125,11 @@ function(inv_name = "inventory")
 	
 }
 
-true_savedata = truefile_load()
+true_savedata = {}
+
+for (var i = 0; i < 50; i ++) 
+true_savedata[$"gloobmonster_" + string(i)] = random(100)
+// truefile_load()
 
 edit_struct_setting = function(_var_name,_from,_title = undefined,_to_remove = [],_max_height = 206,_always_runs_func = -1,_every_func = -1) constructor
 {
@@ -155,18 +158,30 @@ main_settings =
 	new edit_struct_setting("stats.char.frisk", "global","Player stats"),
 	new edit_struct_setting("stats", "global","Party stats",["inventory","storage_box","party"]),
 	new edit_struct_setting("true_savedata",obj_devmenu_debug,"True savedata",,177,truefile_custom_func,function(){truefile_overwrite(true_savedata)}),
+	new edit_struct_setting("language_text", "global"),
 	new event_setting("Save game",function()
 	{
 		save_game()	
 		show_poppup("Game saved!")
 	}),
+	new event_setting("Reload game with no savefile",function()
+	{
+		initialize()
+		load_game(global.information.savefile_num,-1)
+	}),
+	new event_setting("Delete this savefile",function()
+	{
+		if show_question("Are you sure?\nDo you really want to permanentely delete savefile " + string(global.information.savefile_num) + "?")
+		{
+			file_delete(savefile_name(global.information.savefile_num))
+			show_poppup("Savefile deleted. Restart the game to go back to 0")
+		}
+	}),
+	new event_setting("Delete true save data",function(){truefile_overwrite({}) true_savedata = {}}),
 	new event_setting("Restart game",game_restart),
 	new event_setting("Show active instances",get_active_instances),
 	new setting("Skip title sequence","insta_load",scr_dev_load_instantly,e_settingstype.boolean,global.settings.dev),
 	new setting("Can move","can_move",global.can_move,e_settingstype.boolean,0),
-	new setting("Show GML overlay","debug_overlay",function(){
-		show_debug_overlay(!is_debug_overlay_open(),true,1.1,0.5)
-	},e_settingstype.boolean),
 	new setting("Show information","show_information",false,e_settingstype.boolean),
 	new event_setting("Room warp",instance_create,obj_devroomwarp,true),
 ]
@@ -175,15 +190,17 @@ current_menu =
 {
 	settings: main_settings,
 	title: "Dev menu",
-	func: -1
+	func: -1,
+	scroll_amount: 0,
 }
 
+scroll_target = 0
 
 setup_vars = function(_max_height = 206)
 {
 	padding = 10
 	menu_x = cam_x + 11
-	menu_y = cam_y + 23
+	menu_y = cam_y + 23 - current_menu.scroll_amount
 	mouse_xx = get_mouse_pos().x
 	mouse_yy = get_mouse_pos().y
 	current_x = padding
