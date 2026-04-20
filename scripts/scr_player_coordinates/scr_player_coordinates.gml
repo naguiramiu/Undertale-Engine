@@ -81,7 +81,7 @@ function scr_teleport_player(to_x,to_y,insta_tp_party = false)
 
 function player_below_half_y()
 {
-	return (instance_exists(player) ? ((player.y - cam_y - 20) > (cam_y + 120)) : false)
+	return (instance_exists(player) ? ((player.y - 20) > (cam_y + 120)) : false)
 }
 
 /// @desc Returns true if the target is within a certain distance of an angle cone
