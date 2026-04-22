@@ -1,9 +1,7 @@
 function scr_language_main()
 {
+	global.language_text = { language_code: "EN" }
 	
-	global.language_text = {
-		language_code: "EN"
-	}
 	#macro lan_room_name "room_names"
 	
 	global.language_text[$lan_room_name] = {
