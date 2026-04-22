@@ -25,8 +25,10 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 	if type == e_itemtype.consumable
 	{
 		if remove_item && variable_struct_exists(item,"remove_after_use") && item.remove_after_use
-			array_delete(global.stats.inventory,selection,1)
-		
+		{
+			global.stats.inventory[selection] = ITEM_EMPTY
+			inventory_clear_empty()
+		}
 		if create_textboxes
 		{
 			with var_struct  
@@ -73,6 +75,8 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 			}
 		}
 	}
+	
+	
 	
 	if create_textboxes
 	{
@@ -163,8 +167,10 @@ function item_dialogue(_name,_check_description,_use_description = undefined,_sh
 function drop_item(selected_item,selection,var_struct = {})
 {
 	if selected_item.can_drop 
-		array_delete(global.stats.inventory,in_item_selection_vertical,1)
-	global.stats.inventory[array_length(global.stats.inventory)] = ITEM_EMPTY
+	{
+		global.stats.inventory[selection] = ITEM_EMPTY
+		inventory_clear_empty()
+	}
 	
 	var dialogue = (variable_struct_exists(selected_item,"drop_description") ? selected_item.drop_description : "")
 	

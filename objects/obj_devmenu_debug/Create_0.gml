@@ -1,4 +1,4 @@
-depth = UI_DEPTH + 10
+depth = UI_DEPTH + 1
 self_visible = true
 for (var i = 0; i <= 4; i++)
 event_user(i)
@@ -150,8 +150,8 @@ main_settings =
 	new set_menu_setting("Change party",array_create_ext(3,change_party_options),change_party_func),
 	new set_menu_setting("Inventory",change_inventory_options(),item_func),
 	new set_menu_setting("Storage box",change_inventory_options("storage"),item_func,"storage"),
-	new edit_struct_setting("flags", "global"),
-	new edit_struct_setting("stats.char.frisk", "global","Player stats"),
+	new edit_struct_setting("flags", "global",,,177,flags_custom_func),
+	new edit_struct_setting("stats.char.frisk", "global","Player stats",["ui_color"]),
 	new edit_struct_setting("stats", "global","Party stats",["inventory","storage_box","party"]),
 	new edit_struct_setting("true_savedata",obj_devmenu_debug,"True savedata",,177,truefile_custom_func,function(){truefile_overwrite(true_savedata)}),
 	new edit_struct_setting("language_text", "global"),
@@ -180,6 +180,11 @@ main_settings =
 	new setting("Can move","can_move",global.can_move,e_settingstype.boolean,0),
 	new setting("Show information","show_information",false,e_settingstype.boolean),
 	new event_setting("Room warp",instance_create,obj_devroomwarp,true),
+	new event_setting("Reload current room",function()
+	{
+		room_restart()
+		show_poppup("Room reloaded!")
+	})
 ]
 
 current_menu = 

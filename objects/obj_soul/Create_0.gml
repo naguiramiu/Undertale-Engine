@@ -131,3 +131,12 @@ get_hit = function(inst)
 		if inst.destroy_on_impact instance_destroy(inst)
 	}
 }
+
+compensate_for_diagonal_speed = function(wadir,spd)
+{
+	var dir = round(wadir / 45) * 45;
+	dir = (dir + 360) % 360;
+	if (dir % 45 == 0 && dir % 90 != 0) 
+	return spd / 0.7
+	return spd
+}

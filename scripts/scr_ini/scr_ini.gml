@@ -6,6 +6,8 @@ function initialize()
 		inventory: array_create_fill([ITEM_BANDAGE,ITEM_BISICLE,ITEM_MONSTER_CANDY,ITEM_STICK,ITEM_TOY_KNIFE],8,ITEM_EMPTY),
 		storage_box: array_create(10,ITEM_EMPTY),
 		gold: 12,
+		kills: 0,
+		times_you_died: 0,
 		fun: irandom(100),
 		char:
 		{
@@ -27,12 +29,12 @@ function initialize()
 				12
 			),
 		}
-	}
+	} 
 	
-	scr_init_flags()
+	global.flags = scr_init_flags()
 	declare_items()
 	scr_textbox_talkers()
 	scr_initiate_information()
-	scr_initiate_settings()
-	scr_setup_encounters()
+	global.settings = scr_initiate_settings()
+	global.encounters = scr_setup_encounters()
 }

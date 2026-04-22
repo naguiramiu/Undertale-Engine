@@ -50,7 +50,8 @@ function play_sound(sound,gain = 1,loops = false,priority = 1, pitch = 1)
 }
 function set_border(border)
 {
-	if obj_border_controller.border != border 
+	
+	if obj_border_controller.border != border || (obj_border_controller.nextborder != noone && obj_border_controller.border == border)
 		obj_border_controller.nextborder = border	
 }
 

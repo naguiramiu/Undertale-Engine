@@ -1,6 +1,6 @@
 function scr_init_flags()
 {
-	global.flags = { 
+	return { 
 		has_cell: false,
 		ruins: 
 		{

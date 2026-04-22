@@ -1,31 +1,29 @@
 depth = UI_DEPTH - 200
-alpha = 0
 
-player_x_before_warp = player.x 
-player_y_before_warp = player.y 
+with (all) 
+	if variable_instance_exists(id,"event_room_warp_start")	
+		event_room_warp_start()
+		
+global.can_move = false;
 
-works = true 
-let_player_move = true
-with all if variable_instance_exists(id,"event_room_warp_start") event_room_warp_start()
-triggered_can_move = false
-
-global.can_move = false
-lerp_var_ext(obj_camera,"screen_darken",0.1,0,1,,,
-{
-	room_to_go: target_room,
-	event_destroy: function()	
-	{
-		room_goto(room_to_go)
-		with obj_roomtransition event_user(0)
-		set_later(5,global,"can_move",true)
-		lerp_var_ext(obj_camera,"screen_darken",0.1,1,0,,,
+cutscene_start
+(
+	cutscene_create
+	(
+		cut_interpolate_var(obj_camera,"screen_darken",0.1,0,1),
+		cut_perform_function(0,function()
 		{
-			persistent: true,
-			event_destroy: function()
+			with (obj_parent_roomtransition)
 			{
-				instance_destroy(obj_roomtransition)
+				room_goto(target_room)
+				if (works && instance_exists(player))
+					room_transition_warp(target_room,mywarp,horizontal_dir,vertical_dir,insta_tp_party)
 			}
-		}) 
-	},
-	persistent: true
-})
+		}),
+		cut_interpolate_var(obj_camera,"screen_darken",0.1,1,0,5,,true),
+		cut_can_move(let_player_move),
+		cut_perform_function(0,instance_destroy,obj_parent_roomtransition)
+	),,
+	true
+)
+

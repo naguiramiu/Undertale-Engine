@@ -1,11 +1,19 @@
 #macro cutscene_hold_arguments \
-if !(cutscene_perform_event) \
+if !(should_run_cut_event()) \
 { \
 	var args = [asset_get_index(_GMFUNCTION_)]; \
 	for (var i = 0; i < argument_count; i++) \
 	args[i+1] = argument[i]; \
 	return args; \
 }
+
+function should_run_cut_event()
+{
+	if !variable_self_exists("cutscene_perform_event") 
+		cutscene_perform_event = false 
+	return (cutscene_perform_event) 
+}
+
 // 
 //			to start a cutscene, variable cutscene_perform_event must be set to false.
 //			When the cutscene is being played it is set to true. Use cutscene_start() too

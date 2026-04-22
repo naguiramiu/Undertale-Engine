@@ -36,9 +36,6 @@
     "name":"spr_soul",
     "path":"sprites/spr_soul/spr_soul.yy",
   },
-  "spriteMaskId":{
-    "name":"spr_soul_mask",
-    "path":"sprites/spr_soul_mask/spr_soul_mask.yy",
-  },
+  "spriteMaskId":null,
   "visible":true,
 }

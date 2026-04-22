@@ -18,6 +18,12 @@ function get_active_instances()
 
 function scr_devfunctions()
 {
+	if keyboard_check_pressed(vk_f7)
+	{
+		room_restart()
+			show_poppup("Room reloaded!")
+	}
+	
 	if keyboard_check_pressed(vk_f9)
 	get_active_instances()
 	

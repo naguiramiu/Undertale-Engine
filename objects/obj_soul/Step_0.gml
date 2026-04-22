@@ -19,67 +19,52 @@ if can_move
 		
 	if (abs(xspd) > 0 || abs(yspd) > 0)
 	{
-		var dist = 1
 	    var target_dir = point_direction(0, 0, xspd, yspd);
-		var walking_speed = main_speed
-		if run_key walking_speed /= 2
-		var lenx = lengthdir_x(walking_speed, target_dir); 
-		var leny = lengthdir_y(walking_speed, target_dir);
-	
-		#region apply speed and edge detection - purely wall colisions
-		var speed_modifier_hugging_wall = 0.8
-		var meetingwall = false
-		var movingthisinstance = ((right_key + left_key + up_key + down_key) == 1)
-		var steps = 12
-		var max_steps = steps
-		var current = 1 
-		while place_meeting(x + lenx, y, obj_battlebox)
-		{
-			// hugging wall
-			meetingwall = true
-			if movingthisinstance && !place_meeting(x + lenx, y + current, obj_battlebox)
-			{
-				y += current
-				break;
-			}
-			if current > 0 current = -current else current = -current + 1
-		
-			if max_steps > 0 max_steps -- 
-			else 
-			{
-				lenx = 0
-				break;
-			}
-		}
-		current = 1 
-		max_steps = steps
-		while place_meeting(x, y + leny, obj_battlebox)
-		{
-			meetingwall = true
-			if movingthisinstance && !place_meeting(x + current, y + leny, obj_battlebox)
-			{
-				x += current
-				break;
-			}
-			if current > 0 current = -current else current = -current + 1
-		
-			if max_steps > 0 max_steps -- 
-			else 
-			{
-				leny = 0
-				break;
-			}
-		}
-		x += lenx;
-		y += leny;
-	}
-	#endregion
-}
+	    var walking_speed = compensate_for_diagonal_speed(target_dir, main_speed, run_key);
+		if (run_key) walking_speed /= 2
 
-if (can_move && can_hitbox)
-{
-	if place_meeting(x,y,parent_bullet) 
-		get_hit(instance_place(x,y,parent_bullet))
+		#region calculate if inside the box
+	    var 
+			tx = x + lengthdir_x(walking_speed, target_dir),
+		    ty = y + lengthdir_y(walking_speed, target_dir),
+		    box = obj_battlebox,
+		    dx = tx - box.x,
+		    dy = ty - box.y,
+		    ang = -box.image_angle,
+		    rot_x = dx * dcos (ang) + dy * dsin (ang),
+		    rot_y = -dx * dsin (ang) + dy * dcos (ang),
+		    p_half = 8,
+		    bw =  (box.width / 2) - p_half,
+		    bh =  (box.height / 2) - p_half
+		
+	    rot_x = clamp (rot_x, -bw, bw)
+	    rot_y = clamp (rot_y, -bh, bh)
+	    x = box.x +  (rot_x * dcos (-ang) + rot_y * dsin (-ang))
+	    y = box.y +  (-rot_x * dsin (-ang) + rot_y * dcos (-ang))
+	
+		while check_outside_battlebox()
+		{
+		    var dir = point_direction(x, y, obj_battlebox.x, obj_battlebox.y)
+			var too_much = 0
+		    while check_outside_battlebox()
+		    {
+		        x += lengthdir_x(1, dir);
+		        y += lengthdir_y(1, dir);
+				too_much ++
+				if (too_much > 1000)
+					{
+						x = obj_battlebox.x
+						y = obj_battlebox.y
+						break;	
+					}
+		    }
+		}
+		#endregion
+	}
+
+	if (can_hitbox)
+		if place_meeting(x,y,parent_bullet) 
+			get_hit(instance_place(x,y,parent_bullet))
 }	
 
 if global.invframes_timer > 0 

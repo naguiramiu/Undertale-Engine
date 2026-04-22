@@ -7,8 +7,7 @@ function scr_setup_encounters()
 	}
 	
 	
-	global.encounters = 
-	{
+	return {
 		ruins: 
 		{
 			test_battle: new setup_encounter( 

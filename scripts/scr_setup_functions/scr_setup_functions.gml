@@ -23,8 +23,10 @@ function scr_initiate_information()
 	
 function scr_initiate_settings()
 {
-	global.settings = 
-	{
+	global.can_move = true;
+	global.party_distance = 12;
+	
+	return {
 		show_border_windowed: false,
 		border_type: e_bordertype.enabled,
 		selected_file: 0,
@@ -41,8 +43,5 @@ function scr_initiate_settings()
 		},
 		keys: scr_default_keys()
 	}
-		
-	global.can_move = true;
-	global.party_distance = 12;
 }
 

@@ -110,7 +110,7 @@ change_inventory_options = function(inv_name = "inventory")
 truefile_custom_func = function()
 {
 	var h = height + y_add / 2
-	var shorten = mzz//(h > 173)
+	var shorten = (h > 173)
 	var str = (shorten ? "Add custom variable" : "True savedata is saved and loaded as the story progresses. Click here to add a new variable to the struct.")
 	var this = 
 	{
@@ -124,6 +124,33 @@ truefile_custom_func = function()
 				{
 					struct_replace_unique(get_struct_ext(),_var)
 					truefile_overwrite(true_savedata)
+				}
+			}),
+		],
+	}
+	setup_vars()
+	menu_y += h
+	draw_me(true,false,this,false)
+	setup_vars()
+	menu_y += h
+	draw_me(false,true,this,false)	
+}
+
+flags_custom_func = function()
+{
+	var h = height + y_add / 2
+	var str = "Reset flags"
+	var this = 
+	{
+		title: "",
+		settings: 
+		[
+			new event_setting(str,function()
+			{
+				if show_question("Are you sure?")
+				{
+					global.flags = scr_init_flags()
+					with obj_devmenu_debug event_perform(ev_create,0)
 				}
 			}),
 		],

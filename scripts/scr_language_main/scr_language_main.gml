@@ -1,11 +1,12 @@
 function scr_language_main()
 {
 	
-	global.language_text = {language_code: "EN"}
+	global.language_text = {
+		language_code: "EN"
+	}
 	#macro lan_room_name "room_names"
 	
-	global.language_text[$lan_room_name] = 
-	{
+	global.language_text[$lan_room_name] = {
 		rm_dev_testingarea: "Testing Area",
 		rm_default_shop: "Default Shop",
 		rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
@@ -14,32 +15,11 @@ function scr_language_main()
 		rm_ruins_puzzle_0: "Ruins - Puzzle 0",
 		rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
 		rm_ruins_firstencounter_froggit: "Ruins - First encounter",
-		_rm_dev_testingarea: "Testing Area",
-		_rm_default_shop: "Default Shop",
-		_rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
-		_rm_ruins_startingroom: "Ruins - Flower bed",
-		_rm_ruins_staircase: "Ruins - Entrance",
-		_rm_ruins_puzzle_0: "Ruins - Puzzle 0",
-		_rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
-		_rm_ruins_firstencounter_froggit: "Ruins - First encounter",
-		__rm_dev_testingarea: "Testing Area",
-		__rm_default_shop: "Default Shop",
-		__rm_ruins_first_flowey_encounter: "Ruins - Flowey 0",
-		__rm_ruins_startingroom: "Ruins - Flower bed",
-		__rm_ruins_staircase: "Ruins - Entrance",
-		__rm_ruins_puzzle_0: "Ruins - Puzzle 0",
-		__rm_ruins_lever_bridges: "Ruins - Switch & Bridges",
-		__rm_ruins_firstencounter_froggit: "Ruins - First encounter",
-		pork: {
-			grinhento: 122	
-		}
-			
 	}
 	
 	#macro lan_battle "battle"
 
-	global.language_text[$lan_battle] = 
-	{
+	global.language_text[$lan_battle] = {
 		buttons: ["FIGHT","ACT","ITEM","MERCY"],
 		flee_dialogue_alone: "* You tried to escape, but were unsuccessful.",
 		flee_dialogue_party: "* {char} tried to escape, but was unsuccessful.",
@@ -52,8 +32,7 @@ function scr_language_main()
 	
 	#macro lan_main_menu "main_menu"
 	
-	global.language_text[$lan_main_menu] = 
-	{
+	global.language_text[$lan_main_menu] = {
 		menu_item: "ITEM",
 		menu_stat: "STAT",
 		menu_cell: "CELL",
@@ -88,7 +67,6 @@ function scr_language_main()
 		info: "INFO",
 		drop: "DROP",
 	}
-	
 	
 	scr_language_set_items()
 	scr_language_set_title()

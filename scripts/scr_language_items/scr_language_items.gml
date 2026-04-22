@@ -1,8 +1,7 @@
 function scr_language_set_items()
 {
 	#macro lan_items "items"
-	global.language_text.items = 
-	{
+	global.language_text.items = {
 		ITEM_ERROR: new item_dialogue(
 			"Error item",
 			"* \"Error!\" - {.&}* You are not meant to have this.",

@@ -139,17 +139,17 @@ function scr_buildversion()
 
 function scr_get_char_item_attack(char)
 {
-	return get_item_value_safe(char.weapon,"attack") + get_item_value_safe(char.armor,"attack") 
+	return (get_item_value_safe(char.weapon,"attack") ?? 0) + (get_item_value_safe(char.armor,"attack") ?? 0)
 }
 
 function scr_get_char_item_defense(char)
 {
-	return get_item_value_safe(char.weapon,"defense") + get_item_value_safe(char.armor,"defense") 
+	return (get_item_value_safe(char.weapon,"defense") ?? 0) + (get_item_value_safe(char.armor,"defense") ?? 0)
 }
 
 function get_item_value_safe(item,value)
 {
-	return (item == ITEM_EMPTY? undefined : global.items[$item][$value])
+	return (item == ITEM_EMPTY ? undefined : global.items[$item][$value])
 }
 
 function sprite_get_speed_ammount(sprite)
@@ -206,3 +206,66 @@ function party_get_follower_remember_size()
 {
 	return ((array_length(global.stats.party) - 1) * global.party_distance)
 }
+
+function room_transition_warp(target_room,mywarp = noone,horizontal_dir = -1, vertical_dir = -1,insta_tp_party = false, percentage = 0.5)
+{
+	if (mywarp != noone)
+	{
+		var instances = room_get_info(target_room,false,true,false,false,false,false).instances
+		for (var i = 0; i < array_length(instances); i++)
+		if instances[i].id == mywarp 
+		{
+			mywarp = instances[i]	
+			break;
+		}
+		
+		if (horizontal_dir != -1)
+		{	
+			var 
+				tp_y = round(mywarp.y + (20 * abs(mywarp.yscale) * percentage)),
+				imgxscale = (20 * mywarp.xscale),
+				xoff = (!horizontal_dir ? imgxscale + 10 : -15),
+				tp_x = round(mywarp.x + xoff)
+		}
+		else if (vertical_dir != -1)
+		{
+			var 
+				tp_x = round(mywarp.x + (20 * abs(mywarp.xscale) * percentage)),
+				imgyscale = (20 * mywarp.yscale),
+				yoff = (!vertical_dir ? imgyscale + 15 : -15),
+				tp_y = round(mywarp.y + yoff)
+		}
+	}
+	else 
+	{
+		with room_get_custom_info(target_room)
+		{
+			var tp_x = x 
+			var tp_y = y
+		}
+	}
+	scr_teleport_player(tp_x,tp_y,insta_tp_party)
+}
+
+
+function draw_gui_surface_borderfix(surf,alpha = 1)
+{
+	gpu_set_blendmode(bm_normal)
+
+	if (global.settings.border_type != e_bordertype.not_enabled) && (global.settings.fullscreen || global.settings.show_border_windowed)
+	{
+		var 
+		final_mult = (display_get_gui_height() / surface_get_height(surf)) * 0.89,
+		draw_w = surface_get_width(surf) * final_mult,
+		draw_h = surface_get_height(surf) * final_mult,
+		draw_x = (display_get_gui_width() - draw_w) / 2,
+		draw_y = (display_get_gui_height() - draw_h) / 2
+		//29.65 39.69 show_message(draw_x) show_message(draw_y)
+		draw_surface_stretched_ext(surf, draw_x, draw_y, draw_w, draw_h,c_white,alpha);
+	}
+	else 
+		draw_surface_ext(surf,0,0,1,1,0,c_white,alpha)
+		
+	gpu_set_blendenable(true);
+}
+

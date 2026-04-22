@@ -5,3 +5,4 @@ y = cam_y + global.battlebox_y
 
 global.battlebox_width = 82 
 global.battlebox_height = 70
+line_size = 5

@@ -1,4 +1,4 @@
-if self_enemy_can_attack() //&& monster_num() != 3
+if self_enemy_can_attack() && monster_sum() != 3
 {
 	for (var i = 0; i < 2; i++)
 	if bullet[i] > 0 bullet[i] --

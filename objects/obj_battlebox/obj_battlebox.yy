@@ -37,9 +37,6 @@
     "name":"spr_battlebox",
     "path":"sprites/spr_battlebox/spr_battlebox.yy",
   },
-  "spriteMaskId":{
-    "name":"spr_battlebox_col",
-    "path":"sprites/spr_battlebox_col/spr_battlebox_col.yy",
-  },
+  "spriteMaskId":null,
   "visible":false,
 }

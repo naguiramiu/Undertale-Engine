@@ -2,8 +2,7 @@ function scr_language_set_title()
 {
 	#macro lan_savescreen "savescreen"
 	
-	global.language_text[$lan_savescreen] = 
-	{
+	global.language_text[$lan_savescreen] = {
 		room_text: 
 		{
 			rm_dev_testingarea: "* (Finding yourself in a room of developer things...){.&}* (Fills you with dread. yeah.)",
@@ -13,8 +12,7 @@ function scr_language_set_title()
 		
 	}
 	
-	var name_entry = function(_entry,_response,_allow = true) constructor
-	{
+	var name_entry = function(_entry,_response,_allow = true) constructor {
 		entry = _entry
 		response = _response
 		allow = _allow
@@ -22,8 +20,7 @@ function scr_language_set_title()
 	
 	
 	#macro lan_text_title "titlescreen"
-	global.language_text[$lan_text_title] =
-	{
+	global.language_text[$lan_text_title] = {
 		namescreen:
 		{
 			instructions: 

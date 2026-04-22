@@ -11,7 +11,7 @@ if instance_exists(player) && (global.can_move && target_room != undefined)
 		
 		p = clamp(p,clamp_distance,1 - clamp_distance) // clamp it to avoid getting stuck
 		
-		if !instance_exists(obj_roomtransition)
+		if !instance_exists(obj_parent_roomtransition)
 		instance_create_depth(x,y,depth,obj_roomtransition,
 		{
 			insta_tp_party: tp_party_into_player,

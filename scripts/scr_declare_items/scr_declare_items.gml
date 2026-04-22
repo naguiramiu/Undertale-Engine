@@ -9,7 +9,6 @@ function declare_items()
 	#macro ITEM_BISICLE "bisicle"
 	#macro ITEM_UNISICLE "unisicle"
 	#macro ITEM_TOY_KNIFE "toy_knife"
-	
 	var lan = get_lan(lan_items)
 	global.items = 
 	{

@@ -187,7 +187,18 @@ function draw_rectangle_center_rotated(_x, _y, _width, _height, _angle, _outline
     draw_primitive_end()
 }
 
-
+function check_outside_battlebox(px = obj_soul.x, py = obj_soul.y, box_x = obj_battlebox.x, box_y = obj_battlebox.y, box_w = obj_battlebox.width - obj_battlebox.line_size, box_h = obj_battlebox.height - obj_battlebox.line_size, box_angle = -obj_battlebox.image_angle, p_size = 5)
+{
+	var 
+	    dx = px - box_x,
+	    dy = py - box_y,
+	    rotated_x = abs(dx * dcos(box_angle) + dy * dsin(box_angle)),
+	    rotated_y = abs(-dx * dsin(box_angle) + dy * dcos(box_angle)),
+	    bw = (box_w / 2) - (p_size / 2),
+	    bh = (box_h / 2) - (p_size / 2)
+		
+    return (rotated_x > bw || rotated_y > bh);
+}
 function draw_circle_alpha_gradient(_x, _y, _r, _col, _alpha_inner, _alpha_outer) 
 {
     var _steps = draw_get_circle_precision();

@@ -1,21 +1,22 @@
-
-var 
-down_key = down_key_hold,
-up_key = up_key_hold,
-left_key = left_key_hold,
-right_key = right_key_hold,
-run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold)
-
-if run_key
-	current_run_speed = lerp(current_run_speed,max_run_speed,0.2)	
-else current_run_speed = lerp(current_run_speed,0,0.8)	
-
 #region X and Y movement
 xspd = 0;
 yspd = 0;
 
-if global.can_move
+if (global.can_move)
 {
+	var 
+		down_key = down_key_hold,
+		up_key = up_key_hold,
+		left_key = left_key_hold,
+		right_key = right_key_hold,
+		run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold),
+		movingthisinstance = ((right_key + left_key + up_key + down_key) == 1)
+
+	if run_key
+		current_run_speed = lerp(current_run_speed,max_run_speed,0.2)	
+	else current_run_speed = lerp(current_run_speed,0,0.8)	
+
+	
 	if right_key && left_key
 	{
 		if xdirection 
@@ -59,18 +60,20 @@ if global.can_move
 		var vaxis = gamepad_get_axis_value_fixed("vaxis")
 		if vaxis != 0 yspd = vaxis
 	}
+	
+	if (ENABLE_FRISKDANCE) && (up_key && down_key)
+	{	
+		if place_meeting(x,y - main_speed, obj_col_parent)	
+		{
+	        front_vector = (front_vector == UP) ? DOWN : UP
+			yspd = 0
+			current_frame += frame_animation_speed
+		}
+	}
+
 }
 #endregion	
 
-if (ENABLE_FRISKDANCE) && (up_key && down_key)
-{	
-	if place_meeting(x,y - main_speed, obj_col_parent)	
-	{
-        front_vector = (front_vector == UP) ? DOWN : UP
-		yspd = 0
-		current_frame += frame_animation_speed
-	}
-}
 
 
 #region ROTATION AND WALL COLLISIOM - COMPLEX CODE
@@ -99,7 +102,6 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	leny = lengthdir_y(walking_speed, target_dir),
 	speed_modifier_hugging_wall = run_key ? 0.8 : 1, // change this to 1 if you dont want the player to get slower when hugging walls
 	meetingwall = false,
-	movingthisinstance = ((right_key + left_key + up_key + down_key) == 1),
 	max_steps = 12,
 	steps = max_steps,
 	current = 1 
