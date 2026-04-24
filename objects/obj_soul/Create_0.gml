@@ -7,6 +7,9 @@ can_move = false
 can_hitbox = true
 global.invframes_timer = 0
 image_speed = 0
+col_surf = -1
+
+
 
 scr_party_hpaverage = function()
 {
@@ -140,3 +143,41 @@ compensate_for_diagonal_speed = function(wadir,spd)
 	return spd / 0.7
 	return spd
 }
+
+
+//meeting_surface = function(_x = x, _y = y, dist = 10)
+//{
+//    if (!surface_exists(col_surf)) return false;
+//    var _sw = surface_get_width(col_surf);
+//    var _sh = surface_get_height(col_surf);
+//    if (update_buffer || !buffer_exists(col_buffer))
+//    {
+//        var _size = _sw * _sh * 4;
+//        if (!buffer_exists(col_buffer) || buffer_get_size(col_buffer) != _size) 
+//        {
+//            if (buffer_exists(col_buffer)) buffer_delete(col_buffer);
+//            col_buffer = buffer_create(_size, buffer_fixed, 1);
+//        }
+//        buffer_get_surface(col_buffer, col_surf, 0);
+//        update_buffer = false;
+//    }
+    
+//    var found = false
+//    var half = dist / 2
+//    for (var iy = _y - half; iy < _y + half; iy++)
+//    {
+//        for (var ix = _x - half; ix < _x + half; ix++)
+//            if (ix >= 0 && ix < _sw && iy >= 0 && iy < _sh)
+//            {
+//               buffer_seek(col_buffer, buffer_seek_start, ((floor(iy) * _sw + floor(ix)) * 4))
+//			   if !(buffer_read(col_buffer, buffer_u32) == 4294967295) 
+//			   {
+//				    found = true
+//					break
+//			   }
+//            }
+//        if (found) break
+//    }
+
+//    return found;
+//}

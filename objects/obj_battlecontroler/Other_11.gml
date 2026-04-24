@@ -16,7 +16,8 @@ if cur.in_submenu2
 	{
 		add_battle_action(function(cur)
 		{
-			var monster = global.monsters[cur.act_monster_selection]
+			var selected = scr_battle_get_firstmonster_available(cur.act_monster_selection)
+			var monster = global.monsters[selected]
 			var act = monster.actions[cur.act_selection]
 			var char = get_char_by_party_position(cur.done_by)
 			var dialogue = act.dialogue

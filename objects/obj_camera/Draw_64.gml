@@ -1,2 +1,3 @@
+gpu_set_blendenable(false);
 draw_gui_surface_borderfix(application_surface)
 screen_cover(,screen_darken)

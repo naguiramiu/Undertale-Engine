@@ -12,10 +12,8 @@ if cur.in_submenu2
 		add_battle_action(function(cur)
 		{
 			var lan = get_lan(lan_battle)
-			var selected_enemy = cur.spare_monster_selection
+			var selected_enemy = scr_battle_get_firstmonster_available(cur.spare_monster_selection)
 			var char = get_char_by_party_position(cur.done_by)
-			while !global.monsters[selected_enemy].can_be_selected
-			selected_enemy = (selected_enemy +1) % array_length(global.monsters)
 		
 			var enemy = global.monsters[selected_enemy]
 			

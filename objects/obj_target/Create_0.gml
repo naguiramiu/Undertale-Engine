@@ -1,5 +1,4 @@
-while !global.monsters[mytarget].can_be_selected
-mytarget = modwrap(mytarget,1,array_length(global.monsters))
+mytarget = scr_battle_get_firstmonster_available(mytarget)
 
 do_later(6,function()
 {

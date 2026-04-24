@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"snd_multibar_notperfcet",
+  "%Name":"snd_multibar_perfect",
   "audioGroupId":{
     "name":"audiogroup_sound",
     "path":"audiogroups/audiogroup_sound",
@@ -12,7 +12,7 @@
   "conversionMode":0,
   "duration":0.2153288,
   "exportDir":"",
-  "name":"snd_multibar_notperfcet",
+  "name":"snd_multibar_perfect",
   "parent":{
     "name":"sounds",
     "path":"folders/sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_multibar_notperfcet.wav",
+  "soundFile":"snd_multibar_perfect.wav",
   "volume":1.0,
 }

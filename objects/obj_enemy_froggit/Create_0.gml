@@ -2,6 +2,7 @@ y += 10
 
 hp /= 2
 x = scr_enemy_align_to_grid_x(x) + sprite_width / 2
+
 potential_dialogue = ["Ribbit, ribbit.","Croak, croak.","Hop, hop.","Meow."]
 actions = 
 [

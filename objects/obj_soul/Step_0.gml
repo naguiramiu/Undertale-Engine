@@ -15,8 +15,8 @@ if can_move
 		if haxis != 0 xspd = haxis
 		var vaxis = gamepad_get_axis_value_fixed("vaxis")
 		if vaxis != 0 yspd = vaxis
-	}	
-		
+	}
+	
 	if (abs(xspd) > 0 || abs(yspd) > 0)
 	{
 	    var target_dir = point_direction(0, 0, xspd, yspd);
@@ -41,6 +41,7 @@ if can_move
 	    rot_y = clamp (rot_y, -bh, bh)
 	    x = box.x +  (rot_x * dcos (-ang) + rot_y * dsin (-ang))
 	    y = box.y +  (-rot_x * dsin (-ang) + rot_y * dcos (-ang))
+
 	
 		while check_outside_battlebox()
 		{
@@ -58,14 +59,15 @@ if can_move
 						break;	
 					}
 		    }
+
 		}
 		#endregion
 	}
-
+	
 	if (can_hitbox)
 		if place_meeting(x,y,parent_bullet) 
 			get_hit(instance_place(x,y,parent_bullet))
-}	
+}
 
 if global.invframes_timer > 0 
 {

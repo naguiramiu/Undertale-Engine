@@ -12,8 +12,8 @@
   "name":"obj_roomtransition_rpgmaker",
   "overriddenProperties":[],
   "parent":{
-    "name":"Undertale Engine",
-    "path":"Undertale Engine.yyp",
+    "name":"dev",
+    "path":"folders/objects/dev.yy",
   },
   "parentObjectId":{
     "name":"obj_parent_roomtransition",

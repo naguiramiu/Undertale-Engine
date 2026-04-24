@@ -273,7 +273,8 @@ function spawn_monsters(monster_array)
 		}
 }
 
-function battle_firstmonster_available(start)
+// avoid doing actions to not available monsters
+function scr_battle_get_firstmonster_available(start)
 {
 	var true_start = start 
 	while !global.monsters[start].can_be_selected
@@ -302,6 +303,8 @@ function spare_monster(monster_num)
 	}
 }
 
+
+// the battle has a grid and ut monsters liek to be like uhhhhhhhhhhhhhhhhhhhhhhhhh aligned to it yknow
 function scr_enemy_align_to_grid_x(_x)
 {
     return cam_x + (((_x - cam_x) div 50) * 50) + 7.5;
@@ -344,25 +347,28 @@ function battle_use_item(cur,use_on = 0)
 function check_perfom_event(event_name)
 {
 	if !string_starts_with(event_name,"event_")
-	event_name = "event_" + event_name
+		event_name = "event_" + event_name
 	
 	if var_id_exists(event_name)
-	{
-		method_call(var_id_get(event_name),customevent_get_params(event_name))
-	}
+		function_call(var_id_get(event_name),customevent_get_params(event_name))
 }
 
 function battle_draw_bottom_ui()
 {
+	var in_a_party = (array_length(global.stats.party) > 1)
+
 	#region battle buttons 
 	var cur = current_character_selections[selected_char_number]
 	var disabled_menus = get_unavailable_battle_menus()
 	var button_xpositions = [ 16,92.50,172.50,250 ]
-	for (var p = 0; p < array_length(global.stats.party); p++)
+	for (var p = 0; p < array_length(global.stats.party); p++) // many buttons if in a party
 	for (var i = 0; i < 4; i++)
 	{ 
-		var current_x = cam_x + button_xpositions[i] + (-button_xoffset * 320) + (p * 320) 
+		var current_x = cam_x + button_xpositions[i] 
 		var current_y = cam_y + 216															// those are just aligning thhem towhere undertale is
+		if (in_a_party)
+			current_x += (-button_xoffset * 320) + (p * 320) 
+			
 		var sprite = spr_battlebuttons_icon
 		var col = #FF7F27
 		var selected = (i == cur.main_menu_selection)
@@ -382,7 +388,6 @@ function battle_draw_bottom_ui()
 	#endregion
 	
 	#region hp and stats thingy
-	var in_a_party = (array_length(global.stats.party) > 1)
 	
 	if in_a_party 
 		scr_battle_draw_party_healthbars()
@@ -430,7 +435,10 @@ function scr_battle_facesprite(i)
 
 function scr_battle_draw_party_healthbars()
 {
-	static ui_anim = array_create_ext(array_length(global.stats.party),function(i){return!i})
+	if !variable_self_exists("ui_anim"){
+		ui_anim = array_create(array_length(global.stats.party),0)
+		ui_anim[0] = 1
+	}
 	
 	var 
 		ary = array_length(global.stats.party),
@@ -498,15 +506,10 @@ function targetbar_do_damage(character_done_by_pos,monster_attacked_pos,target_x
 {
 	var m =  global.monsters[monster_attacked_pos]
 	var char = get_char_by_party_position(character_done_by_pos)
-		
-	var weapon_attack = 0
-	if char.weapon != ITEM_EMPTY
-	weapon_attack = global.items[$char.weapon].attack
-	var armor_attack = 0
-	if char.armor != ITEM_EMPTY
-	armor_attack += global.items[$char.armor].attack
-		
-	damage = ((char.attack + weapon_attack + 10) - m.defense) + random(2);
+	
+	// in undertale, your attack stat has a + 10 for some reason
+	damage = ((scr_get_char_item_attack(char) + 10) - m.defense) + random(2);
+	// that is the exact calculation from undertale btw
 
 	var bonusfactor = abs(x - target_x);
 	
@@ -523,13 +526,14 @@ function targetbar_do_damage(character_done_by_pos,monster_attacked_pos,target_x
         
 	if instance_number(obj_targetbar) > 1
 	{
-		var perfect = (bonusfactor <= 4)
-		play_sound(perfect ? snd_multibar_notperfect : snd_multibar_notperfcet) 
-		if perfect 
+		if (bonusfactor <= 4) 
 		{
+			play_sound(snd_multibar_perfect)
 			image_blend = c_yellow
 			damage *= 2	
 		}
+		else 
+			play_sound(snd_multibar_notperfect)
 	}
 	if (bonusfactor <= 12)
 	damage = damage * 2.2;

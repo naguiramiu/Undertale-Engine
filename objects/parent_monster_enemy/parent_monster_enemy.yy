@@ -6,8 +6,8 @@
   "name":"parent_monster_enemy",
   "overriddenProperties":[],
   "parent":{
-    "name":"enemies",
-    "path":"folders/objects/battle/enemies.yy",
+    "name":"functions",
+    "path":"folders/objects/battle/functions.yy",
   },
   "parentObjectId":null,
   "persistent":false,
