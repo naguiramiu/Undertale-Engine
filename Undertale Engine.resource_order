@@ -333,7 +333,6 @@
     {"name":"spr_flowey_wink","order":14,"path":"sprites/spr_flowey_wink/spr_flowey_wink.yy",},
     {"name":"spr_friendlinesspellets","order":15,"path":"sprites/spr_friendlinesspellets/spr_friendlinesspellets.yy",},
     {"name":"spr_frisk_battle_face","order":4,"path":"sprites/spr_frisk_battle_face/spr_frisk_battle_face.yy",},
-    {"name":"spr_frisk_battle","order":5,"path":"sprites/spr_frisk_battle/spr_frisk_battle.yy",},
     {"name":"spr_frisk_walk_left","order":2,"path":"sprites/spr_frisk_walk_left/spr_frisk_walk_left.yy",},
     {"name":"spr_frisk_walk_right","order":1,"path":"sprites/spr_frisk_walk_right/spr_frisk_walk_right.yy",},
     {"name":"spr_frisk_walk_up","order":3,"path":"sprites/spr_frisk_walk_up/spr_frisk_walk_up.yy",},
