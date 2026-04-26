@@ -35,6 +35,6 @@ event_interact = function()
 	else 
 	{
 		play_sound(snd_wrongvictory)
-		create_textbox("* (Wow!){&.}* (You are super fast at being wrong.)")
+		create_textbox("* (Wow!){&.}* (You are superfast at being wrong.)")
 	}
 }

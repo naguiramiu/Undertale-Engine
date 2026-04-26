@@ -21,7 +21,7 @@ function scr_settings_save()
 	ini_close()
 }
 
-function scr_settings_load(set_language = false)
+function scr_settings_load()
 {
 	ini_open(file_dir() + "settings.ini")
 	

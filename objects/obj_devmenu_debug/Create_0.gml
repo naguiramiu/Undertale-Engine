@@ -163,6 +163,7 @@ main_settings =
 	new event_setting("Reload game with no savefile",function()
 	{
 		initialize()
+		scr_settings_load()
 		load_game(global.information.savefile_num,-1)
 	}),
 	new event_setting("Delete this savefile",function()

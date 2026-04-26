@@ -408,7 +408,11 @@ function scr_battle_draw_player_healthbar()
 		var hp = max(0,char.hp)
 		var hp_barwdith_filled = ((char.max_hp * 1.3) / 2) - 1
 		var hp_barwdith = clamp((hp >= 0 ? (hp_barwdith_filled * (hp / char.max_hp)) : 0), 0,hp_barwdith_filled)
-		draw_text_transformed(cam_x + 147.5 + hp_barwdith_filled - 3, cam_y + 200,string(hp) + " / " + string(char.max_hp),0.5,0.5,0);
+		
+		hp = string(hp)
+		if hp < 10 hp = "0" + hp
+			
+		draw_text_transformed(cam_x + 147.5 + hp_barwdith_filled - 3, cam_y + 200,hp + " / " + string(char.max_hp),0.5,0.5,0);
 		draw_set_color(c_red)
 		draw_rectangle_wh(cam_x + 137.5, cam_y + 200,hp_barwdith_filled, 10, false)
 		draw_set_color(c_yellow)

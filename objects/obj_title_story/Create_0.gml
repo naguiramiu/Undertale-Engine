@@ -22,7 +22,6 @@ dialogue_var_struct =
 
 cutscene_perform_event = false
 
-var set_frame = function(img) {return [variable_instance_set,obj_title_story,"image_index",img]}
 var write_text = function(dialogue)
 {	
 	cutscene_hold_arguments
