@@ -104,6 +104,10 @@ function get_current_direction(vec)
 	return (dir + 360) % 360;
 }
 
+function string_pos_in_instance_name(str,instance)
+{
+	return string_pos(str,object_get_name(instance.object_index))
+}
 function scr_warpdoor_get(warpdoor_id = 0)
 {
 	switch warpdoor_id

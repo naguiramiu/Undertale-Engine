@@ -11,7 +11,9 @@ if (global.can_move)
 		right_key = right_key_hold,
 		run_key = ENABLE_RUNNING && (global.settings.auto_run ? !back_key_hold : back_key_hold),
 		movingthisinstance = ((right_key + left_key + up_key + down_key) == 1)
-
+		
+	
+	
 	if run_key
 		current_run_speed = lerp(current_run_speed,max_run_speed,0.2)	
 	else current_run_speed = lerp(current_run_speed,0,0.8)	
@@ -79,13 +81,10 @@ if (global.can_move)
 #region ROTATION AND WALL COLLISIOM - COMPLEX CODE
 if (abs(xspd) > 0 || abs(yspd) > 0)
 {
-	var dist = prev_meetingwall ? 1 : 0.35 // if you are touching a wall let you move around faster to
-	// if you dont like the player rotating when turning change the dist to always 1
-	
 	var target_dir = point_direction(0, 0, xspd, yspd);
-
-	// prev walking into walls
-	front_vector = angle_lerp(front_vector, target_dir, dist);
+	var turn = (abs(angle_difference(get_current_direction(target_dir), get_current_direction(front_vector))) == 180) 
+	front_vector = (turn ? target_dir : angle_lerp(front_vector, target_dir, 0.35))
+	
 	front_vector = (front_vector + 360) % 360; // rotation
 	
 	var walking_speed = main_speed
@@ -104,7 +103,10 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	meetingwall = false,
 	max_steps = 12,
 	steps = max_steps,
-	current = 1 
+	current = 1,
+	prev_vec = front_vector,
+	mx = false,
+	my = false
 	while place_meeting(x + lenx, y, obj_col_parent)
 	{
 		// hugging wall
@@ -112,7 +114,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		{
 			leny *= speed_modifier_hugging_wall
 			// let player move away
-			if yspd != 0 
+			if yspd != 0 && !string_pos_in_instance_name("tri",instance_place(x + lenx, y, obj_col_parent))
 				front_vector = ((yspd > 0) ? DOWN : UP) 
 			meetingwall = true
 		}
@@ -131,6 +133,8 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		if steps > 0 steps -- 
 		else 
 		{
+			while (!place_meeting(x + sign(lenx), y, obj_col_parent))
+		    x += sign(lenx)
 			lenx = 0
 			break;
 		}
@@ -144,7 +148,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		if current == 1 
 		{
 			lenx *= speed_modifier_hugging_wall
-			if xspd != 0 
+			if xspd != 0 && !string_pos_in_instance_name("tri",instance_place(x, y + leny, obj_col_parent))
 				front_vector = ((xspd > 0) ? RIGHT : LEFT) 
 			meetingwall = true
 		}
@@ -163,11 +167,12 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		if steps > 0 steps -- 
 		else 
 		{
-			leny = 0
-			break;
+		    while (!place_meeting(x, y + sign(leny), obj_col_parent))
+		        y += sign(leny)
+		    leny = 0; 
+		    break;
 		}
 	}
-
 	prev_meetingwall = meetingwall;
 	
 	// diagonal stuff
@@ -176,12 +181,17 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	    if (!place_meeting(x + lenx, y, obj_col_parent))
 	        leny = 0;
 	    else if (!place_meeting(x, y + leny, obj_col_parent))
-	        lenx = 0;
+	        lenx = 0; 
 	}
-	
 	#endregion
 	x += lenx;
 	y += leny;
+	
+	g = x != xprevious
+	if (my && g) 
+		front_vector = prev_vec 
+		if (mx && y != yprevious) 
+		front_vector = prev_vec 
 }
 
 set_depth()

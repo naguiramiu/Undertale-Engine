@@ -129,9 +129,9 @@ for (var i = 0; i < array_length(settings); i++)
 				}
 				var xoff = 4 + ((round(time_normalized(0.008))) * ((i % 2) == 0 ? 1 : -1)) * 0.5
 				if val > 0
-				draw_sprite_ext(spr_arrow_2,0,142 - xoff,41 + current_y + string_height(val) / 2,-0.5,0.5,0,c_white,1)
+				draw_sprite_ext(spr_arrow_2,0,val_x - xoff,41 + current_y + string_height(val) / 2,-0.5,0.5,0,c_white,1)
 				if val < 100
-				draw_sprite_ext(spr_arrow_2,0,142 + string_width(val) + xoff,41 + current_y + string_height(val) / 2,0.5,0.5,0,c_white,1)
+				draw_sprite_ext(spr_arrow_2,0,val_x + string_width(val) + xoff,41 + current_y + string_height(val) / 2,0.5,0.5,0,c_white,1)
 			}
 			draw_text_color_ext(val_x,41 + current_y,val,(selected ? c_white: c_gray))
 		break;

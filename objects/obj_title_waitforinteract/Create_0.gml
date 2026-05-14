@@ -28,7 +28,7 @@ cutscene_start(cutscene,,false)
 // if you dont press interact in 10 seconds it takes you back to the story
 do_later(450,function()
 {
-	if instance_exists(obj_title_waitforinteract)	
+	if instance_exists(obj_title_waitforinteract) && room && rm_titlescreen
 		room_goto(rm_title_story)
 })
 

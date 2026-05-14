@@ -3,7 +3,7 @@
   "%Name":"spr_frisk_walk_down",
   "bboxMode":2,
   "bbox_bottom":29,
-  "bbox_left":4,
+  "bbox_left":3,
   "bbox_right":15,
   "bbox_top":23,
   "collisionKind":1,

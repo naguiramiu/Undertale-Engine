@@ -26,7 +26,7 @@ function file_write_all_text(filename, content)
 
 function file_dir()
 {
-	return filename_dir(filename_dir(game_save_id)) + "\\" + "UNDERTALE-ENGINE" + "\\";
+	return filename_dir(filename_dir(game_save_id)) + "\\" + string_upper(game_project_name) + "\\";
 }
 
 function string_quote_parse(str,load = true)

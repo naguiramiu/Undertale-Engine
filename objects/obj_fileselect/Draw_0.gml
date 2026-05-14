@@ -62,7 +62,7 @@ for (var i = 0; i < 3; i++) // save menu boxes
 			if !in_selection
 			{
 				instance_destroy()
-				instance_create(obj_title_main,{file: this_file})
+				instance_create(obj_title_main,{savefile_number: i})
 			}
 			else back = true 
 		}
