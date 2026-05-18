@@ -17,9 +17,9 @@ draw_menu(_x ,_y ,172,134,3) // bg menu
 var cell = ["Call no one"]
 
 for (var i = 0; i < array_length(cell); i++)
-	draw_text(116,41 + 16 * i,cell[i])
+	draw_text(x + 116,y + 41 + 16 * i,cell[i])
 	
-draw_sprite(spr_soul_text,0,103,43 + 16 * cell_selection)
+draw_sprite(spr_soul_text,0,x + 103,y + 43 + 16 * cell_selection)
 
 if interact_key 
 {

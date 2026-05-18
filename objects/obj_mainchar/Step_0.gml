@@ -83,7 +83,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 {
 	var target_dir = point_direction(0, 0, xspd, yspd);
 	var turn = (abs(angle_difference(get_current_direction(target_dir), get_current_direction(front_vector))) == 180) 
-	front_vector = (turn ? target_dir : angle_lerp(front_vector, target_dir, 0.35))
+	front_vector = (turn ? target_dir : angle_lerp(front_vector, target_dir,  0.35))
 	
 	front_vector = (front_vector + 360) % 360; // rotation
 	
@@ -103,10 +103,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	meetingwall = false,
 	max_steps = 12,
 	steps = max_steps,
-	current = 1,
-	prev_vec = front_vector,
-	mx = false,
-	my = false
+	current = 1
 	while place_meeting(x + lenx, y, obj_col_parent)
 	{
 		// hugging wall
@@ -114,7 +111,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		{
 			leny *= speed_modifier_hugging_wall
 			// let player move away
-			if yspd != 0 && !string_pos_in_instance_name("tri",instance_place(x + lenx, y, obj_col_parent))
+			if yspd != 0
 				front_vector = ((yspd > 0) ? DOWN : UP) 
 			meetingwall = true
 		}
@@ -148,7 +145,7 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 		if current == 1 
 		{
 			lenx *= speed_modifier_hugging_wall
-			if xspd != 0 && !string_pos_in_instance_name("tri",instance_place(x, y + leny, obj_col_parent))
+			if xspd != 0// && !string_pos_in_instance_name("tri",instance_place(x, y + leny, obj_col_parent))
 				front_vector = ((xspd > 0) ? RIGHT : LEFT) 
 			meetingwall = true
 		}
@@ -187,11 +184,6 @@ if (abs(xspd) > 0 || abs(yspd) > 0)
 	x += lenx;
 	y += leny;
 	
-	g = x != xprevious
-	if (my && g) 
-		front_vector = prev_vec 
-		if (mx && y != yprevious) 
-		front_vector = prev_vec 
 }
 
 set_depth()

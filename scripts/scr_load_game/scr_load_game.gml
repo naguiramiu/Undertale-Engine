@@ -65,21 +65,24 @@ function load_player()
 	global.party_instances = []
 	for (var i = 0; i < array_length(global.stats.party); i++)
 	{
-		var my_char = get_char_by_party_position(i)
-		var is_player_character = (i == 0)
+		var 
+			my_char = get_char_by_party_position(i),
+			is_player_character = (i == 0),
+			saved_coords = global.information,
+			_x = saved_coords.x,
+			_y = saved_coords.y,
+			_char_name = global.stats.party[i],
+			var_struct =	
+			{
+				char_name: _char_name,
+				number_in_party: i,
+				depth: -_y,
+				front_vector: saved_coords.front_vector,
+				sprite_name: "spr_{char_name}_{move_state}_{dir}"
+			}
+			
 		
-		var saved_coords = global.information
-		var _x = saved_coords.x 
-		var _y = saved_coords.y
-		var _char_name = global.stats.party[i]		
-		
-		global.party_instances[i] = instance_create_depth(_x,_y,-_y,(is_player_character ? player : obj_char_follower), 
-		{
-			char_name: _char_name,
-			number_in_party: i,
-			depth: -_y,
-			front_vector: saved_coords.front_vector,
-		})
+		global.party_instances[i] = instance_create_depth(_x,_y,-_y,(is_player_character ? player : obj_char_follower),var_struct)
 		var dir = player.front_vector
 		with global.party_instances[i]
 		{

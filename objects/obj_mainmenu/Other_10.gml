@@ -5,8 +5,12 @@ if instance_exists(item_textbox)
 	with item_textbox
 		event_user(1)
 	
+	if (instance_exists(item_textbox) || (!instance_exists(item_textbox) && get_number_of_items() == 0))
+	for (var i = 0; i < array_length(global.stats.party); i++)
+			draw_character_stats(i,74 * i,true,i == selected_char)
+			
 	if instance_exists(item_textbox)
-	exit; // it may be destroyed in event user 1 so check again
+		exit; // it may be destroyed in event user 1 so check again
 	else if get_number_of_items() == 0 
 	{
 		in_submenu = false
@@ -92,21 +96,26 @@ draw_set_font(font_deter_12)
 var _x = x 
 var _y = y
 
-draw_menu(_x + 94,_y + 26,172,180,3)
 
 if selecting_characters
 {
 	var ary = array_length(global.stats.party)
 	
+	for (var i = 0; i < ary; i++)
+	draw_character_stats(i,74 * i,true,i == selected_char)
+	draw_menu(_x + 94,_y + 84,172,min(73,(ary * 16) + 20),3)
+
 	selected_char = scr_updown_modwrap(selected_char,ary)
 	
 	for (var i = 0; i < ary; i++)
-			draw_text(_x + 116,_y + 41 + (16 * i),get_char_by_party_position(i).name)
+			draw_text(_x + 116,_y + 84 + 10 + (16 * i),get_char_by_party_position(i).name)
 			
-	draw_sprite(spr_soul_text,0,_x + 103, _y + 43 + (16 * selected_char))
+	draw_sprite(spr_soul_text,0,_x + 103, _y + 86 + 10 + (16 * selected_char))
 }
 else 
 {
+	draw_menu(_x + 94,_y + 26,172,180,3)
+	
 	for (var i = 0; i < array_length(inventory); i++)
 		if inventory[i] != ITEM_EMPTY
 			draw_text(_x + 116,_y + 41 + (16 * i),global.items[$inventory[i]].name)

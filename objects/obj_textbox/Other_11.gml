@@ -64,7 +64,7 @@ if !getting_details
 			 }
 		}
 	}
-	
+	var current_dialogue = dialogue[current_page]
 	var drawn_x = x + cam_x
 	var drawn_y = y + cam_y 
 

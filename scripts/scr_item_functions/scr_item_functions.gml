@@ -1,13 +1,16 @@
 function use_item_main(selected_item,selection,var_struct = {}, create_textboxes = true,remove_item = true, used_by_pos = 0,used_on_pos = 0,battle = false)
 {
 	var character_used_on = get_char_by_party_position(used_on_pos)
-	
+	var alone = (array_length(global.stats.party) == 1)
 	var item = variable_clone(selected_item)
 	
 	if variable_struct_exists(item,"dialogue_event")
-		with item variable_struct_get(item,"dialogue_event")(item)
-		
-	var dialogue = item.use_description
+		{
+			with item dialogue_event(item) 
+		}
+	var dialogue = (!alone ? item.use_description_party : item.use_description)
+	if variable_struct_exists(item,global.stats.party[used_on_pos])
+		dialogue = variable_struct_get(item,global.stats.party[used_on_pos])
 	
 	if !is_array(dialogue) dialogue = [dialogue]
 	
@@ -48,24 +51,30 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 			var heal = selected_item.heal_amount 
 			if (heal != 0)
 			{
+				var wait = "{.&}"
+				
+				if string_pos_in_array(dialogue,"{item_tip_separate}")
+				{
+					array_push(dialogue,"{/talker}")
+					wait = ""
+				}	
 				if character_used_on.hp + heal >= character_used_on.max_hp
-				dialogue[array_length(dialogue) - 1] += "{.&}* Your HP was maxed out."
+					dialogue[array_length(dialogue) - 1] += wait + (alone ? "* {Your} HP was maxed out." : "* {char_name}'s HP was maxed out.")
 				else
-				dialogue[array_length(dialogue) - 1] += "{.&}* You recovered " + string(heal) + " HP!"
+				dialogue[array_length(dialogue) - 1] += wait + (alone ? "* {You} recovered " + string(heal) + " HP!" : "* {char_name} recovered " + string(heal) + " HP!")
 			}
 		}
 		play_sound(snd_swallow,1)
 	}
 	else 
 	{
-		
 		if !string_pos_in_array("snd_item",dialogue) && create_textboxes
 			play_sound(snd_item)
 		
 		if type != e_itemtype.item
 		{
 			if is_missing_text(dialogue[0])
-				dialogue[0] = "* You equipped " + item.name + "."
+				dialogue[0] = (alone ? "* You equipped " + item.name + "." : "* {char_name} equipped " + item.name + ".")
 				
 			if remove_item
 			{
@@ -80,12 +89,16 @@ function use_item_main(selected_item,selection,var_struct = {}, create_textboxes
 	
 	if create_textboxes
 	{
+		for (var i = 0; i < array_length(dialogue); i++)
+		dialogue[i] = string_replace_all(dialogue[i], "{char_name}",character_used_on.name)
+		
 		if battle 
 			return create_battle_textbox(dialogue,var_struct,true)
 		else
 			return create_textbox(dialogue,var_struct)
 	}
 }
+
 
 
 
@@ -141,6 +154,7 @@ function item_get_dialogue_struct(item_id)
 		name: missing,
 		check_description: missing,
 		use_description: missing,
+		use_description_party: missing
 	}
 	
 	return struct_merge_ext(missing_struct,get_lan(lan_items,item_id))
@@ -155,13 +169,17 @@ enum e_itemtype
 	weapon
 }
 
-function item_dialogue(_name,_check_description,_use_description = undefined,_short_name = undefined,_extra = {}) constructor
+function item_dialogue(_name,_check_description,_use_description = undefined,_use_description_party = undefined,_short_name = undefined,_extra = {}) constructor
 {
 	name = _name
 	short_name = _short_name ?? _name
-	if is_defined(_use_description) use_description = _use_description
+	if is_defined(_use_description) 
+		use_description = _use_description
 	check_description = _check_description
 	struct_replace_unique(self,_extra)
+	use_description_party = _use_description_party
+	if !is_defined(use_description_party)
+		use_description_party = _use_description
 }
 
 function drop_item(selected_item,selection,var_struct = {})

@@ -151,7 +151,7 @@ main_settings =
 	new set_menu_setting("Inventory",change_inventory_options(),item_func),
 	new set_menu_setting("Storage box",change_inventory_options("storage"),item_func,"storage"),
 	new edit_struct_setting("flags", "global",,,177,flags_custom_func),
-	new edit_struct_setting("stats.char.frisk", "global","Player stats",["ui_color"]),
+	new edit_struct_setting("stats.char.frisk", "global","Player stats"),
 	new edit_struct_setting("stats", "global","Party stats",["inventory","storage_box","party"]),
 	new edit_struct_setting("true_savedata",obj_devmenu_debug,"True savedata",,177,truefile_custom_func,function(){truefile_overwrite(true_savedata)}),
 	new edit_struct_setting("language_text", "global"),

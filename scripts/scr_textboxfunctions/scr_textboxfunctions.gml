@@ -16,7 +16,9 @@
 		break;
 		
 		case "talker":
-		
+			if reset
+				talker = {}
+			else if array_length(value)
 			talker = global.talker[$value[0]]
 			
 		break;

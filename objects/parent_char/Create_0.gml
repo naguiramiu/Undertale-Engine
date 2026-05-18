@@ -1,4 +1,3 @@
-sprite_name = "spr_{char_name}_{move_state}_{dir}"
 was_moving = false
 frames_to_stop = -1
 prev_changed = ""

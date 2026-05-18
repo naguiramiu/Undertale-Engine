@@ -10,28 +10,33 @@ function scr_language_set_items()
 		ITEM_BANDAGE: new item_dialogue(
 			"Bandage",
 			"* \"Bandage\" - Heals 10 HP{.&}* It has already been used many times.",
-			"* You re-applied the bandage.{.&}* Still kind of gooey."
+			"* You re-applied the bandage.{.&}* Still kind of gooey.",
+			"* {char_name} re-applied the bandage.{.&}* Still kind of gooey.",
 		),
 		ITEM_MONSTER_CANDY: new item_dialogue( 
 			"Monster Candy",
 			"* \"Monster Candy\" - Heals 10 HP{,&}* Has a distinct, non-licorice flavor.",
 			["* You ate the Monster Candy.{.&}* Very un-licorice-like.","* You ate the Monster Candy{.&}* ....{.&}* tastes like licorice."],
+			["* {char_name} ate the Monster Candy.{.&}* Very un-licorice-like.","{item_tip_separate}* {char_name} ate the Monster Candy{.&}* ....{.&}* tastes like licorice."],
 			"MnstrCndy"
 		),
 		ITEM_STICK: new item_dialogue(
 			"Stick",
 			"* \"Stick\" - Weapon AT 0{,&}* Its bark is worse than its bite.",
-			"* You threw the stick away.{.&}* Then picked it back up."
+			"* You threw the stick away.{.&}* Then picked it back up.",
+			"* {char_name} threw the stick away.{.&}* Then picked it back up."
 		),	
 		ITEM_BISICLE: new item_dialogue( 
 			"Bisicle",
 			"* \"Bisicle\" - Heals 11 HP{,&}* It's a two-pronged popsicle, so you can eat it twice.",
-			"* You eat one half of the Bisicle."
+			"* You eat one half of the Bisicle.",
+			"* {char_name} eats one half of the Bisicle."
 		),
 		ITEM_UNISICLE: new item_dialogue( 
 			"Unisicle",
 			"* \"Unisicle\" - Heals 11 HP{,&}* It's a SINGLE-pronged popsicle.{.} Wait, that's just normal...",
-			"* You ate the Unisicle."
+			"* You ate the Unisicle.",
+			"* {char_name} ate the Unisicle."
 		),
 		ITEM_TOY_KNIFE: new item_dialogue( 
 			"Toy Knife",

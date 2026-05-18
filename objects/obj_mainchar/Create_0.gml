@@ -12,7 +12,6 @@ current_run_speed = 0
 // for local speed changes, there is a multiplier added on top of this later
 main_speed = 3
 #region speed and correct direction values
-g = false 
 xdirection = true
 ydirection = true
 xspd = 0
