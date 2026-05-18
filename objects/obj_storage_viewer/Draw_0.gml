@@ -17,7 +17,8 @@ if right_key_press || left_key_press
 		play_sound(snd_menu_move)
 		selection = clamp(selection,0,array_length(global.stats[$inventories[selected_collumn]]) - 1)
 	}
-var interact = interact_key_press
+var interact = interact_key_press && created 
+created = true
 for (var column = 0; column < 2; column ++)
 {
 	var inv = global.stats[$inventories[column]]
